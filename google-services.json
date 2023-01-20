@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "646962415119",
+    "project_id": "rento-f1b52",
+    "storage_bucket": "rento-f1b52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646962415119:android:3b3ffc5cbf6a1eca88c57a",
+        "android_client_info": {
+          "package_name": "com.example.rento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646962415119-d704uttnikd7dmjiv10vb50sle756rok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rento",
+            "certificate_hash": "cfa66e976903d46970837b8bf431d219109da5dc"
+          }
+        },
+        {
+          "client_id": "646962415119-jqifhgncki2ntlabpcbg7g1krqtg4ipb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcztyPgUFElVhRf6FZvn7TXZUaKAPd-G4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646962415119-jqifhgncki2ntlabpcbg7g1krqtg4ipb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
