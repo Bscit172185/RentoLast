@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         FragmentTransaction ft =fragmentManager.beginTransaction();
         ft.add(R.id.layout,new ListedProductsFragment());
         ft.commit();
-        img=view.findViewById(R.id.imageView2);
+        img=view.findViewById(R.id.imageView12);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
