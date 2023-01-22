@@ -31,7 +31,7 @@ public class MobileVerifyFragment extends Fragment {
                         Bundle bundle=new Bundle();
                         bundle.putString("mnum",num);
                         getParentFragmentManager().setFragmentResult("Mobileverify",bundle);
-                        Fragment fragment= new SetPasswordForRegistrationFragment();
+                        Fragment fragment=new AddressRegistrationFragment();
                         FragmentTransaction ft= getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.ragistraionFreg,fragment).commit();
                     }

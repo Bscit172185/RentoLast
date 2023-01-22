@@ -35,7 +35,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
     Button Register;
     Uri a;
     Uri b;
-    public String name,email,number,pass,cpass,imgurl,SimgUrl;
+    public String name,email,number,pass,cpass,imgurl,SimgUrl,Address,Latitude,Longitude,postalcose;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +57,17 @@ public class SetPasswordForRegistrationFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 number=result.getString("mnum");
+            }
+        });
+        getParentFragmentManager().setFragmentResultListener("AddressDetails", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                Address=result.getString("Address");
+                Latitude=result.getString("Latitude");
+                Longitude=result.getString("Longitude");
+                postalcose=result.getString("postalcode");
+
+
             }
         });
         Register.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +117,10 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                                             m.put("Name",name);
                                             m.put("Number",number);
                                             m.put("Password",cpass);
+                                            m.put("Address",Address);
+                                            m.put("Latitude",Latitude);
+                                            m.put("Longitude",Longitude);
+                                            m.put("PostalCode",postalcose);
                                             FirebaseAuth auth=FirebaseAuth.getInstance();
                                             FirebaseUser user=auth.getCurrentUser();
                                             String UID=user.getUid();

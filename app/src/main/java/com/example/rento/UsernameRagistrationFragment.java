@@ -1,9 +1,11 @@
 package com.example.rento;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -84,8 +86,13 @@ public class UsernameRagistrationFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==GALLARY_RQE_CODE){
             IMGURI=data.getData();
+            System.out.println(IMGURI);
             viewimg.setImageURI(data.getData());
 
         }
+        else {
+
+        }
+
     }
 }
