@@ -116,7 +116,6 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                                             m.put("ImgUrl",SimgUrl);
                                             m.put("Name",name);
                                             m.put("Number",number);
-                                            m.put("Password",cpass);
                                             m.put("Address",Address);
                                             m.put("Latitude",Latitude);
                                             m.put("Longitude",Longitude);
