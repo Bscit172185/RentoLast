@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
-    TextView dothacc;
+    TextView dothacc,Forgotpass;
     EditText Email,Pass;
     Button login;
     private FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
@@ -28,11 +28,19 @@ public class Login extends AppCompatActivity {
         Email=findViewById(R.id.editText);
         Pass=findViewById(R.id.editText2);
         login=findViewById(R.id.login);
+        Forgotpass=findViewById(R.id.textView2);
         dothacc=findViewById(R.id.dontacc);
         dothacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(Login.this,Registration.class);
+                startActivity(intent);
+            }
+        });
+        Forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Login.this,ForgotPassword_Activity.class);
                 startActivity(intent);
             }
         });

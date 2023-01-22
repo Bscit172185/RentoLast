@@ -50,7 +50,7 @@
                     android:layout_marginStart="88dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/ic_baseline_person_24"
+                    android:src="@drawable/ic_baseline_person_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:shapeAppearanceOverlay="@style/circle"
                     app:layout_constraintStart_toEndOf="@+id/textView11"
