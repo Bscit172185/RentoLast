@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -51,6 +52,28 @@ public class AddressRegistrationFragment extends Fragment {
         but = view.findViewById(R.id.next);
         location=view.findViewById(R.id.GPSbut);
 
+        TextView Address,City,Country,codea;
+        Address=view.findViewById(R.id.Address);
+        City=view.findViewById(R.id.City);
+        Country=view.findViewById(R.id.Country);
+        codea=view.findViewById(R.id.code);
+
+        Address.setVisibility(view.INVISIBLE);
+        City.setVisibility(View.INVISIBLE);
+        Country.setVisibility(View.INVISIBLE);
+        codea.setVisibility(View.INVISIBLE);
+        addressname.setVisibility(View.INVISIBLE);
+        cityname.setVisibility(View.INVISIBLE);
+        countryname.setVisibility(View.INVISIBLE);
+        code.setVisibility(View.INVISIBLE);
+        but.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
+
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,9 +86,21 @@ public class AddressRegistrationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    Address.setVisibility(view.VISIBLE);
+                    City.setVisibility(View.VISIBLE);
+                    Country.setVisibility(View.VISIBLE);
+                    codea.setVisibility(View.VISIBLE);
+                    addressname.setVisibility(View.VISIBLE);
+                    cityname.setVisibility(View.VISIBLE);
+                    countryname.setVisibility(View.VISIBLE);
+                    code.setVisibility(View.VISIBLE);
+                    but.setVisibility(View.VISIBLE);
                     getLastLocation();
                 } else {
+
+
                     AskLocationPermition();
+
                 }
             }
         });
