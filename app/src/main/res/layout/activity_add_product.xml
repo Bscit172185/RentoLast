@@ -174,7 +174,7 @@
         </ImageView>
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/editBrokerageAmt"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="center"
