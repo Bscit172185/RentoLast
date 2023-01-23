@@ -6,4 +6,5 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="map_API">AIzaSyASyIsHC3vy2fib6nKjdng2grTO_IArjjE</string>
     <string name="title_activity_address_maps">AddressMapsActivity</string>
+    <string name="category">Choose any of the category to add product of that type.</string>
 </resources>
