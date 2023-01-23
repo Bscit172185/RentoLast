@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -30,7 +31,7 @@ public class UsernameRagistrationFragment extends Fragment {
     ShapeableImageView viewimg;
     Uri IMGURI;
 
-    private final int GALLARY_RQE_CODE=1000;
+
 
 
     @Override
@@ -45,9 +46,10 @@ public class UsernameRagistrationFragment extends Fragment {
         imgget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gallary= new Intent(Intent.ACTION_PICK);
-                gallary.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(gallary,GALLARY_RQE_CODE);
+                ImagePicker.Companion.with(UsernameRagistrationFragment.this)
+                        .crop()
+                        .maxResultSize(1080,1080)
+                        .start(1001);
 
             }
         });
@@ -85,7 +87,7 @@ public class UsernameRagistrationFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLARY_RQE_CODE){
+        if(requestCode==1001){
             IMGURI=data.getData();
             System.out.println(IMGURI);
             viewimg.setImageURI(data.getData());

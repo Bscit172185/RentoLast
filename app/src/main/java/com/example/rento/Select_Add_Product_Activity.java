@@ -1,7 +1,6 @@
 package com.example.rento;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class Select_Add_Product_Activity extends AppCompatActivity {
