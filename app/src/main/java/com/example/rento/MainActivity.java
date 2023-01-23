@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         floatbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Product= new Intent(MainActivity.this,Add_Product_Activity.class);
+                Intent Product= new Intent(MainActivity.this,Select_Add_Product_Activity.class);
                 startActivity(Product);
             }
         });

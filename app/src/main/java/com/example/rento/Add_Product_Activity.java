@@ -40,7 +40,7 @@ public class Add_Product_Activity extends AppCompatActivity {
     String ID=user.getUid();
     ImageButton imageButton,back;
     Button addpro;
-    String productUrl;
+    String productUrl,catagory;
     Uri URL;
     EditText PName,Pdecrip,PPrice,PBrok;
     ShapeableImageView img;
@@ -50,6 +50,7 @@ public class Add_Product_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        catagory=getIntent().getStringExtra("catagory");
         back=findViewById(R.id.back);
         PName=findViewById(R.id.editText3);
         Pdecrip=findViewById(R.id.editText6);
@@ -83,12 +84,14 @@ public class Add_Product_Activity extends AppCompatActivity {
                 pro.put("Product_brocrage",PBrok1);
                 pro.put("Product_ImgUrl",productUrl);
                 FirebaseFirestore root=FirebaseFirestore.getInstance();
-                root.collection("Product").document(ID).collection(new Random().nextInt(500)+ID).document().set(pro)
+                root.collection("Product").document(ID).collection(catagory).document().set(pro)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
+                                    finish();
                                 }
                             }
                         });
