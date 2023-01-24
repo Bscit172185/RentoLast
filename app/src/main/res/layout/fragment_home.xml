@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,6 +64,7 @@
                     android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
+                    app:searchIcon="@drawable/ic_baseline_search_24"
                     android:layout_marginBottom="27dp"
                     android:background="@drawable/shadow_textbox_shape"
 
@@ -108,7 +110,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:background="@drawable/cardview_background"
                     android:foregroundGravity="center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
@@ -129,34 +130,31 @@
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardview1"
                             android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_height="120dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:cardBackgroundColor="#ABD9D9D9"
                             app:cardCornerRadius="50dp"
-                            app:cardElevation="8dp"
-                            app:contentPadding="8dp">
+                            app:cardBackgroundColor="@color/lancher"
+                            app:cardElevation="5dp"
+                            app:contentPadding="8dp"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:paddingBottom="15dp"
+                                android:paddingTop="15dp"
+                                >
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:alpha="0.5"
+                                    android:background="@drawable/sofa" />
 
-
-                            <ImageView
-                                android:id="@+id/imageView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.5"
-                                android:background="@drawable/sofa" />
-
-                            <TextView
-                                android:id="@+id/textview6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginBottom="4dp"
-                                android:text="Furniture"
-                                android:textColor="@color/white"
-                                android:textSize="15dp" />
+                            </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -177,7 +175,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="0.7"
-                                android:background="@drawable/ap" />
+                                android:background="@drawable/ap"
+
+                                />
 
                             <TextView
                                 android:id="@+id/textview7"
@@ -364,7 +364,6 @@
                     android:layout_marginStart="35dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/recycleview_background"
                     android:foregroundGravity="center"
                     android:src="@drawable/password"
                     app:layout_constraintEnd_toEndOf="parent"
