@@ -83,8 +83,10 @@ public class Add_Product_Activity extends AppCompatActivity {
                 pro.put("Product_Price",PPrice1);
                 pro.put("Product_brocrage",PBrok1);
                 pro.put("Product_ImgUrl",productUrl);
+                pro.put("UID",ID);
+                pro.put("Categories",catagory);
                 FirebaseFirestore root=FirebaseFirestore.getInstance();
-                root.collection("Product").document(ID).collection(catagory).document().set(pro)
+                root.collection("Product").document().set(pro)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

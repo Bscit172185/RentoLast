@@ -6,6 +6,7 @@
     tools:context=".ListedProductsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Regview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
