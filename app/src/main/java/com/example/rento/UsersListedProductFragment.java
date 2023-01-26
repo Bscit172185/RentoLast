@@ -33,7 +33,6 @@ public class UsersListedProductFragment extends Fragment {
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     FirebaseUser user=firebaseAuth.getCurrentUser();
     String id=user.getUid();
-    String name,Price,ImgUrl;
     String  re;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
