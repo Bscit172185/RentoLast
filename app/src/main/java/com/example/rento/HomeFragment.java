@@ -30,6 +30,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Document;
@@ -37,10 +39,10 @@ import org.w3c.dom.Document;
 
 public class HomeFragment extends Fragment {
     String A;
-    Uri url;
+    Uri url,banner;
     CardView cardView;
     LinearLayout layout;
-    ImageView img;
+    ImageView img,poster;
     FrameLayout Flayout;
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -68,6 +70,18 @@ public class HomeFragment extends Fragment {
         FragmentTransaction ft =fragmentManager.beginTransaction();
         ft.add(R.id.layout,new ListedProductsFragment());
         ft.commit();
+        poster=view.findViewById(R.id.imageView14);
+        FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
+        StorageReference ref=firebaseStorage.getReference("banner.jpg");
+        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                banner=uri;
+                Picasso.get().load(banner).into(poster);
+            }
+        });
+
+
         img=view.findViewById(R.id.imageView12);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
