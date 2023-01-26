@@ -38,8 +38,8 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="332dp"
-        android:layout_height="53dp"
+        android:layout_width="259dp"
+        android:layout_height="56dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="39dp"
@@ -54,7 +54,7 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="408dp"
+        android:layout_width="match_parent"
         android:layout_height="582dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="3dp"
@@ -67,235 +67,156 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/otp_background">
 
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview1"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="25dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="15dp"
-                app:cardBackgroundColor="#f7d023"
+                app:cardBackgroundColor="#FDBEC7"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardview2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
-                    android:alpha="0.5"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
                     android:background="@drawable/sofa" />
 
-                <TextView
-                    android:id="@+id/textview6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Furniture"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview2"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="25dp"
-                app:cardBackgroundColor="#f7d023"
+                android:layout_marginEnd="50dp"
+                app:cardBackgroundColor="#EBBEFF"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardview1"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="15dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/ap" />
-
-                <TextView
-                    android:id="@+id/textview7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Appliances"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/electrical" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview3"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="25dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="15dp"
-                app:cardBackgroundColor="#f7d023"
+                app:cardBackgroundColor="#B9D4F8"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardview2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardview1">
 
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="20dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/ea" />
-
-                <TextView
-                    android:id="@+id/textview12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Electronics"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/mixer" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview4"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="25dp"
-                app:cardBackgroundColor="#f7d023"
+                android:layout_marginEnd="50dp"
+                app:cardBackgroundColor="#FADCB9"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/cardview1"
                 app:layout_constraintTop_toBottomOf="@+id/cardview2">
 
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="15dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/bk" />
-
-                <TextView
-                    android:id="@+id/textview13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Books"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/cloakroom" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview5"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="25dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="15dp"
-                app:cardBackgroundColor="#f7d023"
+                app:cardBackgroundColor="#8DB1BD"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardview2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardview3">
 
 
                 <ImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="20dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/cl" />
-
-                <TextView
-                    android:id="@+id/textview14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Clothes"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/bookshelf" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview6"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="28dp"
-                app:cardBackgroundColor="#f7d023"
+                android:layout_marginEnd="50dp"
+                app:cardBackgroundColor="#ECE0C1"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardview5"
                 app:layout_constraintTop_toBottomOf="@+id/cardview4">
 
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="15dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/inst" />
-
-                <TextView
-                    android:id="@+id/textview15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Instruments"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/saxophone" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview7"
-                android:layout_width="170dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="25dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="219dp"
-                app:cardBackgroundColor="#f7d023"
+                android:layout_marginEnd="228dp"
+                app:cardBackgroundColor="#D6ADC1"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="8dp"
                 app:contentPadding="8dp"
@@ -306,22 +227,11 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="20dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/vehicle" />
-
-                <TextView
-                    android:id="@+id/textview16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Vehicles"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:background="@drawable/scooter" />
+
             </androidx.cardview.widget.CardView>
 
 
