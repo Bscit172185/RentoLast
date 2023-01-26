@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddedProduct_RecycleView_ItemDetailsFragment">
+    tools:context=".Item_details_of_recycleview">
 
     <ScrollView
         android:id="@+id/scrollview1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,11 +22,13 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img"
-                android:layout_width="250dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="80dp"
+                android:layout_width="400dp"
+                android:layout_height="450dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="81dp" />
+                android:layout_marginEnd="81dp"
+                android:foregroundGravity="center"
+                />
 
             <TextView
                 android:id="@+id/text"
@@ -31,6 +37,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Name"
+                android:textColor="@color/black"
                 android:textSize="20dp">
 
             </TextView>
@@ -50,8 +57,8 @@
                 android:id="@+id/text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:text="Address"
                 android:textSize="20dp">
 
@@ -134,11 +141,11 @@
                     android:id="@+id/button1"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
-                    android:gravity="center"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/button_layout_standard2"
                     android:drawableEnd="@drawable/ic_baseline_add_shopping_cart_24"
+                    android:gravity="center"
                     android:paddingEnd="10dp"
                     android:text="Add to cart"
                     android:textSize="15dp">
@@ -151,8 +158,8 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
-                    android:gravity="center"
                     android:background="@drawable/button_layout_standard"
+                    android:gravity="center"
                     android:text="RENT NOW"
                     android:textColor="@color/white"
                     android:textSize="15dp">
@@ -161,8 +168,7 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

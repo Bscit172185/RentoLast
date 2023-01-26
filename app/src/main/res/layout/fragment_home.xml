@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="@color/teal_200">
+        android:background="@drawable/homepage_layout"
+        android:elevation="4dp"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView12"

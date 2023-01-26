@@ -35,7 +35,7 @@ public class ListedProductsFragment extends Fragment {
         regview=view.findViewById(R.id.Regview);
         regview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
-        myadapter=new Myadapter(datalist);
+        myadapter=new Myadapter(datalist,getContext());
         regview.setAdapter(myadapter);
 
         db.collection("Product").get()
@@ -51,6 +51,7 @@ public class ListedProductsFragment extends Fragment {
                     }
 
                 });
+
 
         return view;
     }
