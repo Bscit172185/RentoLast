@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class Select_Add_Product_Activity extends AppCompatActivity {
     CardView a1,a2,a3,a4,a5,a6,a7;
@@ -38,34 +39,39 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat="Furniture";
+                Toast.makeText(Select_Add_Product_Activity.this, "Furniture", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
         a2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cat="Appliances";
+                cat="Electronics";
+                Toast.makeText(Select_Add_Product_Activity.this, "Electronics", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
         a3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cat="Electronics";
+                cat="home appliances";
+                Toast.makeText(Select_Add_Product_Activity.this, "home appliances", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
         a4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cat="Books";
+                cat="Cloths";
+                Toast.makeText(Select_Add_Product_Activity.this, "Cloths", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
         a5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cat="Clothes";
+                cat="Books";
+                Toast.makeText(Select_Add_Product_Activity.this, "Books", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
@@ -73,6 +79,7 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat="Instruments";
+                Toast.makeText(Select_Add_Product_Activity.this, "Instruments", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
@@ -80,6 +87,7 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat="Vehicles";
+                Toast.makeText(Select_Add_Product_Activity.this, "Vehicles", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
