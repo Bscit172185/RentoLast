@@ -1,6 +1,12 @@
 package com.example.rento;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +22,16 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
+    Context context;
+    String pname,pprice,img;
     ArrayList<Model> datalist;
 
     public Myadapter(ArrayList<Model> datalist) {
         this.datalist = datalist;
     }
+
+
+
 
     @NonNull
     @Override
@@ -31,15 +42,24 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        String a;
+
         Uri uri1;
-        a=datalist.get(position).getProduct_ImgUrl();
-        uri1=Uri.parse(a);
+        pname=datalist.get(position).getProduct_Name();
+        pprice=datalist.get(position).getProduct_Price();
+        img=datalist.get(position).getProduct_ImgUrl();
+        Bundle bundle=new Bundle();
+        bundle.putString("name",pname);
+        bundle.putString("pprice",pprice);
+        bundle.putString("url",img);
+        UsersListedProductFragment freg=new UsersListedProductFragment();
+        freg.setArguments(bundle);
+        uri1=Uri.parse(img);
         Picasso.get().load(uri1).into(holder.img);
-        holder.t1.setText(datalist.get(position).getProduct_Name());
-        holder.t2.setText(datalist.get(position).getProduct_Price());
+        holder.t1.setText(pname);
+        holder.t2.setText(pprice);
 
     }
+
 
     @Override
     public int getItemCount() {

@@ -17,7 +17,7 @@
         android:title=""
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
     <item
-        android:id="@+id/Profile"
+        android:id="@+id/list"
         android:title=""
         android:icon="@drawable/ic_baseline_collections_bookmark_24"/>
 </menu>

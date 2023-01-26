@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                System.out.println(id);
                 if(id==R.id.Home){
                     loadFarg(new HomeFragment());
 
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 else if (id==R.id.Cart){
                     loadFarg(new CartFragment());
                 }
-
+                else if(id==R.id.list){
+                    loadFarg(new UsersListedProductFragment());
+                }
 
                 return false;
             }
