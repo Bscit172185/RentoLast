@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     app:cardCornerRadius="40dp"
     android:paddingTop="30dp"
+    android:paddingStart="30dp"
+    android:paddingLeft="30dp"
     android:paddingEnd="30dp"
     >
 
@@ -17,8 +19,8 @@
         >
         <ImageView
             android:id="@+id/img"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/ic_baseline_person_24"
             android:layout_gravity="center"
             />
@@ -29,13 +31,20 @@
             android:text="PEN"
             android:gravity="center"
             />
+
         <TextView
             android:id="@+id/price"
-            android:layout_width="match_parent"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Price"
-            />
+            android:text="Price" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="/mon">
+
+        </TextView>
 
     </LinearLayout>
 
