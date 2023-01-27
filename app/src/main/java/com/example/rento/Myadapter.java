@@ -77,7 +77,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
 
     class myviewholder extends RecyclerView.ViewHolder{
         TextView t1,t2;
-        ImageView img;
+        ShapeableImageView img;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.name);
