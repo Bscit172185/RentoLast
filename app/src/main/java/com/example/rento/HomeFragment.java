@@ -40,10 +40,11 @@ import org.w3c.dom.Document;
 public class HomeFragment extends Fragment {
     String A;
     Uri url,banner;
-    CardView cardView;
+    CardView fu,el,ke,cl,bk,im,vc;
     LinearLayout layout;
     ImageView img,poster;
     FrameLayout Flayout;
+    int a=0;
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -64,6 +65,13 @@ public class HomeFragment extends Fragment {
         Flayout=getActivity().findViewById(R.id.layout);
 
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+        fu=view.findViewById(R.id.cardview1);
+        el=view.findViewById(R.id.cardview2);
+        ke=view.findViewById(R.id.cardview3);
+        cl=view.findViewById(R.id.cardview4);
+        bk=view.findViewById(R.id.cardview5);
+        im=view.findViewById(R.id.cardview6);
+        vc=view.findViewById(R.id.cardview7);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction ft =fragmentManager.beginTransaction();
         ft.add(R.id.layout,new ListedProductsFragment());
@@ -101,6 +109,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
