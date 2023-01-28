@@ -16,6 +16,13 @@
         android:theme="@style/Theme.RENTO"
         tools:targetApi="31">
         <activity
+            android:name=".Profile_details_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Item_details_of_recycleview"
             android:exported="false">
             <meta-data

@@ -49,22 +49,20 @@ public class HomeFragment extends Fragment {
     FirebaseUser user=auth.getCurrentUser();
     String UID=user.getUid();
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser user=auth.getCurrentUser();
+        if(user==null){
+            getActivity().finish();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Flayout=getActivity().findViewById(R.id.layout);
-        FirebaseFirestore firestore= FirebaseFirestore.getInstance();
-        DocumentReference reference=firestore.collection("user").document(UID);
-        reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                A=documentSnapshot.getString("ImgUrl");
-                url=Uri.parse(A);
-                Picasso.get().load(url).into(img);
-            }
-        });
+
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction ft =fragmentManager.beginTransaction();
@@ -83,12 +81,23 @@ public class HomeFragment extends Fragment {
 
 
         img=view.findViewById(R.id.imageView12);
+        FirebaseFirestore firestore= FirebaseFirestore.getInstance();
+        DocumentReference reference=firestore.collection("user").document(UID);
+        reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                A=documentSnapshot.getString("ImgUrl");
+                url=Uri.parse(A);
+                Picasso.get().load(url).into(img);
+            }
+        });
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth.signOut();
-                startActivity(new Intent(getActivity(),Login.class));
-                getActivity().finish();
+                Intent intent=new Intent(getActivity(),Profile_details_Activity.class);
+                intent.putExtra("url",A);
+                startActivity(intent);
+
             }
         });
         return view;

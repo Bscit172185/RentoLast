@@ -22,6 +22,12 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
