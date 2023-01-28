@@ -96,6 +96,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),Profile_details_Activity.class);
                 intent.putExtra("url",A);
+                intent.putExtra("uid",UID);
                 startActivity(intent);
 
             }

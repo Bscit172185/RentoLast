@@ -11,6 +11,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/trans_anim</item>
+        <item name="android:windowExitTransition">@transition/trans_anim</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="round" parent="">

@@ -8,17 +8,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class Profile_details_Activity extends AppCompatActivity {
     ShapeableImageView img;
-    TextView logout;
-    String A;
+    TextView logout,uname,unum,uemail,uadd,ulog,ulat,upcode;
+    String A,uid;
     Uri url;
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
+    String name,email,number,add,log,lat,postcode;
 
 
     @Override
@@ -26,6 +35,7 @@ public class Profile_details_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
         FirebaseUser user=firebaseAuth.getCurrentUser();
+
         if(user==null){
             finish();
         }
@@ -33,8 +43,42 @@ public class Profile_details_Activity extends AppCompatActivity {
         img=findViewById(R.id.img);
         Intent intent=getIntent();
         A=intent.getStringExtra("url");
+        uid=intent.getStringExtra("uid");
         url=Uri.parse(A);
         Picasso.get().load(url).into(img);
+        uname=findViewById(R.id.Name);
+        uemail=findViewById(R.id.Email);
+        uadd=findViewById(R.id.Add);
+        ulog=findViewById(R.id.Log);
+        ulat=findViewById(R.id.Lat);
+        upcode=findViewById(R.id.UPostcode);
+        unum=findViewById(R.id.num);
+
+
+        db.collection("user").document(uid).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                name=documentSnapshot.getString("Name");
+                                email=documentSnapshot.getString("Email");
+                                number=documentSnapshot.getString("Number");
+                                add=documentSnapshot.getString("Address");
+                                log=documentSnapshot.getString("Longitude");
+                                lat=documentSnapshot.getString("Latitude");
+                                postcode=documentSnapshot.getString("PostalCode");
+                                uname.setText(name);
+                                uemail.setText(email);
+                                unum.setText(number);
+                                uadd.setText(add);
+                                ulog.setText(log);
+                                ulat.setText(lat);
+                                upcode.setText(postcode);
+
+
+
+                            }
+                        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

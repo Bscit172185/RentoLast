@@ -32,14 +32,78 @@
                         android:layout_height="match_parent"
                         android:paddingTop="80dp"
                         android:gravity="center"
+                        android:foregroundGravity="center"
+                        android:orientation="vertical"
                         >
+                        <TextView
+                            android:id="@+id/Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/Email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="email"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4567891230"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/Add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:textSize="20dp"
+                            android:gravity="center"
+                            />
+                        <TextView
+                            android:id="@+id/Log"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4545454"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/Lat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="45455"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/UPostcode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="475541"
+                            android:textSize="20dp"
+                            />
+
                         <TextView
                             android:id="@+id/logout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingTop="30dp"
                             android:text="Logout"
-                            android:textSize="20dp"
+                            android:textSize="40dp"
+                            android:textColor="#FF0000"
                             android:layout_gravity="center"
+                            />
+                        <TextView
+                            android:id="@+id/editpro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="30dp"
+                            android:text="Edit Profile"
+                            android:textSize="40dp"
+                            android:textColor="@color/teal_200"
                             />
 
                     </LinearLayout>
