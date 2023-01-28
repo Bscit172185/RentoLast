@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Profile_details_Activity extends AppCompatActivity {
     ShapeableImageView img;
-    TextView logout,uname,unum,uemail,uadd,ulog,ulat,upcode;
+    TextView logout,uname,unum,uemail,uadd,ulog,ulat,upcode,edit;
     String A,uid;
     Uri url;
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
@@ -35,6 +35,8 @@ public class Profile_details_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
         FirebaseUser user=firebaseAuth.getCurrentUser();
+        edit=findViewById(R.id.editpro);
+
 
         if(user==null){
             finish();
@@ -84,6 +86,14 @@ public class Profile_details_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 startActivity(new Intent(Profile_details_Activity.this,Login.class));
+                finish();
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Profile_details_Activity.this,Registration.class));
                 finish();
             }
         });

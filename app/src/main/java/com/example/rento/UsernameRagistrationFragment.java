@@ -20,8 +20,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 
 public class UsernameRagistrationFragment extends Fragment {
@@ -30,8 +36,10 @@ public class UsernameRagistrationFragment extends Fragment {
     FloatingActionButton imgget;
     ShapeableImageView viewimg;
     Uri IMGURI;
-
-
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseUser user=auth.getCurrentUser();
+    String url;
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
 
 
     @Override
@@ -42,7 +50,25 @@ public class UsernameRagistrationFragment extends Fragment {
         Name=view.findViewById(R.id.editText22);
         Email=view.findViewById(R.id.editText23);
         viewimg=view.findViewById(R.id.shapeableImageView);
+        int a=0;
         imgget=view.findViewById(R.id.floatingActionButton);
+        if(user!=null){
+            String uid=user.getUid();
+            Email.setVisibility(view.INVISIBLE);
+            db.collection("user").document(uid).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Name.setText(documentSnapshot.getString("Name"));
+                            Email.setText(documentSnapshot.getString("Email"));
+                            url=documentSnapshot.getString("ImgUrl");
+                            IMGURI=Uri.parse(url);
+                            Picasso.get().load(IMGURI).into(viewimg);
+                        }
+                    });
+
+
+        }
         imgget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

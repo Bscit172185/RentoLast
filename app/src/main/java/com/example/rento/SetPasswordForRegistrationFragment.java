@@ -31,6 +31,8 @@ import java.util.HashMap;
 
 public class SetPasswordForRegistrationFragment extends Fragment {
     private final FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseUser user=auth.getCurrentUser();
+    String id=user.getUid();
     EditText Pass,ConPass;
     Button Register;
     Uri a;
@@ -70,6 +72,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
 
             }
         });
+
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

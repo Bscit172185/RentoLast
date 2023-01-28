@@ -11,7 +11,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MobileVerifyFragment extends Fragment {
+
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseUser user=auth.getCurrentUser();
+    String UID= user.getUid();
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,6 +33,15 @@ public class MobileVerifyFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_mobile_verify, container, false);
         MobN=view.findViewById(R.id.editTextPhone);
         Next=view.findViewById(R.id.button4);
+        if(user!=null){
+            db.collection("user").document(UID).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            MobN.setText(documentSnapshot.getString("Number"));
+                        }
+                    });
+        }
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

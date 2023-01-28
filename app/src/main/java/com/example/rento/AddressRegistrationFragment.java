@@ -28,6 +28,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.List;
@@ -57,6 +61,7 @@ public class AddressRegistrationFragment extends Fragment {
         City=view.findViewById(R.id.City);
         Country=view.findViewById(R.id.Country);
         codea=view.findViewById(R.id.code);
+
 
         Address.setVisibility(view.INVISIBLE);
         City.setVisibility(View.INVISIBLE);
