@@ -45,11 +45,12 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
         Uri uri1;
-        String pname,pprice,imgurl,brorate;
+        String pname,pprice,imgurl,brorate,ProId;
         pname=datalist.get(position).getProduct_Name();
         pprice=datalist.get(position).getProduct_Price();
         imgurl=datalist.get(position).getProduct_ImgUrl();
         brorate=datalist.get(position).getProduct_brocrage();
+        ProId=datalist.get(position).id;
         uri1=Uri.parse(imgurl);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(pname);
@@ -58,6 +59,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,Item_details_of_recycleview.class);
+                intent.putExtra("id",ProId);
                 intent.putExtra("name",pname);
                 intent.putExtra("price",pprice);
                 intent.putExtra("imgurl",imgurl);

@@ -1,7 +1,9 @@
 package com.example.rento;
 
 public class Model {
-    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID;
+    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id;
+
+
 
     public Model() {
     }

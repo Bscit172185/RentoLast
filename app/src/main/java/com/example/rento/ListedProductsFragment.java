@@ -1,5 +1,6 @@
 package com.example.rento;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ public class ListedProductsFragment extends Fragment {
     RecyclerView regview;
     ArrayList<Model> datalist;
     Myadapter myadapter;
+    String id;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
 
     @Override
@@ -45,6 +47,7 @@ public class ListedProductsFragment extends Fragment {
                         List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list){
                             Model obj=d.toObject(Model.class);
+                            obj.id=d.getId();
                             datalist.add(obj);
                         }
                         myadapter.notifyDataSetChanged();
