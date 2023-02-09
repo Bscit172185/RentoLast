@@ -43,7 +43,6 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-
         Uri uri1;
         String pname,pprice,imgurl,brorate,ProId;
         pname=datalist.get(position).getProduct_Name();
