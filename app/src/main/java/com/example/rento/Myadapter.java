@@ -44,10 +44,11 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         Uri uri1;
-        String pname,pprice,imgurl,brorate,ProId;
+        String pname,pprice,imgurl,brorate,ProId,UserId;
         pname=datalist.get(position).getProduct_Name();
         pprice=datalist.get(position).getProduct_Price();
         imgurl=datalist.get(position).getProduct_ImgUrl();
+        UserId=datalist.get(position).getUID();
         brorate=datalist.get(position).getProduct_brocrage();
         ProId=datalist.get(position).id;
         uri1=Uri.parse(imgurl);
@@ -62,6 +63,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
                 intent.putExtra("name",pname);
                 intent.putExtra("price",pprice);
                 intent.putExtra("imgurl",imgurl);
+                intent.putExtra("UsersId",UserId);
                 intent.putExtra("brorate",brorate);
                 context.startActivity(intent);
 

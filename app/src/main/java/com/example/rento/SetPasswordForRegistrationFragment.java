@@ -8,11 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +39,8 @@ public class SetPasswordForRegistrationFragment extends Fragment {
     Button Register;
     Uri a;
     Uri b;
+    int count=0;
+    ImageView imgv1,imgv2;
     public String name,email,number,pass,cpass,imgurl,SimgUrl,Address,Latitude,Longitude,postalcose;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +49,20 @@ public class SetPasswordForRegistrationFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_set_password_for_registration, container, false);
         Pass=view.findViewById(R.id.editText4);
         ConPass=view.findViewById(R.id.editText5);
+        imgv1=view.findViewById(R.id.img2);
+        imgv2=view.findViewById(R.id.img3);
+        imgv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                visibal();
+            }
+        });
+        imgv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                visibal();
+            }
+        });
         Register=view.findViewById(R.id.register);
         getParentFragmentManager().setFragmentResultListener("userpage", this, new FragmentResultListener() {
             @Override
@@ -96,59 +115,117 @@ public class SetPasswordForRegistrationFragment extends Fragment {
 
         return view;
     }
+
+    private void visibal() {
+        if(count==0){
+            Pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            count=1;
+        }
+        else {
+            Pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            count=0;
+        }
+
+    }
+
     public void sendtoFirebase(){
-        a=Uri.parse(imgurl);
-        String ImgID=email;
-        FirebaseStorage storage=FirebaseStorage.getInstance();
-        StorageReference upload=storage.getReference("Profile/"+ImgID);
-        upload.putFile(a).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                upload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        SimgUrl=uri.toString();
-                        auth.createUserWithEmailAndPassword(email,pass)
-                                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            HashMap<String, Object> m= new HashMap<String,Object>();
-                                            m.put("Email",email);
-                                            m.put("ImgUrl",SimgUrl);
-                                            m.put("Name",name);
-                                            m.put("Number",number);
-                                            m.put("Address",Address);
-                                            m.put("Latitude",Latitude);
-                                            m.put("Longitude",Longitude);
-                                            m.put("PostalCode",postalcose);
-                                            FirebaseAuth auth=FirebaseAuth.getInstance();
-                                            FirebaseUser user=auth.getCurrentUser();
-                                            String UID=user.getUid();
-                                            FirebaseFirestore root=FirebaseFirestore.getInstance();
-                                            root.collection("user").document(UID).set(m).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        Toast.makeText(getActivity(),"successful!!",Toast.LENGTH_SHORT).show();
-                                                        Intent intent=new Intent(getActivity(),Login.class);
-                                                        startActivity(intent);
+        if(!imgurl.isEmpty()){
+            a=Uri.parse(imgurl);
+            String ImgID=email;
+            FirebaseStorage storage=FirebaseStorage.getInstance();
+            StorageReference upload=storage.getReference("Profile/"+ImgID);
+            upload.putFile(a).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    upload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            SimgUrl=uri.toString();
+                            auth.createUserWithEmailAndPassword(email,pass)
+                                    .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if(task.isSuccessful()){
+                                                HashMap<String, Object> m= new HashMap<String,Object>();
+                                                m.put("Email",email);
+                                                m.put("ImgUrl",SimgUrl);
+                                                m.put("Name",name);
+                                                m.put("Number",number);
+                                                m.put("Address",Address);
+                                                m.put("Latitude",Latitude);
+                                                m.put("Longitude",Longitude);
+                                                m.put("PostalCode",postalcose);
+                                                FirebaseAuth auth=FirebaseAuth.getInstance();
+                                                FirebaseUser user=auth.getCurrentUser();
+                                                String UID=user.getUid();
+                                                FirebaseFirestore root=FirebaseFirestore.getInstance();
+                                                root.collection("user").document(UID).set(m).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful()){
+                                                            Toast.makeText(getActivity(),"successful!!",Toast.LENGTH_SHORT).show();
+                                                            Intent intent=new Intent(getActivity(),Login.class);
+                                                            startActivity(intent);
+                                                        }
+
                                                     }
+                                                });
+                                            }
+                                            else {
+                                                Toast.makeText(getActivity(),"Failde"+task.getException(),Toast.LENGTH_LONG).show();
+                                            }
+                                        }
 
-                                                }
-                                            });
+                                    });
+
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            auth.createUserWithEmailAndPassword(email,pass)
+                    .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                HashMap<String, Object> m= new HashMap<String,Object>();
+                                m.put("Email",email);
+                                m.put("ImgUrl","");
+                                m.put("Name",name);
+                                m.put("Number",number);
+                                m.put("Address",Address);
+                                m.put("Latitude",Latitude);
+                                m.put("Longitude",Longitude);
+                                m.put("PostalCode",postalcose);
+                                FirebaseAuth auth=FirebaseAuth.getInstance();
+                                FirebaseUser user=auth.getCurrentUser();
+                                String UID=user.getUid();
+                                FirebaseFirestore root=FirebaseFirestore.getInstance();
+                                root.collection("user").document(UID).set(m).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getActivity(),"successful!!",Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(getActivity(),Login.class);
+                                            startActivity(intent);
                                         }
-                                        else {
-                                            Toast.makeText(getActivity(),"Failde"+task.getException(),Toast.LENGTH_LONG).show();
-                                        }
+
                                     }
-
                                 });
+                            }
+                            else {
+                                Toast.makeText(getActivity(),"Failde"+task.getException(),Toast.LENGTH_LONG).show();
+                            }
+                        }
 
-                    }
-                });
-            }
-        });
+                    });
+
+
+
+
+        }
+
 
     }
 

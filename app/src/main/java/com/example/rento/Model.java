@@ -1,9 +1,19 @@
 package com.example.rento;
 
 public class Model {
-    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id;
+    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id,Uid,ProId;
 
+    public Model(String proId) {
+        ProId = proId;
+    }
 
+    public String getProId() {
+        return ProId;
+    }
+
+    public void setProId(String proId) {
+        ProId = proId;
+    }
 
     public Model() {
     }

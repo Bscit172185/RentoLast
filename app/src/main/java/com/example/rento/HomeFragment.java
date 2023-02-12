@@ -95,15 +95,23 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 A=documentSnapshot.getString("ImgUrl");
-                url=Uri.parse(A);
-                Picasso.get().load(url).into(img);
+                if(!A.isEmpty()){
+                    url=Uri.parse(A);
+                    Picasso.get().load(url).into(img);
+                }
+
             }
         });
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),Profile_details_Activity.class);
-                intent.putExtra("url",A);
+                if(!A.isEmpty()){
+                    intent.putExtra("url",A);
+                }
+                else {
+                    intent.putExtra("url","noko");
+                }
                 intent.putExtra("uid",UID);
                 startActivity(intent);
 

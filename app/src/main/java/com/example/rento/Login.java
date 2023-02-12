@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +25,8 @@ public class Login extends AppCompatActivity {
     TextView dothacc,Forgotpass;
     EditText Email,Pass;
     Button login;
+    ImageView imgview1;
+    int count=0;
     private FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
 
     @Override
@@ -38,6 +44,23 @@ public class Login extends AppCompatActivity {
         login=findViewById(R.id.login);
         Forgotpass=findViewById(R.id.textView2);
         dothacc=findViewById(R.id.dontacc);
+        imgview1=findViewById(R.id.img1);
+        imgview1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count==0){
+                    Pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    count=1;
+                }
+                else {
+                    Pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    count=0;
+                }
+
+
+
+            }
+        });
         dothacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

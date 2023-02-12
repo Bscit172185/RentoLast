@@ -67,7 +67,12 @@ public class UsernameRagistrationFragment extends Fragment {
                         Bundle bundle= new Bundle();
                         bundle.putString("name",name);
                         bundle.putString("email",email);
-                        bundle.putString("imgurl",IMGURI.toString());
+                        if(IMGURI!=null){
+                            bundle.putString("imgurl",IMGURI.toString());
+                        }
+                        else {
+                            bundle.putString("imgurl","");
+                        }
                         SetPasswordForRegistrationFragment sender = new SetPasswordForRegistrationFragment();
                         sender.setArguments(bundle);
                         getParentFragmentManager().setFragmentResult("userpage",bundle);
@@ -97,6 +102,7 @@ public class UsernameRagistrationFragment extends Fragment {
         }
         else {
             Toast.makeText(getActivity(), "error...", Toast.LENGTH_SHORT).show();
+            IMGURI=null;
         }
 
     }

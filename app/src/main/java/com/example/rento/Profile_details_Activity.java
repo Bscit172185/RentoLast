@@ -46,8 +46,10 @@ public class Profile_details_Activity extends AppCompatActivity {
         Intent intent=getIntent();
         A=intent.getStringExtra("url");
         uid=intent.getStringExtra("uid");
-        url=Uri.parse(A);
-        Picasso.get().load(url).into(img);
+        if(A!="noko"){
+            url=Uri.parse(A);
+            Picasso.get().load(url).into(img);
+        }
         uname=findViewById(R.id.Name);
         uemail=findViewById(R.id.Email);
         uadd=findViewById(R.id.Add);
