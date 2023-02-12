@@ -100,6 +100,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                                                 if(a.equals(UserID)){
                                                    if(b.equals(ProId)){
                                                        ref=1;
+
                                                    }
                                                 }
                                             }
