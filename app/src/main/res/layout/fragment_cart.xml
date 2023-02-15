@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CartFragment"
-    android:background="#673AB7">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="@color/white"
+    android:padding="10dp"
+    >
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Regview1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CART" />
+        android:layout_height="match_parent" />
+
 
 
 </FrameLayout>

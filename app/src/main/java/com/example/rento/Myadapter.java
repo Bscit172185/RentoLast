@@ -78,7 +78,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
         return datalist.size();
     }
 
-    class myviewholder extends RecyclerView.ViewHolder{
+    static class myviewholder extends RecyclerView.ViewHolder{
         TextView t1,t2;
         ShapeableImageView img;
         public myviewholder(@NonNull View itemView) {

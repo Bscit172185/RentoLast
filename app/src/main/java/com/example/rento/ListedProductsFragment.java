@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ListedProductsFragment extends Fragment {
     RecyclerView regview;
-    ArrayList<Model> datalist;
+        ArrayList<Model> datalist;
     Myadapter myadapter;
     String id;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
