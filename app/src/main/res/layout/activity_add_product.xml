@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7d023"
+    android:background=""
     tools:context=".Add_Product_Activity">
 
     <ImageButton
@@ -40,57 +40,54 @@
         android:id="@+id/imageView13"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="131dp"
         android:layout_marginBottom="21dp"
         android:src="@drawable/ic_baseline_image_24"
         app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="138dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/ic_baseline_add_box_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        tools:layout_editor_absoluteX="130dp" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="109dp"
         android:text="Add sample images"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="340dp"
         android:layout_height="60dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="36dp"
-        android:background="@drawable/shadow_textbox_shape"
         android:hint="Product name"
         android:inputType="text"
         android:paddingStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13">
+        app:layout_constraintTop_toBottomOf="@+id/imageButton">
 
     </EditText>
 
@@ -102,7 +99,6 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="36dp"
-        android:background="@drawable/shadow_textbox_shape"
         android:hint="Product Description"
         android:paddingStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,16 +110,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="35dp"
+        android:layout_width="170dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="225dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="36dp"
-        android:background="@drawable/shadow_textbox_shape"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:background="@drawable/shadow_textbox_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,115 +129,120 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/ic_baseline_remove_24">
 
         </ImageView>
 
         <EditText
             android:id="@+id/editQuantity"
-            android:layout_width="215dp"
+            android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:background="@color/transperent"
             android:digits="1234567890."
-            android:ems="10"
-            android:hint="Quantity"
+            android:hint="Qty"
             android:inputType="number"
-            android:paddingStart="30dp"
-            android:paddingEnd="70dp" />
-
-        <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/ic_baseline_add_24"/>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/shadow_textbox_shape"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="50dp"
-        android:paddingEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout4">
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:background="@drawable/ic_baseline_currency_rupee_24">
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_baseline_add_24" />
 
-        </ImageView>
-
-        <EditText
-            android:id="@+id/editPrice"
-            android:layout_width="wrap_content"
-            android:digits="1234567890."
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/transperent"
-            android:ems="10"
-            android:hint="Price"
-            android:inputType="number"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp" />
 
     </LinearLayout>
 
+
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="35dp"
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/shadow_textbox_shape"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="50dp"
-        android:paddingEnd="30dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_baseline_currency_rupee_24">
-
-        </ImageView>
-
-        <EditText
-            android:id="@+id/editBrokerageAmt"
-            android:digits="1234567890."
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="170dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/transperent"
-            android:ems="10"
-            android:hint="Brokerage Amount"
-            android:inputType="number"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="36dp"
+            android:orientation="horizontal"
+            android:paddingEnd="5dp"
+            android:background="@drawable/shadow_textbox_shape">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_baseline_currency_rupee_24">
+
+            </ImageView>
+
+            <EditText
+                android:id="@+id/editPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@color/transperent"
+                android:digits="1234567890."
+                android:ems="10"
+                android:hint="Price"
+                android:inputType="number"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:background="@drawable/shadow_textbox_shape"
+            tools:layout_editor_absoluteX="235dp"
+            tools:layout_editor_absoluteY="563dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_baseline_currency_rupee_24">
+
+            </ImageView>
+
+            <EditText
+                android:id="@+id/editBrokerageAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/transperent"
+                android:digits="1234567890."
+                android:ems="10"
+                android:hint="Brokerage"
+                android:layout_marginStart="10dp"
+                android:inputType="number"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -250,15 +251,15 @@
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginStart="115dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="116dp"
         android:background="@drawable/button_layout_standard"
         android:text="Add Product"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
