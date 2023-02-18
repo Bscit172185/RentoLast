@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=""
     tools:context=".Add_Product_Activity">
 
     <ImageButton
@@ -55,10 +54,13 @@
         android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/ic_baseline_add_box_24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        tools:layout_editor_absoluteX="130dp" />
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
     <TextView
         android:id="@+id/textView10"
