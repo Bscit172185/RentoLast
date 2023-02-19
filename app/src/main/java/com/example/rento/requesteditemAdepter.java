@@ -1,11 +1,9 @@
 package com.example.rento;
 
-import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,22 +14,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> {
+public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdepter.myviewholder> {
     ArrayList<Model> datalist;
-    public CartAdapter(ArrayList<Model> datalist) {
+    public requesteditemAdepter(ArrayList<Model> datalist) {
         this.datalist= datalist;
 
     }
 
     @NonNull
     @Override
-    public CartAdapter.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_cardview_layout,parent,false);
         return new myviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.myviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         String a ,name,price;
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
@@ -48,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
     public int getItemCount() {
         return datalist.size();
     }
+
     class myviewholder extends RecyclerView.ViewHolder {
         TextView t1,t2;
         ShapeableImageView img;

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,7 +45,8 @@ public class HomeFragment extends Fragment {
     LinearLayout layout;
     ImageView img,poster;
     FrameLayout Flayout;
-    int a=0;
+    String categoryid="";
+    int  count=0;
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -72,6 +74,11 @@ public class HomeFragment extends Fragment {
         bk=view.findViewById(R.id.cardview5);
         im=view.findViewById(R.id.cardview6);
         vc=view.findViewById(R.id.cardview7);
+        Bundle bundle=new Bundle();
+        bundle.putString("categoryid",categoryid);
+        ListedProductsFragment ls=new ListedProductsFragment();
+        ls.setArguments(bundle);
+        getParentFragmentManager().setFragmentResult("categoryid",bundle);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction ft =fragmentManager.beginTransaction();
         ft.add(R.id.layout,new ListedProductsFragment());
@@ -117,7 +124,49 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        fu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count==0){
+                    categoryid="Furniture";
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    count=0;
+                    categoryid="";
+                }
 
+            }
+        });
+        el.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count==0){
+                    categoryid="Electronics";
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    count=0;
+                    categoryid="";
+                }
+            }
+        });
+        ke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count==0){
+                    categoryid="home appliances";
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    count=0;
+                    categoryid="";
+                }
+            }
+        });
         return view;
     }
 

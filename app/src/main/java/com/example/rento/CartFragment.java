@@ -37,7 +37,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_cart, container, false);
         regview=view.findViewById(R.id.Regview1);
-        regview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
         db.collection("cart").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -49,7 +49,6 @@ public class CartFragment extends Fragment {
                             String b=d.getString("Uid");
                             if(b.equals(uid)){
                                 a=d.getString("ProId");
-                                System.out.println(a);
                                 getcarddata();
                             }
 
