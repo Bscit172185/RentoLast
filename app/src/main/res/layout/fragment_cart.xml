@@ -50,6 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/deleteall"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="113dp"

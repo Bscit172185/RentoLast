@@ -1,6 +1,8 @@
 package com.example.rento;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> {
+    Context context;
     ArrayList<Model> datalist;
-    public CartAdapter(ArrayList<Model> datalist) {
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
+    public CartAdapter(ArrayList<Model> datalist ,Context context) {
         this.datalist= datalist;
+        this.context=context;
 
     }
 
@@ -31,17 +37,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.myviewholder holder, int position) {
-        String a ,name,price;
+    public void onBindViewHolder(@NonNull CartAdapter.myviewholder holder, @SuppressLint("RecyclerView") int position) {
+        String a ,name,price,b;
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
-        System.out.println(name);
         uri1=Uri.parse(a);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,ItemDetailsOfAddToCartActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -51,6 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
     class myviewholder extends RecyclerView.ViewHolder {
         TextView t1,t2;
         ShapeableImageView img;
+        ImageView del;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.name);

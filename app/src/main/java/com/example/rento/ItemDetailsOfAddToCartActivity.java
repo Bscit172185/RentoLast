@@ -10,5 +10,6 @@ public class ItemDetailsOfAddToCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details_of_add_to_cart);
+
     }
 }
