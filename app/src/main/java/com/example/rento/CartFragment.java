@@ -1,5 +1,6 @@
 package com.example.rento;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,18 +10,21 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -29,17 +33,20 @@ public class CartFragment extends Fragment {
     ArrayList<Model>datalist;
     CartAdapter myadapter;
     ImageView alldel;
+    Button chekout;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
     String a,b;
     String itemid;
+    ArrayList<String> arrayList=new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_cart, container, false);
+        chekout=view.findViewById(R.id.checkout);
         alldel=view.findViewById(R.id.deleteall);
         regview=view.findViewById(R.id.Regview1);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
@@ -75,6 +82,7 @@ public class CartFragment extends Fragment {
                                     if(uid.equals(iduser)){
                                         itemid=d.getId();
                                         delete();
+
                                     }
                                 }
                             }
@@ -82,8 +90,89 @@ public class CartFragment extends Fragment {
             }
         });
 
+        chekout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                db.collection("cart").get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
+                                for(DocumentSnapshot d:list){
+                                    String ProId,Uid,qut,Status,itemidofcart,id;
+                                    itemidofcart=d.getId();
+                                    id=d.getString("Uid");
+                                    ProId=d.getString("ProId");
+                                    Uid=d.getString("Uid");
+                                    qut=d.getString("qut");
+                                    Status="Pendding";
+                                    if(uid.equals(id)){
+                                        checkout(ProId,Uid,qut,Status,itemidofcart);
+                                        startActivity(new Intent(getActivity(),MainActivity.class));
+                                    }
+                                }
+
+                            }
+                        });
+            }
+
+        });
+
+
         return view;
     }
+public void checkout(String ProId,String Uid,String  qut,String Status,String itemidofcart){
+    db.collection("Rent_Request").get()
+            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    List<DocumentSnapshot> list1=queryDocumentSnapshots.getDocuments();
+                    for(DocumentSnapshot b:list1){
+                        String ReqUserID=b.getString("ReqUserID");
+                        String ProId1=b.getString("ProId");
+                        if(ReqUserID.equals(Uid)){
+                            if(!ProId1.equals(ProId)){
+                                HashMap<String,Object> s=new HashMap<String, Object>();
+                                s.put("ProId",ProId);
+                                s.put("ReqUserID",Uid);
+                                s.put("Status",Status);
+                                s.put("qut",qut);
+                                db.collection("Rent_Request").add(s)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
+                                                db.collection("cart").document(itemidofcart).delete();
+
+                                            }
+                                        });
+                            }
+                            else {
+                                Toast.makeText(getActivity(), "Product is in request", Toast.LENGTH_SHORT).show();
+                                db.collection("cart").document(itemidofcart).delete();
+                            }
+                        }
+                        else {
+                            HashMap<String,Object> s=new HashMap<String, Object>();
+                            s.put("ProId",ProId);
+                            s.put("ReqUserID",uid);
+                            s.put("Status",Status);
+                            s.put("qut",qut);
+                            db.collection("Rent_Request").add(s)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
+                                            db.collection("cart").document(itemidofcart).delete();
+
+                                        }
+                                    });
+                        }
+                    }
+                }
+            });
+}
 
     private void delete() {
         db.collection("cart").document(itemid).delete()
@@ -94,7 +183,6 @@ public class CartFragment extends Fragment {
                         getActivity().recreate();
                     }
                 });
-
     }
 
     public void getcarddata() {

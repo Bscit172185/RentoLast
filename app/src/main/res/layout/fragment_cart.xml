@@ -76,7 +76,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Regview1">
@@ -109,6 +109,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <Button
+                android:id="@+id/checkout"
                 android:layout_width="190dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
