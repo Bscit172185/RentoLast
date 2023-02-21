@@ -47,7 +47,7 @@ public class UsersListedProductFragment extends Fragment {
         regview=view.findViewById(R.id.Regview1);
         regview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
-        myadapter=new UserListedAdapter(datalist);
+        myadapter=new UserListedAdapter(datalist,getContext());
         regview.setAdapter(myadapter);
         db.collection("Product").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -58,6 +58,7 @@ public class UsersListedProductFragment extends Fragment {
                             re=d.getString("UID");
                             if(re.equals(id)){
                                 Model obj=d.toObject(Model.class);
+                                obj.id=d.getId();
                                 datalist.add(obj);
                             }
 

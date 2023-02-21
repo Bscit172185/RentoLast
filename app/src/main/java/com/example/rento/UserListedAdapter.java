@@ -1,5 +1,6 @@
 package com.example.rento;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -18,12 +19,12 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class UserListedAdapter extends RecyclerView.Adapter<UserListedAdapter.myviewholder>{
-
-
+    Context context;
     ArrayList<Model> datalist;
 
-    public UserListedAdapter(ArrayList<Model> datalist) {
+    public UserListedAdapter(ArrayList<Model> datalist, Context context) {
         this.datalist= datalist;
+        this.context=context;
 
     }
 
@@ -39,15 +40,24 @@ public class UserListedAdapter extends RecyclerView.Adapter<UserListedAdapter.my
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        String a ,name,price;
+        String imgurl ,pname,pprice,ProId;
         Uri uri1;
-        a=datalist.get(position).getProduct_ImgUrl();
-        name=datalist.get(position).getProduct_Name();
-        price=datalist.get(position).getProduct_Price();
-        uri1=Uri.parse(a);
+        imgurl=datalist.get(position).getProduct_ImgUrl();
+        pname=datalist.get(position).getProduct_Name();
+        pprice=datalist.get(position).getProduct_Price();
+        uri1=Uri.parse(imgurl);
         Picasso.get().load(uri1).into(holder.img);
-        holder.t1.setText(name);
-        holder.t2.setText(price);
+        holder.t1.setText(pname);
+        holder.t2.setText(pprice);
+        ProId=datalist.get(position).id;
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,ItemDetailsOfListedProductByUserActivity.class);
+                intent.putExtra("id",ProId);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
