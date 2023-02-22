@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -42,10 +43,11 @@ public class HomeFragment extends Fragment {
     String A;
     Uri url,banner;
     CardView fu,el,ke,cl,bk,im,vc;
+    ImageButton cls;
     LinearLayout layout;
     ImageView img,poster;
     FrameLayout Flayout;
-    String categoryid="";
+    String categoryid;
     int  count=0;
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -74,14 +76,11 @@ public class HomeFragment extends Fragment {
         bk=view.findViewById(R.id.cardview5);
         im=view.findViewById(R.id.cardview6);
         vc=view.findViewById(R.id.cardview7);
-        Bundle bundle=new Bundle();
-        bundle.putString("categoryid",categoryid);
-        ListedProductsFragment ls=new ListedProductsFragment();
-        ls.setArguments(bundle);
-        getParentFragmentManager().setFragmentResult("categoryid",bundle);
+        cls=view.findViewById(R.id.filtercls);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction ft =fragmentManager.beginTransaction();
-        ft.add(R.id.layout,new ListedProductsFragment());
+        ListedProductsFragment lpfr =new ListedProductsFragment();
+        ft.add(R.id.layout,lpfr);
         ft.commit();
         poster=view.findViewById(R.id.imageView14);
         FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
@@ -127,14 +126,20 @@ public class HomeFragment extends Fragment {
         fu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count==0){
+                if(count!=1){
                     categoryid="Furniture";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
                     Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
                     count=1;
                 }
                 else {
-                    count=0;
-                    categoryid="";
+                    getActivity().recreate();
                 }
 
             }
@@ -142,31 +147,62 @@ public class HomeFragment extends Fragment {
         el.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count==0){
+                if(count!=1){
                     categoryid="Electronics";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
                     Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
                     count=1;
                 }
                 else {
-                    count=0;
-                    categoryid="";
+                    getActivity().recreate();
+                    lpfr.getActivity().recreate();
+
                 }
             }
         });
         ke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count==0){
-                    categoryid="home appliances";
+                if(count!=1){
+                    categoryid="Electronics";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
                     Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
                     count=1;
                 }
                 else {
-                    count=0;
-                    categoryid="";
+                    getActivity().recreate();
+
                 }
+
             }
         });
+        cls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                categoryid="";
+                Toast.makeText(getActivity(), "Filter removed", Toast.LENGTH_SHORT).show();
+                Bundle b=new Bundle();
+                b.putString("id",categoryid);
+                ListedProductsFragment lpf=new ListedProductsFragment();
+                lpf.setArguments(b);
+                getParentFragmentManager().setFragmentResult("fil",b);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.layout,lpf).commit();
+            }
+        });
+
         return view;
     }
 

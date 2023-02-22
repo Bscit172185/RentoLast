@@ -131,46 +131,30 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     for(DocumentSnapshot b:list1){
                         String ReqUserID=b.getString("ReqUserID");
                         String ProId1=b.getString("ProId");
-                        if(ReqUserID.equals(Uid)){
-                            if(!ProId1.equals(ProId)){
-                                HashMap<String,Object> s=new HashMap<String, Object>();
-                                s.put("ProId",ProId);
-                                s.put("ReqUserID",Uid);
-                                s.put("Status",Status);
-                                s.put("qut",qut);
-                                db.collection("Rent_Request").add(s)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
-                                                db.collection("cart").document(itemidofcart).delete();
-
-                                            }
-                                        });
+                        if(!ReqUserID.equals(Uid)){
+                            if(ProId1.equals(ProId)){
+                                arrayList.add(b.getId());
                             }
-                            else {
-                                Toast.makeText(getActivity(), "Product is in request", Toast.LENGTH_SHORT).show();
-                                db.collection("cart").document(itemidofcart).delete();
-                            }
-                        }
-                        else {
-                            HashMap<String,Object> s=new HashMap<String, Object>();
-                            s.put("ProId",ProId);
-                            s.put("ReqUserID",uid);
-                            s.put("Status",Status);
-                            s.put("qut",qut);
-                            db.collection("Rent_Request").add(s)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
-                                            db.collection("cart").document(itemidofcart).delete();
-
-                                        }
-                                    });
                         }
                     }
+                    if(arrayList.size()==0){
+                        HashMap<String,Object> sa=new HashMap<String, Object>();
+                        sa.put("ProId",ProId);
+                        sa.put("ReqUserID",uid);
+                        sa.put("Status",Status);
+                        sa.put("qut",qut);
+                        db.collection("Rent_Request").add(sa)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
+                                        db.collection("cart").document(itemidofcart).delete();
+
+                                    }
+                                });
+                    }
                 }
+
             });
 }
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,13 +27,13 @@ import java.util.List;
 
 public class ListedProductsFragment extends Fragment {
     RecyclerView regview;
-        ArrayList<Model> datalist;
+    FrameLayout layout;
+    ArrayList<Model> datalist;
     Myadapter myadapter;
     String id;
     public String categoryid;
     String  count;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,10 +44,11 @@ public class ListedProductsFragment extends Fragment {
         datalist=new ArrayList<>();
         myadapter=new Myadapter(datalist,getContext());
         regview.setAdapter(myadapter);
-        getParentFragmentManager().setFragmentResultListener("categoryid", this, new FragmentResultListener() {
+        categoryid="";
+        getParentFragmentManager().setFragmentResultListener("fil", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                categoryid=result.getString("categoryid");
+                categoryid=result.getString("id");
             }
         });
 
@@ -57,8 +59,8 @@ public class ListedProductsFragment extends Fragment {
                         List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list){
                             System.out.println(d.getString("Categories"));
-                            if(categoryid!=null){
-                                if(categoryid==d.getString("Categories")){
+                            if(!categoryid.equals("")){
+                                if(categoryid.equals(d.getString("Categories"))){
                                     Model obj=d.toObject(Model.class);
                                     obj.id=d.getId();
                                     datalist.add(obj);
