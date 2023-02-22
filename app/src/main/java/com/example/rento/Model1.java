@@ -1,9 +1,9 @@
 package com.example.rento;
 
-public class Model {
+public class Model1 {
     String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id,Uid,ProId,Itemid,qut,requid,reqproid,reqid,pid;
 
-    public Model(String proId) {
+    public Model1(String proId) {
         ProId = proId;
     }
 
@@ -15,10 +15,10 @@ public class Model {
         ProId = proId;
     }
 
-    public Model() {
+    public Model1() {
     }
 
-    public Model(String product_Name, String product_Price, String product_ImgUrl, String categories, String product_Descreiption, String product_brocrage, String UID) {
+    public Model1(String product_Name, String product_Price, String product_ImgUrl, String categories, String product_Descreiption, String product_brocrage, String UID) {
         Product_Name = product_Name;
         Product_Price = product_Price;
         Product_ImgUrl = product_ImgUrl;

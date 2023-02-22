@@ -55,6 +55,7 @@
 
         </LinearLayout>
         <Button
+            android:id="@+id/accept"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="110dp"

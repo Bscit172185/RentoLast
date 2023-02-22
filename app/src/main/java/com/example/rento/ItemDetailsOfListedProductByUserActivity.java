@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import java.util.List;
 public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity {
    ShapeableImageView img;
    TextView name;
+   String proid,uname,price,requserid;
    String pid,pname,pprice,urli;
    RecyclerView regview;
    ArrayList<Model> datalist;
@@ -45,6 +47,8 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         Intent intent=getIntent();
         pid=intent.getStringExtra("id");
         datalist=new ArrayList<>();
+        myadapter=new itemRequestRecycleView(datalist,this);
+        regview.setAdapter(myadapter);
         db.collection("Product").document(pid).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -60,19 +64,32 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list){
-                            String proid=d.getString("ProId");
-                                Model obj=d.toObject(Model.class);
-                                obj.qut=d.getString("qut");
-                                datalist.add(obj);
-                                myadapter.notifyDataSetChanged();
+                            proid=d.getString("ProId");
+                            String status=d.getString("Status");
+                            if(proid.equals(pid)){
+                                if(status.equals("Pendding")||status.equals("Accepted")){
+                                    String a=d.getId();
+                                    System.out.println(a);
+                                    requserid=d.getString("requserid");
+                                    Model obj=d.toObject(Model.class);
+                                    obj.pid=pid;
+                                    obj.reqid=a;
+                                    obj.qut=d.getString("qut");
+                                    obj.requid=d.getString("ReqUserID");
+                                    obj.reqproid=proid;
+                                    datalist.add(obj);
+                                }
+
+                            }
 
                         }
-
+                        myadapter.notifyDataSetChanged();
                     }
                 });
 
 
     }
+
 }

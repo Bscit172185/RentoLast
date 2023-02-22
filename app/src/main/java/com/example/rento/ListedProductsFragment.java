@@ -70,7 +70,6 @@ public class ListedProductsFragment extends Fragment {
                                 datalist.add(obj);
 
                             }
-
                         }
                         myadapter.notifyDataSetChanged();
                     }
