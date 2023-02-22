@@ -81,36 +81,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Regview1">
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:text="Total"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+            <Button
+                android:id="@+id/request"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/button_layout_standard2"
+                android:drawableEnd="@drawable/ic_baseline_send_24"
+                android:paddingEnd="10dp"
+                android:text="Send Request"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </TextView>
-
-            <TextView
-                android:id="@+id/totalamt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:hint="Amount"
-                android:textSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <Button
                 android:id="@+id/checkout"
-                android:layout_width="190dp"
+                android:layout_width="160dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="15dp"
