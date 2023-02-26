@@ -85,6 +85,8 @@ public class CartFragment extends Fragment {
 
                                     }
                                 }
+                                Toast.makeText(getActivity(), "All item deleted....", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getActivity(),MainActivity.class));
                             }
                         });
             }
@@ -163,8 +165,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(getActivity(), "All item deleted....", Toast.LENGTH_SHORT).show();
-                        getActivity().recreate();
+
                     }
                 });
     }
