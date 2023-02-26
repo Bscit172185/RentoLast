@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lancher">#F19F2F</color>
     <color name="transperent">#00FFFFFF</color>
+    <color name="test">#3399CC</color>
 </resources>

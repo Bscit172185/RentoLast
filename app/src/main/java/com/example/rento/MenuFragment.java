@@ -105,13 +105,14 @@ public class MenuFragment extends Fragment {
 
     }
     private void Accepteditem() {
-        myadapter1=new AcceptedRequestAdapter(datalist1);
+        myadapter1=new AcceptedRequestAdapter(datalist1,getContext());
         regview1.setAdapter(myadapter1);
         db.collection("Product").document(b).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Model1 obj=documentSnapshot.toObject(Model1.class);
+                        obj.pid=b;
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();
                     }
