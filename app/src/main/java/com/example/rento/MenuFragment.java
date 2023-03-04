@@ -1,5 +1,6 @@
 package com.example.rento;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,12 +36,14 @@ public class MenuFragment extends Fragment {
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
     String proid,requserid,status,a,b;
+    ImageView back;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_menu, container, false);
         regview1=view.findViewById(R.id.itemrequest);
         regview=view.findViewById(R.id.requsteditem);
+        back=view.findViewById(R.id.imageView3);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         regview1.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
@@ -84,6 +88,15 @@ public class MenuFragment extends Fragment {
                         }
                     }
                 });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+                startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
+
         return view;
     }
 

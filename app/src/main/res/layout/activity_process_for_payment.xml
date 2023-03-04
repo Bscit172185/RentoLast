@@ -63,7 +63,11 @@
                 android:textSize="20dp">
 
             </TextView>
-
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"

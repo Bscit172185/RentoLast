@@ -35,7 +35,7 @@ import java.util.List;
 
 public class Item_details_of_recycleview extends AppCompatActivity {
     ShapeableImageView img;
-    TextView name,dis,price,brorate,UID,conteon;
+    TextView name,dis,price,brorate,UID,conteon,qutid;
     ImageView whatapp;
     EditText amoytqut;
     String qut;
@@ -89,6 +89,8 @@ public class Item_details_of_recycleview extends AppCompatActivity {
         price=findViewById(R.id.text3);
         brorate=findViewById(R.id.text5);
         conteon=findViewById(R.id.contectno);
+        dis=findViewById(R.id.text1);
+        qutid=findViewById(R.id.text2);
         whatapp=findViewById(R.id.whatsappicon);
         rent=findViewById(R.id.button2);
         cart=findViewById(R.id.button1);
@@ -106,9 +108,13 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                                     pname=documentSnapshot.getString("Product_Name");
                                     pprice=documentSnapshot.getString("Product_Price");
                                     brok=documentSnapshot.getString("Product_brocrage");
+                                    String diss=documentSnapshot.getString("Product_Descreiption");
+                                    String qutd=documentSnapshot.getString("pro_qut");
                                     name.setText(pname);
                                     price.setText(pprice);
                                     brorate.setText(brok);
+                                    dis.setText(diss);
+                                    qutid.setText("Qut: "+qutd);
                                     i=documentSnapshot.getString("Product_ImgUrl");
                                     uri=Uri.parse(i);
                                     Picasso.get().load(uri).into(img);
@@ -169,7 +175,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                     db.collection("Rent_Request").add(s).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            setvisible();
+                            Toast.makeText(Item_details_of_recycleview.this, "Requested...!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -181,10 +187,6 @@ public class Item_details_of_recycleview extends AppCompatActivity {
         });
 
 
-    }
-    public void setvisible(){
-        whatapp.setVisibility(View.VISIBLE);
-        conteon.setVisibility(View.VISIBLE);
     }
 
     public void addtocart() {

@@ -42,15 +42,19 @@ public class Add_Product_Activity extends AppCompatActivity {
     Button addpro;
     String productUrl,catagory;
     Uri URL;
-    EditText PName,Pdecrip,PPrice,PBrok;
+    EditText PName,Pdecrip,PPrice,PBrok,qut;
     ShapeableImageView img;
-
+    ImageView add,sub;
+    int qutnum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         catagory=getIntent().getStringExtra("catagory");
+        qut=findViewById(R.id.editQuantity);
+        sub=findViewById(R.id.subqut);
+        add=findViewById(R.id.addqut);
         back=findViewById(R.id.back);
         PName=findViewById(R.id.editText3);
         Pdecrip=findViewById(R.id.editText6);
@@ -59,6 +63,31 @@ public class Add_Product_Activity extends AppCompatActivity {
         addpro=findViewById(R.id.Addpro);
         img=findViewById(R.id.imageView13);
         imageButton=findViewById(R.id.imageButton);
+        qut.setText("1");
+        qutnum=Integer.parseInt(qut.getText().toString());
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(qutnum!=1){
+                    int res=qutnum-1;
+                    String a=String.valueOf(res);
+                    qut.setText(a);
+                    qutnum=res;
+                }
+                else {
+                    Toast.makeText(Add_Product_Activity.this, "quntity should be atlist one", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int res=qutnum+1;
+                String a=String.valueOf(res);
+                qut.setText(a);
+                qutnum=res;
+            }
+        });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,31 +101,38 @@ public class Add_Product_Activity extends AppCompatActivity {
         addpro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String PName1,Pdecrip1,PPrice1,PBrok1,URL1;
-                PName1=PName.getText().toString();
-                Pdecrip1=Pdecrip.getText().toString();
-                PPrice1=PPrice.getText().toString();
-                PBrok1=PBrok.getText().toString();
-                HashMap<String, Object>pro=new HashMap<String,Object>();
-                pro.put("Product_Name",PName1);
-                pro.put("Product_Descreiption",Pdecrip1);
-                pro.put("Product_Price",PPrice1);
-                pro.put("Product_brocrage",PBrok1);
-                pro.put("Product_ImgUrl",productUrl);
-                pro.put("UID",ID);
-                pro.put("Categories",catagory);
-                FirebaseFirestore root=FirebaseFirestore.getInstance();
-                root.collection("Product").document().set(pro)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
-                                    finish();
+                if(PName.getText()!=null && Pdecrip.getText()!=null&&productUrl!=null&&PPrice.getText()!=null&&PBrok.getText()!=null){
+                    String PName1,Pdecrip1,PPrice1,PBrok1,URL1;
+                    PName1=PName.getText().toString();
+                    Pdecrip1=Pdecrip.getText().toString();
+                    PPrice1=PPrice.getText().toString();
+                    PBrok1=PBrok.getText().toString();
+                    HashMap<String, Object>pro=new HashMap<String,Object>();
+                    pro.put("Product_Name",PName1);
+                    pro.put("Product_Descreiption",Pdecrip1);
+                    pro.put("Product_Price",PPrice1);
+                    pro.put("Product_brocrage",PBrok1);
+                    pro.put("Product_ImgUrl",productUrl);
+                    pro.put("UID",ID);
+                    pro.put("Categories",catagory);
+                    pro.put("pro_qut",qut.getText().toString());
+                    FirebaseFirestore root=FirebaseFirestore.getInstance();
+                    root.collection("Product").document().set(pro)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
+                                        finish();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
+                else {
+                    Toast.makeText(Add_Product_Activity.this, "fill deatails properly", Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }

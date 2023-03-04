@@ -34,6 +34,19 @@ public class ListedProductsFragment extends Fragment {
     public String categoryid;
     String  count;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
+
+    @Override
+    public void onStart() {
+        categoryid="";
+        getParentFragmentManager().setFragmentResultListener("fil", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                categoryid=result.getString("id");
+            }
+        });
+        super.onStart();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,14 +57,6 @@ public class ListedProductsFragment extends Fragment {
         datalist=new ArrayList<>();
         myadapter=new Myadapter(datalist,getContext());
         regview.setAdapter(myadapter);
-        categoryid="";
-        getParentFragmentManager().setFragmentResultListener("fil", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                categoryid=result.getString("id");
-            }
-        });
-
         db.collection("Product").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

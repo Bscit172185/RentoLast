@@ -1,5 +1,6 @@
 package com.example.rento;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,7 @@ public class UsersListedProductFragment extends Fragment {
     RecyclerView regview;
     ArrayList<Model> datalist;
     UserListedAdapter myadapter;
+    ImageView back;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     FirebaseUser user=firebaseAuth.getCurrentUser();
@@ -45,6 +48,7 @@ public class UsersListedProductFragment extends Fragment {
         });
         View view= inflater.inflate(R.layout.fragment_users_listed_product, container, false);
         regview=view.findViewById(R.id.Regview1);
+        back=view.findViewById(R.id.imageView2);
         regview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
         myadapter=new UserListedAdapter(datalist,getContext());
@@ -71,6 +75,13 @@ public class UsersListedProductFragment extends Fragment {
                 });
 
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+                startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
 
         return view;
     }

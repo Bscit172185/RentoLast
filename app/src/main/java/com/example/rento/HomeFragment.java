@@ -3,6 +3,7 @@ package com.example.rento;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -127,11 +128,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(count!=1){
+                    fu.setCardBackgroundColor(Color.DKGRAY);
                     categoryid="Furniture";
                     Bundle b=new Bundle();
                     b.putString("id",categoryid);
                     ListedProductsFragment lpf=new ListedProductsFragment();
-                    lpf.setArguments(b);
+                    lpfr.setArguments(b);
                     getParentFragmentManager().setFragmentResult("fil",b);
                     FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                     ft.add(R.id.layout,lpf).commit();
@@ -139,7 +141,8 @@ public class HomeFragment extends Fragment {
                     count=1;
                 }
                 else {
-                    getActivity().recreate();
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
                 }
 
             }
@@ -148,6 +151,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(count!=1){
+                    el.setCardBackgroundColor(Color.DKGRAY);
                     categoryid="Electronics";
                     Bundle b=new Bundle();
                     b.putString("id",categoryid);
@@ -160,8 +164,8 @@ public class HomeFragment extends Fragment {
                     count=1;
                 }
                 else {
-                    getActivity().recreate();
-                    lpfr.getActivity().recreate();
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
 
                 }
             }
@@ -170,7 +174,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(count!=1){
-                    categoryid="Electronics";
+                    ke.setCardBackgroundColor(Color.DKGRAY);
+                    categoryid="home appliances";
                     Bundle b=new Bundle();
                     b.putString("id",categoryid);
                     ListedProductsFragment lpf=new ListedProductsFragment();
@@ -182,26 +187,108 @@ public class HomeFragment extends Fragment {
                     count=1;
                 }
                 else {
-                    getActivity().recreate();
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
 
                 }
 
             }
         });
-        cls.setOnClickListener(new View.OnClickListener() {
+
+        cl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                categoryid="";
-                Toast.makeText(getActivity(), "Filter removed", Toast.LENGTH_SHORT).show();
-                Bundle b=new Bundle();
-                b.putString("id",categoryid);
-                ListedProductsFragment lpf=new ListedProductsFragment();
-                lpf.setArguments(b);
-                getParentFragmentManager().setFragmentResult("fil",b);
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.layout,lpf).commit();
+                if(count!=1){
+                    cl.setCardBackgroundColor(Color.DKGRAY);
+                    categoryid="Cloths";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
+
+                }
             }
         });
+        bk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count!=1){
+                    bk.setCardBackgroundColor(Color.DKGRAY);
+                    categoryid="Books";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
+
+                }
+            }
+        });
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count!=1){
+                    im.setCardBackgroundColor(Color.DKGRAY);
+                    categoryid="Instruments";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
+
+                }
+            }
+        });
+
+        vc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count!=1){
+                    vc.setCardBackgroundColor(Color.DKGRAY);
+                    categoryid="Vehicles";
+                    Bundle b=new Bundle();
+                    b.putString("id",categoryid);
+                    ListedProductsFragment lpf=new ListedProductsFragment();
+                    lpf.setArguments(b);
+                    getParentFragmentManager().setFragmentResult("fil",b);
+                    FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.layout,lpf).commit();
+                    Toast.makeText(getActivity(), ""+categoryid, Toast.LENGTH_SHORT).show();
+                    count=1;
+                }
+                else {
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(),MainActivity.class));
+
+                }
+            }
+        });
+
 
         return view;
     }

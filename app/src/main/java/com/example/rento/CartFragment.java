@@ -32,7 +32,7 @@ public class CartFragment extends Fragment {
     RecyclerView regview;
     ArrayList<Model>datalist;
     CartAdapter myadapter;
-    ImageView alldel;
+    ImageView alldel,back;
     Button chekout;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -47,6 +47,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_cart, container, false);
         chekout=view.findViewById(R.id.checkout);
+        back=view.findViewById(R.id.back);
         alldel=view.findViewById(R.id.deleteall);
         regview=view.findViewById(R.id.Regview1);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
@@ -120,7 +121,13 @@ public class CartFragment extends Fragment {
             }
 
         });
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+                startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
 
         return view;
     }
