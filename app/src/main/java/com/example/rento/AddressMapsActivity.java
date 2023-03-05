@@ -26,8 +26,8 @@ public class AddressMapsActivity extends FragmentActivity implements OnMapReadyC
 
     private GoogleMap mMap;
     private ActivityAddressMapsBinding binding;
-    String ulati1,ulaogi1,latitude,longitute;
-    Double a1,a2,b1,b2;
+    String ulati1,ulaogi1;
+    Double b1,b2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +39,15 @@ public class AddressMapsActivity extends FragmentActivity implements OnMapReadyC
         Intent intent=getIntent();
         ulati1=intent.getStringExtra("ulati");
         ulaogi1=intent.getStringExtra("ulogi");
-        latitude=intent.getStringExtra("lati");
-        longitute=intent.getStringExtra("longi");
-
-       a1=Double.valueOf(latitude);
-       a2=Double.valueOf(longitute);
-       b1=Double.valueOf(ulati1);
-       b2=Double.valueOf(ulaogi1);
-
+        b1=Double.valueOf(ulati1);
+        b2=Double.valueOf(ulaogi1);
 
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(b1,b2);
+        LatLng sydney = new LatLng(b1, b2);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,16f));

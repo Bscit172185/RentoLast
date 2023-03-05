@@ -2,6 +2,7 @@ package com.example.rento;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
@@ -61,6 +63,9 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
                 }
             });
         }
+        else {
+
+        }
 
     }
 
@@ -72,6 +77,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
     public class myviewholder extends RecyclerView.ViewHolder {
         TextView t1,t2,t3,t4;
         ShapeableImageView img;
+        CardView card;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -80,6 +86,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
             t3=itemView.findViewById(R.id.brokerage);
             t4=itemView.findViewById(R.id.totalamt);
             img=itemView.findViewById(R.id.img);
+            card=itemView.findViewById(R.id.crd);
         }
     }
 }

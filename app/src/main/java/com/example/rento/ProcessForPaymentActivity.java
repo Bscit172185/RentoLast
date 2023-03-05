@@ -38,7 +38,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     ImageView mapView;
     Activity activity=this;
     String pid;
-    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulangi;
+    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi;
     Uri uri;
     int a,b,c,d;
     String finalamount;
@@ -84,6 +84,8 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                              public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                  Addr=documentSnapshot.getString("Address");
                                                  paddr.setText(Addr);
+                                                 ulati=documentSnapshot.getString("Latitude");
+                                                 ulongi=documentSnapshot.getString("Longitude");
                                              }
                                          });
                              }
@@ -101,24 +103,12 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                              }
                          });
 
-
-        db.collection("user").document(userid).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        ulati=documentSnapshot.getString("Latitude");
-                        ulangi=documentSnapshot.getString("Longitude");
-                    }
-                });
-
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent map=new Intent(ProcessForPaymentActivity.this,AddressMapsActivity.class);
                 map.putExtra("ulati",ulati);
-                map.putExtra("ulogi",ulangi);
-                map.putExtra("lati",latitude);
-                map.putExtra("longi",longitute);
+                map.putExtra("ulogi",ulongi);
                 startActivity(map);
                 finish();
             }
@@ -126,9 +116,9 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         nevi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String a="google.navigation:q="+latitude+","+longitute+"&mode=1";
+                String a="google.navigation:q="+ulati+","+ulongi+"&mode=1";
                 Intent ltm=new Intent(Intent.ACTION_VIEW,Uri.parse(a));
-                intent.setPackage("com.google.android.apps.maps");
+                ltm.setPackage("com.google.android.apps.maps");
                 startActivity(ltm);
             }
         });
