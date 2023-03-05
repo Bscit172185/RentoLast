@@ -61,12 +61,26 @@
                 android:layout_marginTop="10dp"
                 android:text="Address"
                 android:textSize="20dp">
-
             </TextView>
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+           <ImageButton
+               android:id="@+id/MapView"
+               android:layout_width="370dp"
+               android:layout_height="200dp"
+               android:layout_gravity="center"
+               android:layout_marginTop="50dp"
+               android:background="@drawable/map"
+               />
+            <Button
+                android:id="@+id/navi"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:background="@drawable/profile_shape"
+                android:drawableStart="@drawable/ic_baseline_navigation_24"
+                android:text="Start Navigation"
+                android:paddingEnd="20dp"
+                android:paddingStart="10dp"
+                android:layout_marginTop="20dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"

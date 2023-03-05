@@ -1,14 +1,21 @@
 package com.example.rento;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,16 +31,14 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-import java.util.List;
-import java.util.Objects;
-
 public class ProcessForPaymentActivity extends AppCompatActivity implements PaymentResultListener {
     ShapeableImageView imgview;
     TextView pname,pprice,pbroc,pdes,paddr;
-    Button payment;
+    Button payment,nevi;
+    ImageView mapView;
     Activity activity=this;
     String pid;
-    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone;
+    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulangi;
     Uri uri;
     int a,b,c,d;
     String finalamount;
@@ -50,7 +55,9 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         pbroc=findViewById(R.id.text5);
         pdes=findViewById(R.id.text1);
         paddr=findViewById(R.id.text2);
+        mapView=findViewById(R.id.MapView);
         payment=findViewById(R.id.button1);
+        nevi=findViewById(R.id.navi);
         imgview=findViewById(R.id.img);
         Checkout.preload(getApplicationContext());
         Intent intent=getIntent();
@@ -88,11 +95,43 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                  Uname=documentSnapshot.getString("Name");
                                  Uemail=documentSnapshot.getString("Email");
                                  Uphone=documentSnapshot.getString("Number");
+                                 latitude=documentSnapshot.getString("Latitude");
+                                 longitute=documentSnapshot.getString("Longitude");
+
                              }
                          });
 
 
+        db.collection("user").document(userid).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        ulati=documentSnapshot.getString("Latitude");
+                        ulangi=documentSnapshot.getString("Longitude");
+                    }
+                });
 
+        mapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent map=new Intent(ProcessForPaymentActivity.this,AddressMapsActivity.class);
+                map.putExtra("ulati",ulati);
+                map.putExtra("ulogi",ulangi);
+                map.putExtra("lati",latitude);
+                map.putExtra("longi",longitute);
+                startActivity(map);
+                finish();
+            }
+        });
+        nevi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String a="google.navigation:q="+latitude+","+longitute+"&mode=1";
+                Intent ltm=new Intent(Intent.ACTION_VIEW,Uri.parse(a));
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(ltm);
+            }
+        });
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +145,8 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 startpayment(finalamount,Uname,Uemail,Uphone);
             }
         });
+
+
     }
     private void startpayment(String amu,String name,String email,String mob) {
 
