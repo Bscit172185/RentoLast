@@ -73,7 +73,7 @@
                 android:layout_marginStart="120dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="C O N F I R M E D"
+                android:text="R E J E C T E D"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"

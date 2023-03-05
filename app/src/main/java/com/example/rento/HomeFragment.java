@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,10 +46,12 @@ public class HomeFragment extends Fragment {
     Uri url,banner;
     CardView fu,el,ke,cl,bk,im,vc;
     ImageButton cls;
-    LinearLayout layout;
     ImageView img,poster;
     FrameLayout Flayout;
     String categoryid;
+    TextView profile,order;
+    CardView menu;
+    int tempcout=0;
     int  count=0;
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -78,6 +81,10 @@ public class HomeFragment extends Fragment {
         im=view.findViewById(R.id.cardview6);
         vc=view.findViewById(R.id.cardview7);
         cls=view.findViewById(R.id.filtercls);
+        menu=view.findViewById(R.id.menu1);
+        menu.setVisibility(View.INVISIBLE);
+        order=view.findViewById(R.id.order);
+        profile=view.findViewById(R.id.profile);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction ft =fragmentManager.beginTransaction();
         ListedProductsFragment lpfr =new ListedProductsFragment();
@@ -112,15 +119,36 @@ public class HomeFragment extends Fragment {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),Profile_details_Activity.class);
-                if(!A.isEmpty()){
-                    intent.putExtra("url",A);
+                if(tempcout==0){
+                    menu.setVisibility(View.VISIBLE);
+                    tempcout=1;
+                    profile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent=new Intent(getActivity(),Profile_details_Activity.class);
+                            if(!A.isEmpty()){
+                                intent.putExtra("url",A);
+                            }
+                            else {
+                                intent.putExtra("url","noko");
+                            }
+                            intent.putExtra("uid",UID);
+                            startActivity(intent);
+                        }
+                    });
+                    order.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(),OrderActivity.class));
+                        }
+                    });
+
                 }
                 else {
-                    intent.putExtra("url","noko");
+                    menu.setVisibility(View.INVISIBLE);
+                    tempcout=0;
                 }
-                intent.putExtra("uid",UID);
-                startActivity(intent);
+
 
             }
         });

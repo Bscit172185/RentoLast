@@ -19,6 +19,10 @@ import com.example.rento.databinding.ActivityAddressMapsBinding;
 import com.google.android.gms.maps.model.Polyline;
 
 public class AddressMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     private GoogleMap mMap;
     private ActivityAddressMapsBinding binding;

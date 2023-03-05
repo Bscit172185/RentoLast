@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,6 +26,7 @@ public class Profile_details_Activity extends AppCompatActivity {
     TextView logout,uname,unum,uemail,uadd,ulog,ulat,upcode,edit;
     String A,uid;
     Uri url;
+    ImageView back;
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     String name,email,number,add,log,lat,postcode;
@@ -36,6 +38,14 @@ public class Profile_details_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_details);
         FirebaseUser user=firebaseAuth.getCurrentUser();
         edit=findViewById(R.id.editpro);
+        back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Profile_details_Activity.this,MainActivity.class));
+                finish();
+            }
+        });
 
 
         if(user==null){

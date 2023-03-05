@@ -36,6 +36,7 @@ public class MenuFragment extends Fragment {
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
     String proid,requserid,status,a,b;
+    String stu;
     ImageView back;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,8 +80,8 @@ public class MenuFragment extends Fragment {
                         for(DocumentSnapshot d:list1){
                             requserid=d.getString("ReqUserID");
                             if(requserid.equals(uid)){
-                                String stu=d.getString("Status");
-                                if(stu.equals("Accepted")){
+                                stu=d.getString("Status");
+                                if(stu.equals("Rejected")){
                                     b=d.getString("ProId");
                                     Accepteditem();
                                 }
@@ -126,6 +127,7 @@ public class MenuFragment extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Model1 obj=documentSnapshot.toObject(Model1.class);
                         obj.pid=b;
+                        obj.stutus="no";
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();
                     }

@@ -6,15 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
     android:background="@color/white"
-    android:id="@+id/homelayout"
-    >
-
+    android:id="@+id/homelayout">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="@drawable/homepage_layout"
-        android:elevation="4dp"
-        >
+        android:elevation="4dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView12"
@@ -28,7 +25,6 @@
             app:shapeAppearanceOverlay="@style/circle">
 
         </com.google.android.material.imageview.ShapeableImageView>
-
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView2"
@@ -63,14 +59,43 @@
 
         </ImageButton>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/menu1"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="Order"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="Profile"
+                android:textSize="20dp" />
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
 
 
         <ScrollView
@@ -80,15 +105,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                >
+                android:layout_marginBottom="0dp">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView14"
