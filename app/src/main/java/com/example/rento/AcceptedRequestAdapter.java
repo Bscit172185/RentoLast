@@ -52,7 +52,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         holder.t2.setText(price);
         holder.t3.setText(bro+" borcrage");
         tot=Integer.parseInt(price)+Integer.parseInt(bro);
-        holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+" ");
+        holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+"/ ");
         if(status=="yes"){
             holder.img.setOnClickListener(new View.OnClickListener() {
                 @Override

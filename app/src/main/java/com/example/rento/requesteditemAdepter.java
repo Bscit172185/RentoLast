@@ -1,6 +1,5 @@
 package com.example.rento;
 
-import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +19,7 @@ import java.util.ArrayList;
 public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdepter.myviewholder> {
     ArrayList<Model> datalist;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
+    int count;
     public requesteditemAdepter(ArrayList<Model> datalist) {
         this.datalist= datalist;
 
@@ -49,12 +47,13 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
         holder.t1.setText(name);
         holder.t2.setText(price);
         holder.t3.setText(brok+" /mon");
-
     }
 
     @Override
     public int getItemCount() {
-        return datalist.size();
+        count=datalist.size();
+        return count;
+
     }
 
     class myviewholder extends RecyclerView.ViewHolder {

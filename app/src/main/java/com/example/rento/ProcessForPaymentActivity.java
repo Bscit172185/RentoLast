@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -131,8 +132,28 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 c=a+b;
                 d=c*100;
                 finalamount=String.valueOf(d);
-                System.out.println(Uemail);
-                startpayment(finalamount,Uname,Uemail,Uphone);
+                AlertDialog.Builder alert=new AlertDialog.Builder(ProcessForPaymentActivity.this);
+                alert.setTitle("D E C L A R A T I O N");
+                alert.setIcon(R.drawable.applogo);
+                alert.setMessage("Get product first and"+
+                        "\nEnsure quality,"+
+                        "\n and then proceed for payment.");
+                alert.setPositiveButton("Yes, I've Read", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startpayment(finalamount,Uname,Uemail,Uphone);
+                    }
+                });
+                alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alert.show();
+
+
+
             }
         });
 

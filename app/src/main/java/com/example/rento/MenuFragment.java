@@ -35,9 +35,12 @@ public class MenuFragment extends Fragment {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
-    String proid,requserid,status,a,b;
+    String status;
+    String proid,requserid,a,b;
     String stu;
     ImageView back;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +87,7 @@ public class MenuFragment extends Fragment {
                                 if(stu.equals("Rejected")){
                                     b=d.getString("ProId");
                                     Accepteditem();
+
                                 }
                             }
                         }
@@ -102,7 +106,6 @@ public class MenuFragment extends Fragment {
     }
 
 
-
     private void additem() {
         myadapter=new requesteditemAdepter(datalist);
         regview.setAdapter(myadapter);
@@ -113,7 +116,8 @@ public class MenuFragment extends Fragment {
                 Model obj=documentSnapshot.toObject(Model.class);
                 datalist.add(obj);
                 myadapter.notifyDataSetChanged();
-                System.out.println(datalist.size()+"This is size");
+                status=String.valueOf(datalist.size());
+
             }
         });
 
