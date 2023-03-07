@@ -10,18 +10,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequestAdapter.myviewholder> {
     ArrayList<Model1> datalist;
     Context context;
     String status;
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
     int tot;
     public AcceptedRequestAdapter(ArrayList<Model1> datalist, Context context) {
         this.datalist= datalist;
@@ -37,7 +46,12 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
 
     @Override
     public void onBindViewHolder(@NonNull AcceptedRequestAdapter.myviewholder holder, int position) {
-        String a ,name,price,pid,bro;
+        String a;
+        String name;
+        String price;
+        String pid;
+        String bro;
+        final String[] qut = new String[1];
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
@@ -53,19 +67,29 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         holder.t3.setText(bro+" borcrage");
         tot=Integer.parseInt(price)+Integer.parseInt(bro);
         holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+"/ ");
+
         if(status=="yes"){
             holder.img.setOnClickListener(new View.OnClickListener() {
+                String a;
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(context,ProcessForPaymentActivity.class);
-                    intent.putExtra("pid",pid);
-                    context.startActivity(intent);
+                    db.collection("Rent_Request").document(pid).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                                    a=documentSnapshot.getString("qut");
+                                    Intent intent=new Intent(context,ProcessForPaymentActivity.class);
+                                    intent.putExtra("pid",pid);
+                                    context.startActivity(intent);
+
+                                }
+                            });
+
                 }
             });
         }
-        else {
 
-        }
 
     }
 

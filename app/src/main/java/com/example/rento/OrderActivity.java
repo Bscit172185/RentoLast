@@ -49,7 +49,7 @@ public class OrderActivity extends AppCompatActivity {
                                 String stu=d.getString("Status");
                                 if(stu.equals("Accepted")){
                                     b=d.getString("ProId");
-                                    Accepteditem(OrderActivity.this);
+                                    Accepteditem(OrderActivity.this,b);
                                 }
                             }
                         }
@@ -58,7 +58,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
     }
-    private void Accepteditem(Context context) {
+    private void Accepteditem(Context context,String ID) {
         myadapter1=new AcceptedRequestAdapter(datalist1,context);
         regview.setAdapter(myadapter1);
         db.collection("Product").document(b).get()
@@ -66,7 +66,7 @@ public class OrderActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Model1 obj=documentSnapshot.toObject(Model1.class);
-                        obj.pid=b;
+                        obj.pid=ID;
                         obj.stutus="yes";
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();

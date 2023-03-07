@@ -26,7 +26,7 @@ public class AddressMapsActivity extends FragmentActivity implements OnMapReadyC
 
     private GoogleMap mMap;
     private ActivityAddressMapsBinding binding;
-    String ulati1,ulaogi1;
+    String ulati1="",ulaogi1="";
     Double b1,b2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.razorpay.Checkout;
@@ -32,13 +33,15 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class ProcessForPaymentActivity extends AppCompatActivity implements PaymentResultListener {
     ShapeableImageView imgview;
     TextView pname,pprice,pbroc,pdes,paddr;
     Button payment,nevi;
     ImageView mapView;
     Activity activity=this;
-    String pid;
+    String pid="",qut="";
     String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi;
     Uri uri;
     int a,b,c,d;
@@ -62,7 +65,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         imgview=findViewById(R.id.img);
         Checkout.preload(getApplicationContext());
         Intent intent=getIntent();
-         pid=intent.getStringExtra("pid");
+        pid=intent.getStringExtra("pid");
          db.collection("Product").document(pid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                              @Override
@@ -137,7 +140,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 alert.setIcon(R.drawable.applogo);
                 alert.setMessage("Get product first and"+
                         "\nEnsure quality,"+
-                        "\n and then proceed for payment.");
+                        "\nand then proceed for payment.");
                 alert.setPositiveButton("Yes, I've Read", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -151,8 +154,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                     }
                 });
                 alert.show();
-
-
 
             }
         });
@@ -171,7 +172,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
             options.put("image", "https://firebasestorage.googleapis.com/v0/b/rento-f1b52.appspot.com/o/banner.jpg?alt=media&token=ade5458d-75fa-4e71-9d44-3f434608c20b");
             options.put("theme.color", "#3399CC");
             options.put("currency", "INR");
-            options.put("amount",amu);//pass amount in currency subunits
+            options.put("amount",amu);
             options.put("prefill.email",email);
             options.put("prefill.contact",mob);
             JSONObject retryObj = new JSONObject();
@@ -190,6 +191,16 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "success....", Toast.LENGTH_SHORT).show();
+        HashMap<String,Object> sa=new HashMap<String, Object>();
+        sa.put("ProId",pid);
+        sa.put("orderUserID",userid);
+        db.collection("order").add(sa)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(activity, "Order Confremd.....!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -197,4 +208,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     public void onPaymentError(int i, String s) {
         Toast.makeText(this, "faild...", Toast.LENGTH_SHORT).show();
     }
+
+
 }
