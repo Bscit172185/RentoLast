@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Patterns;
+import android.util.TimeUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,8 +31,10 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Timer;
 
 
 public class Add_Product_Activity extends AppCompatActivity {
@@ -101,6 +104,8 @@ public class Add_Product_Activity extends AppCompatActivity {
         addpro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Customprogressbar dilog=new Customprogressbar(Add_Product_Activity.this);
+                dilog.show();
                 if(PName.getText()!=null && Pdecrip.getText()!=null&&productUrl!=null&&PPrice.getText()!=null&&PBrok.getText()!=null){
                     String PName1,Pdecrip1,PPrice1,PBrok1,URL1;
                     PName1=PName.getText().toString();
@@ -152,6 +157,7 @@ public class Add_Product_Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==101)
         {
+            Customprogressbar dilog=new Customprogressbar(Add_Product_Activity.this);
             URL=data.getData();
             System.out.println(URL);
             img.setImageURI(data.getData());
@@ -160,6 +166,7 @@ public class Add_Product_Activity extends AppCompatActivity {
             upload.putFile(URL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    dilog.dismiss();
                     Toast.makeText(Add_Product_Activity.this, "Image Uploded", Toast.LENGTH_SHORT).show();
                   upload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                       @Override
@@ -173,7 +180,7 @@ public class Add_Product_Activity extends AppCompatActivity {
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                    Toast.makeText(Add_Product_Activity.this, "Please Wait", Toast.LENGTH_SHORT).show();
+                    dilog.show();
                 }
             });
         }

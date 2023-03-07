@@ -23,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -94,9 +93,10 @@ public class CartFragment extends Fragment {
         });
 
         chekout.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
+                Customprogressbar dilog=new Customprogressbar(getActivity());
+                dilog.show();
                 db.collection("cart").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -132,6 +132,7 @@ public class CartFragment extends Fragment {
         return view;
     }
 public void checkout(String ProId,String Uid,String  qut,String Status,String itemidofcart){
+
     db.collection("Rent_Request").get()
             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
@@ -140,11 +141,13 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     for(DocumentSnapshot b:list1){
                         String ReqUserID=b.getString("ReqUserID");
                         String ProId1=b.getString("ProId");
-                        if(!ReqUserID.equals(Uid)&&!ProId1.equals(ProId)){
+                        if(ReqUserID.equals(Uid)||!ReqUserID.equals(Uid)){
+                            if(ProId1.equals(ProId)){
                                 arrayList.add(b.getId());
-
+                            }
                         }
                     }
+                    System.out.println("this is arrery:   "+arrayList);
                     if(arrayList.size()==0){
                         HashMap<String,Object> sa=new HashMap<String, Object>();
                         sa.put("ProId",ProId);
@@ -163,6 +166,8 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     }
                     else {
                         Toast.makeText(getActivity(), "Already in request", Toast.LENGTH_SHORT).show();
+                        db.collection("cart").document(itemidofcart).delete();
+
                     }
                 }
 
