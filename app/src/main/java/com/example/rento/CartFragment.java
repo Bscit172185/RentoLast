@@ -140,10 +140,9 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     for(DocumentSnapshot b:list1){
                         String ReqUserID=b.getString("ReqUserID");
                         String ProId1=b.getString("ProId");
-                        if(ReqUserID.equals(Uid)){
-                            if(!ProId1.equals(ProId)){
+                        if(!ReqUserID.equals(Uid)&&!ProId1.equals(ProId)){
                                 arrayList.add(b.getId());
-                            }
+
                         }
                     }
                     if(arrayList.size()==0){
@@ -161,6 +160,9 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
 
                                     }
                                 });
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Already in request", Toast.LENGTH_SHORT).show();
                     }
                 }
 
