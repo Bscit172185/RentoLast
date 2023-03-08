@@ -41,11 +41,11 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     Button payment,nevi;
     ImageView mapView;
     Activity activity=this;
-    String pid="",qut="";
+    String pid="",qut="",reqid;
     String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi;
     Uri uri;
-    int a,b,c,d;
-    String finalamount;
+    int a,b,c,d,total,intpr,intbro;
+    String finalamount,PaymentStu;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -65,6 +65,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         imgview=findViewById(R.id.img);
         Checkout.preload(getApplicationContext());
         Intent intent=getIntent();
+        reqid=intent.getStringExtra("reqid");
         pid=intent.getStringExtra("pid");
          db.collection("Product").document(pid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -82,6 +83,9 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                  pdes.setText(dec);
                                  pprice.setText(price);
                                  pbroc.setText(broc);
+                                 intpr=Integer.parseInt(price);
+                                 intbro=Integer.parseInt(broc);
+                                 total=intpr+intbro;
                                  db.collection("user").document(uid).get()
                                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                              @Override
@@ -106,6 +110,34 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
 
                              }
                          });
+        db.collection("Rent_Request").document(reqid).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        PaymentStu=documentSnapshot.getString("Payment");
+                        int qut=Integer.parseInt(documentSnapshot.getString("qut"));
+                        int finl=total*qut;
+                        if(PaymentStu.equals("PAID")){
+                            nevi.setVisibility(View.INVISIBLE);
+                            payment.setText("Download Invoice");
+                            payment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
+                                    dilog.setTitle("Order Invoice");
+                                    dilog.setMessage("product Amount: "+price+
+                                            "\nProduct Brocrage: "+broc+
+                                            "\nQut: "+qut+
+                                            "\nTotal Amount: "+finl+
+                                            "\nPayment Status: "+PaymentStu);
+                                    dilog.setIcon(null);
+                                    dilog.show();
+                                }
+                            });
+                        }
+                    }
+                });
+
 
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +222,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
 
     @Override
     public void onPaymentSuccess(String s) {
+        db.collection("Rent_Request").document(reqid).update("Payment","PAID");
         Toast.makeText(this, "success....", Toast.LENGTH_SHORT).show();
         HashMap<String,Object> sa=new HashMap<String, Object>();
         sa.put("ProId",pid);

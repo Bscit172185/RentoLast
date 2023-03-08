@@ -154,6 +154,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                         sa.put("ReqUserID",uid);
                         sa.put("Status",Status);
                         sa.put("qut",qut);
+                        sa.put("Payment","pending");
                         db.collection("Rent_Request").add(sa)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override

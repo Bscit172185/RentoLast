@@ -30,7 +30,7 @@ public class OrderActivity extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
-    String requserid,b;
+    String requserid,b,paystu,reqid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,9 @@ public class OrderActivity extends AppCompatActivity {
                             if(requserid.equals(uid)){
                                 String stu=d.getString("Status");
                                 if(stu.equals("Accepted")){
+                                    reqid=d.getId();
                                     b=d.getString("ProId");
+                                    paystu=d.getString("Payment");
                                     Accepteditem(OrderActivity.this,b);
                                 }
                             }
@@ -67,6 +69,8 @@ public class OrderActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Model1 obj=documentSnapshot.toObject(Model1.class);
                         obj.pid=ID;
+                        obj.reqid=reqid;
+                        obj.paystu=paystu;
                         obj.stutus="yes";
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();

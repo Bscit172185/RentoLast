@@ -46,13 +46,15 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
 
     @Override
     public void onBindViewHolder(@NonNull AcceptedRequestAdapter.myviewholder holder, int position) {
-        String a;
+        String a,paystu,reqid;
         String name;
         String price;
         String pid;
         String bro;
         final String[] qut = new String[1];
         Uri uri1;
+        reqid=datalist.get(position).reqid;
+        paystu=datalist.get(position).paystu;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
@@ -67,6 +69,10 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         holder.t3.setText(bro+" borcrage");
         tot=Integer.parseInt(price)+Integer.parseInt(bro);
         holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+"/ ");
+        holder.t5.setText("Payment: "+paystu);
+        if(paystu.equals("PAID")){
+            holder.t5.setBackgroundResource(R.color.teal_200);
+        }
 
         if(status=="yes"){
             holder.img.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +87,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
                                     a=documentSnapshot.getString("qut");
                                     Intent intent=new Intent(context,ProcessForPaymentActivity.class);
                                     intent.putExtra("pid",pid);
+                                    intent.putExtra("reqid",reqid);
                                     context.startActivity(intent);
 
                                 }
@@ -99,7 +106,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
-        TextView t1,t2,t3,t4;
+        TextView t1,t2,t3,t4,t5;
         ShapeableImageView img;
         CardView card;
 
@@ -109,6 +116,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
             t2=itemView.findViewById(R.id.price);
             t3=itemView.findViewById(R.id.brokerage);
             t4=itemView.findViewById(R.id.totalamt);
+            t5=itemView.findViewById(R.id.paymentstu);
             img=itemView.findViewById(R.id.img);
             card=itemView.findViewById(R.id.crd);
         }

@@ -171,6 +171,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                 s.put("ReqUserID",UserID);
                 s.put("Status",Status);
                 s.put("qut",qut);
+                s.put("Payment","pending");
                 if (Rentid != 100) {
                     db.collection("Rent_Request").add(s).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
