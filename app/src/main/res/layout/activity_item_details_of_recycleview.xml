@@ -12,8 +12,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +28,7 @@
                 android:layout_height="450dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="81dp"
+                android:layout_marginEnd="100dp"
                 android:foregroundGravity="center" />
 
             <TextView
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:text="Description"
                 android:textSize="20dp">
 
@@ -58,22 +61,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="qut"
+                android:text="Quantity:"
                 android:textSize="20dp">
 
             </TextView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Price:"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_currency_rupee_24">
 
                 </ImageView>
@@ -85,7 +98,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:text="Price"
-                    android:textSize="30dp">
+                    android:textSize="25dp">
 
                 </TextView>
 
@@ -96,7 +109,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:text="/month"
-                    android:textSize="30dp">
+                    android:textSize="25dp">
 
                 </TextView>
 
@@ -108,12 +121,23 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Brokerage:"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_currency_rupee_24">
 
                 </ImageView>
@@ -125,15 +149,143 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:text="Brokerage"
-                    android:textSize="30dp">
+                    android:textSize="25dp">
 
                 </TextView>
             </LinearLayout>
-            <EditText
-                android:id="@+id/qut1"
-                android:text="1"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="23dp"
+                    android:text="No of Months:"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editText6" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="169dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow_textbox_shape"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/editText6">
+
+                    <ImageView
+                        android:id="@+id/submon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ic_baseline_remove_24">
+
+                    </ImageView>
+
+                    <EditText
+                        android:id="@+id/qut1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:background="@color/transperent"
+                        android:digits="1234567890."
+                        android:hint="Mon"
+                        android:inputType="number"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
+
+                    <ImageView
+                        android:id="@+id/addmon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/ic_baseline_add_24" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="23dp"
+                    android:text="Quantity:"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editText6" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="169dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow_textbox_shape"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/editText6">
+
+                    <ImageView
+                        android:id="@+id/subqut"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ic_baseline_remove_24">
+
+                    </ImageView>
+
+                    <EditText
+                        android:id="@+id/qut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:background="@color/transperent"
+                        android:digits="1234567890."
+                        android:hint="Qty"
+                        android:inputType="number"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
+
+                    <ImageView
+                        android:id="@+id/addqut"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/ic_baseline_add_24" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,7 +296,7 @@
                     android:id="@+id/button1"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/button_layout_standard2"
                     android:drawableEnd="@drawable/ic_baseline_add_shopping_cart_24"
@@ -159,7 +311,7 @@
                     android:id="@+id/button2"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/button_layout_standard"
                     android:gravity="center"
@@ -170,19 +322,19 @@
                 </Button>
 
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/whatsappicon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/whtapp"
-                />
+                android:background="@drawable/whtapp" />
+
             <TextView
                 android:id="@+id/contectno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="35dp"
                 android:text="4352435253"
-                />
+                android:textSize="35dp" />
 
 
         </LinearLayout>

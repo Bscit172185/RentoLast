@@ -18,9 +18,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RENTO"
         tools:targetApi="33">
+        <activity
+            android:name=".WalletActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CreateWalletActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_API"/>
+            android:value="@string/map_API" />
 
         <activity
             android:name=".OrderActivity"
