@@ -125,10 +125,13 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                 public void onClick(View view) {
                                     AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
                                     dilog.setTitle("Order Invoice");
-                                    dilog.setMessage("product Amount: "+price+
-                                            "\nProduct Brocrage: "+broc+
+                                    dilog.setMessage("Product Name:   "+name+
+                                            "\nproduct Amount:    "+price+
+                                            "\nProduct Brocrage:    "+broc+
                                             "\nQut: "+qut+
-                                            "\nTotal Amount: "+finl+
+                                            "\n------------------------------------"+
+                                            "\nTotal Amount:    "+finl+
+                                            "\n------------------------------------"+
                                             "\nPayment Status: "+PaymentStu);
                                     dilog.setIcon(null);
                                     dilog.show();
