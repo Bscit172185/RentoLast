@@ -11,17 +11,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     FloatingActionButton floatbut;
     int counter=0;
     private final int close=10;
+    String id;
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
     private FirebaseAuth auth=FirebaseAuth.getInstance();
+    String uid= auth.getUid();
 
     @Override
     public void onBackPressed() {
@@ -74,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         floatbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Product= new Intent(MainActivity.this,Select_Add_Product_Activity.class);
+                Intent Product=new Intent(MainActivity.this,Select_Add_Product_Activity.class);
                 startActivity(Product);
             }
         });

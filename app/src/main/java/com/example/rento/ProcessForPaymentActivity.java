@@ -65,6 +65,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         imgview=findViewById(R.id.img);
         Checkout.preload(getApplicationContext());
         Intent intent=getIntent();
+        PaymentStu=intent.getStringExtra("paystus");
         reqid=intent.getStringExtra("reqid");
         pid=intent.getStringExtra("pid");
          db.collection("Product").document(pid).get()
@@ -114,7 +115,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        PaymentStu=documentSnapshot.getString("Payment");
                         int qut=Integer.parseInt(documentSnapshot.getString("qut"));
                         int finl=total*qut;
                         if(PaymentStu.equals("PAID")){
@@ -128,7 +128,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                     dilog.setMessage("Product Name:   "+name+
                                             "\nproduct Amount:    "+price+
                                             "\nProduct Brocrage:    "+broc+
-                                            "\nQut: "+qut+
+                                            "\nNO of Months: "+qut+
                                             "\n------------------------------------"+
                                             "\nTotal Amount:    "+finl+
                                             "\n------------------------------------"+

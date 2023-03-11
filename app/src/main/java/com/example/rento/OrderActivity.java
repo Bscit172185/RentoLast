@@ -51,7 +51,7 @@ public class OrderActivity extends AppCompatActivity {
                                     reqid=d.getId();
                                     b=d.getString("ProId");
                                     paystu=d.getString("Payment");
-                                    Accepteditem(OrderActivity.this,b,paystu);
+                                    Accepteditem(OrderActivity.this,b,paystu,reqid);
                                 }
                             }
                         }
@@ -60,7 +60,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
     }
-    private void Accepteditem(Context context,String ID,String Paystu1) {
+    private void Accepteditem(Context context,String ID,String Paystu1,String reqid1) {
         myadapter1=new AcceptedRequestAdapter(datalist1,context);
         regview.setAdapter(myadapter1);
         db.collection("Product").document(b).get()
@@ -69,7 +69,7 @@ public class OrderActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Model1 obj=documentSnapshot.toObject(Model1.class);
                         obj.pid=ID;
-                        obj.reqid=reqid;
+                        obj.reqid=reqid1;
                         obj.paystu=Paystu1;
                         obj.stutus="yes";
                         datalist1.add(obj);

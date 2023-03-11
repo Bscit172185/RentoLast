@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
     ImageView img,poster;
     FrameLayout Flayout;
     String categoryid;
-    TextView profile,order;
+    TextView profile,order,mywallet;
     CardView menu;
     int tempcout=0;
     int  count=0;
@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
         bk=view.findViewById(R.id.cardview5);
         im=view.findViewById(R.id.cardview6);
         vc=view.findViewById(R.id.cardview7);
+        mywallet=view.findViewById(R.id.mywallet);
         cls=view.findViewById(R.id.filtercls);
         menu=view.findViewById(R.id.menu1);
         menu.setVisibility(View.INVISIBLE);
@@ -116,7 +117,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        img.setOnClickListener(new View.OnClickListener() {
+        cls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(tempcout==0){
@@ -142,14 +143,19 @@ public class HomeFragment extends Fragment {
                             startActivity(new Intent(getActivity(),OrderActivity.class));
                         }
                     });
+                    mywallet.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(),WalletActivity.class));
+
+                        }
+                    });
 
                 }
                 else {
                     menu.setVisibility(View.INVISIBLE);
                     tempcout=0;
                 }
-
-
             }
         });
         fu.setOnClickListener(new View.OnClickListener() {

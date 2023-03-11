@@ -13,19 +13,22 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/menu1"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="140dp"
+            android:layout_height="120dp"
             android:layout_marginTop="75dp"
-            app:cardCornerRadius="25dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:cardCornerRadius="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_baseline_add_shopping_cart_24"
                 android:text="Order"
                 android:textSize="20dp" />
 
@@ -33,10 +36,22 @@
                 android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="50dp"
+                android:drawableStart="@drawable/ic_baseline_person_24"
                 android:text="Profile"
                 android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/mywallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="89dp"
+                android:drawableStart="@drawable/ic_baseline_account_balance_wallet_24"
+                android:text="My wallet"
+                android:textSize="19dp"
+                />
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -250,6 +265,8 @@
                                     android:layout_gravity="center"
                                     android:background="@drawable/mixer" />
 
+
+
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
@@ -281,7 +298,6 @@
                                 app:cardBackgroundColor="#8DB1BD"
                                 app:cardCornerRadius="25dp"
                                 app:contentPadding="8dp">
-
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"

@@ -88,6 +88,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
                                     Intent intent=new Intent(context,ProcessForPaymentActivity.class);
                                     intent.putExtra("pid",pid);
                                     intent.putExtra("reqid",reqid);
+                                    intent.putExtra("paystus",paystu);
                                     context.startActivity(intent);
 
                                 }
