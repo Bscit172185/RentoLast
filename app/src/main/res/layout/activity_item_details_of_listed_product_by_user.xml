@@ -7,7 +7,6 @@
     tools:context=".ItemDetailsOfListedProductByUserActivity">
 
 
-
     <ScrollView
         android:id="@+id/scrollview1"
         android:layout_width="match_parent"
@@ -130,7 +129,33 @@
                     android:textSize="30dp">
 
                 </TextView>
+
             </LinearLayout>
+
+            <Button
+                android:id="@+id/delpro"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_layout_standard"
+                android:drawableEnd="@drawable/ic_baseline_delete1_24"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="DELETE"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:text="PENDING REQUESTS"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="25dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleview1"
