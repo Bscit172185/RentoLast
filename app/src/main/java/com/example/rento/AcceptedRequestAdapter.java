@@ -51,13 +51,16 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         String price;
         String pid;
         String bro;
-        final String[] qut = new String[1];
+        String proqut;
+        String qut;
         Uri uri1;
         reqid=datalist.get(position).reqid;
         paystu=datalist.get(position).paystu;
+        proqut=datalist.get(position).proqut;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
+        qut=datalist.get(position).qut;
         bro=datalist.get(position).getProduct_brocrage();
         status=datalist.get(position).stutus;
         pid=datalist.get(position).pid;
@@ -66,8 +69,9 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
+        holder.qut.setText("Qut  "+proqut);
         holder.t3.setText(bro+" borcrage");
-        tot=Integer.parseInt(price)+Integer.parseInt(bro);
+        tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
         holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+"/ ");
         holder.t5.setText("Payment: "+paystu);
         if(paystu.equals("PAID")){
@@ -84,11 +88,11 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                                    a=documentSnapshot.getString("qut");
                                     Intent intent=new Intent(context,ProcessForPaymentActivity.class);
                                     intent.putExtra("pid",pid);
                                     intent.putExtra("reqid",reqid);
                                     intent.putExtra("paystus",paystu);
+                                    intent.putExtra("totalamount",String.valueOf(tot));
                                     context.startActivity(intent);
 
                                 }
@@ -107,7 +111,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
-        TextView t1,t2,t3,t4,t5;
+        TextView t1,t2,t3,t4,t5,qut;
         ShapeableImageView img;
         CardView card;
 
@@ -118,6 +122,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
             t3=itemView.findViewById(R.id.brokerage);
             t4=itemView.findViewById(R.id.totalamt);
             t5=itemView.findViewById(R.id.paymentstu);
+            qut=itemView.findViewById(R.id.qty);
             img=itemView.findViewById(R.id.img);
             card=itemView.findViewById(R.id.crd);
         }

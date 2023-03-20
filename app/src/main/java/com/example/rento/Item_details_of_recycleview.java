@@ -36,14 +36,16 @@ import java.util.List;
 public class Item_details_of_recycleview extends AppCompatActivity {
     ShapeableImageView img;
     TextView name,dis,price,brorate,UID,conteon,qutid;
-    ImageView whatapp;
-    EditText amoytqut;
-    String qut;
+    ImageView whatapp,submon,addmon,subqut,addqut;
+    EditText montqut,proqut;
+    String qut,proqut1;
     String i,Status="Pendding";
     String requid,reqpro;
     Uri uri=null;
     Button cart,rent;
     String ProId;
+    int anum=1;
+    int bnum=1;
     String pname,pprice,brok,User_Id;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -52,6 +54,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
     public static final String channel_id="product add";
     public int notify_id=100;
     int Rentid=0;
+    int quted=0;
     int ref=0;
 
     @Override
@@ -92,10 +95,15 @@ public class Item_details_of_recycleview extends AppCompatActivity {
         dis=findViewById(R.id.text1);
         qutid=findViewById(R.id.text2);
         whatapp=findViewById(R.id.whatsappicon);
+        submon=findViewById(R.id.submon);
+        addmon=findViewById(R.id.addmon);
+        subqut=findViewById(R.id.subqut);
+        addqut=findViewById(R.id.addqut);
         rent=findViewById(R.id.button2);
         cart=findViewById(R.id.button1);
         conteon.setVisibility(View.INVISIBLE);
-        amoytqut=findViewById(R.id.qut1);
+        montqut=findViewById(R.id.qut1);
+        proqut=findViewById(R.id.pqut);
         whatapp.setVisibility(View.INVISIBLE);
         Intent intent=getIntent();
         User_Id=intent.getStringExtra("UsersId");
@@ -110,11 +118,13 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                                     brok=documentSnapshot.getString("Product_brocrage");
                                     String diss=documentSnapshot.getString("Product_Descreiption");
                                     String qutd=documentSnapshot.getString("pro_qut");
+
                                     name.setText(pname);
                                     price.setText(pprice);
                                     brorate.setText(brok);
                                     dis.setText(diss);
                                     qutid.setText("Qut: "+qutd);
+                                    quted=Integer.parseInt(qutd);
                                     i=documentSnapshot.getString("Product_ImgUrl");
                                     uri=Uri.parse(i);
                                     Picasso.get().load(uri).into(img);
@@ -165,13 +175,15 @@ public class Item_details_of_recycleview extends AppCompatActivity {
         rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                qut=amoytqut.getText().toString();
+                qut=montqut.getText().toString();
+                proqut1=proqut.getText().toString();
                 HashMap<String,Object> s=new HashMap<String, Object>();
                 s.put("ProId",ProId);
                 s.put("ReqUserID",UserID);
                 s.put("Status",Status);
                 s.put("qut",qut);
                 s.put("Payment","pending");
+                s.put("pro_qut",proqut1);
                 if (Rentid != 100) {
                     db.collection("Rent_Request").add(s).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
@@ -186,16 +198,75 @@ public class Item_details_of_recycleview extends AppCompatActivity {
 
             }
         });
+        montqut.setText("1");
 
+        submon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(anum>=2){
+                    int b=anum-1;
+                    anum=b;
+                    montqut.setText(String.valueOf(anum));
+
+                }
+                else {
+                    Toast.makeText(Item_details_of_recycleview.this, "min Month should be 1", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        addmon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(anum<=11){
+                    int b=anum+1;
+                    anum=b;
+                    montqut.setText(String.valueOf(anum));
+                }
+                else {
+                    Toast.makeText(Item_details_of_recycleview.this, "Month should be in limite", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        subqut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(bnum>=2){
+                    int b=bnum-1;
+                    bnum=b;
+                    proqut.setText(String.valueOf(bnum));
+
+                }
+                else {
+                    Toast.makeText(Item_details_of_recycleview.this, "min Month should be 1", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        addqut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(quted>bnum){
+                    int b=bnum+1;
+                    bnum=b;
+                    proqut.setText(String.valueOf(bnum));
+
+                }
+                else {
+                    Toast.makeText(Item_details_of_recycleview.this, "qut extended", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
     public void addtocart() {
-        qut=amoytqut.getText().toString();
+        qut=montqut.getText().toString();
+        proqut1=proqut.getText().toString();
         HashMap<String,Object>m=new HashMap<String,Object>();
         m.put("Uid",UserID);
         m.put("ProId",ProId);
         m.put("qut",qut);
+        m.put("pro_qut",proqut1);
         db.collection("cart").document().set(m)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

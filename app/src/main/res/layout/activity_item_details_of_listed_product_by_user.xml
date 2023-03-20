@@ -131,7 +131,11 @@
                 </TextView>
 
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
             <Button
                 android:id="@+id/delpro"
                 android:layout_width="150dp"
@@ -146,6 +150,19 @@
                 android:text="DELETE"
                 android:textColor="@color/white"
                 android:textSize="15dp"/>
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleX="2.5"
+                    android:scaleY="2.5"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"

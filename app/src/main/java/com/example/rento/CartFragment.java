@@ -38,7 +38,11 @@ public class CartFragment extends Fragment {
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
     String a,b;
-    String itemid;
+    int qud=0;
+    String adapter="0";
+    String ProId;
+    String itemid,productid;
+    ArrayList<String> arlist=new ArrayList<>();
     ArrayList<String> arrayList=new ArrayList<>();
 
     @Override
@@ -51,6 +55,7 @@ public class CartFragment extends Fragment {
         regview=view.findViewById(R.id.Regview1);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
+        regview.setBackgroundResource(R.drawable.emptyback);
         db.collection("cart").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -92,6 +97,7 @@ public class CartFragment extends Fragment {
             }
         });
 
+
         chekout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,17 +109,43 @@ public class CartFragment extends Fragment {
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
                                 for(DocumentSnapshot d:list){
-                                    String ProId,Uid,qut,Status,itemidofcart,id;
+                                    String Uid,qut,Status,itemidofcart,id;
                                     itemidofcart=d.getId();
                                     id=d.getString("Uid");
                                     ProId=d.getString("ProId");
                                     Uid=d.getString("Uid");
                                     qut=d.getString("qut");
                                     Status="Pendding";
-                                    if(uid.equals(id)){
-                                        checkout(ProId,Uid,qut,Status,itemidofcart);
-                                        startActivity(new Intent(getActivity(),MainActivity.class));
-                                    }
+                                    db.collection("order").get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    List<DocumentSnapshot>l1=queryDocumentSnapshots.getDocuments();
+                                                    for(DocumentSnapshot D:l1){
+                                                        productid=D.getString("ProId");
+                                                        if(productid.equals(ProId)){
+                                                            qud=qud+1;
+                                                            arlist.add(productid);
+                                                        }
+                                                    }
+                                                    if(uid.equals(id)){
+                                                        if(arlist.size()==0){
+                                                            checkout(ProId,Uid,qut,Status,itemidofcart);
+                                                            startActivity(new Intent(getActivity(),MainActivity.class));
+                                                        }
+                                                        else {
+                                                            Toast.makeText(getActivity(), "SORRY...! Product is on rent...", Toast.LENGTH_SHORT).show();
+                                                            dilog.dismiss();
+                                                            db.collection("cart").document(itemidofcart).delete();
+                                                            startActivity(new Intent(getActivity(),MainActivity.class));
+                                                        }
+
+                                                    }
+
+                                                }
+                                            });
+
+
                                 }
 
                             }
@@ -196,7 +228,11 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                        obj.Itemid=b;
                        datalist.add(obj);
                        myadapter.notifyDataSetChanged();
-
+                       adapter=String.valueOf(myadapter.datalist.size());
+                       if(!adapter.equals("0")){
+                           regview.setBackgroundResource(R.color.white);
+                       }
+                       System.out.println(myadapter.datalist.size());
                     }
                 });
 

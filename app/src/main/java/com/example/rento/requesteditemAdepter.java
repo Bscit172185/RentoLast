@@ -35,18 +35,27 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        String a ,name,price,brok;
+        String a ,name,price,brok,qut,proqut;
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
         brok=datalist.get(position).getProduct_brocrage();
+        qut=datalist.get(position).qut;
+        proqut=datalist.get(position).proqut;
         System.out.println(name);
         uri1=Uri.parse(a);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
         holder.t3.setText(brok+" /mon");
+        int a1,b,c;
+        a1=Integer.parseInt(qut);
+        b=Integer.parseInt(proqut);
+        c=Integer.parseInt(price)*a1*b+Integer.parseInt(brok);
+        holder.t4.setText("Total: "+c+" /mon");
+        holder.t5.setText("Qut: "+qut);
+        holder.pay.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -58,7 +67,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
 
     class myviewholder extends RecyclerView.ViewHolder {
         CardView crd;
-        TextView t1,t2,t3,t4,t5;
+        TextView t1,t2,t3,t4,t5,pay;
         ShapeableImageView img;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +78,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
             t3=itemView.findViewById(R.id.brokerage);
             t4=itemView.findViewById(R.id.totalamt);
             t5=itemView.findViewById(R.id.qty);
+            pay=itemView.findViewById(R.id.paymentstu);
 
         }
     }

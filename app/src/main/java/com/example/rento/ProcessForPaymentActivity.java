@@ -45,7 +45,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi;
     Uri uri;
     int a,b,c,d,total,intpr,intbro;
-    String finalamount,PaymentStu;
+    String finalamount,PaymentStu,tot;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -68,6 +68,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         PaymentStu=intent.getStringExtra("paystus");
         reqid=intent.getStringExtra("reqid");
         pid=intent.getStringExtra("pid");
+        tot=intent.getStringExtra("totalamount");
          db.collection("Product").document(pid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                              @Override
@@ -125,6 +126,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                 public void onClick(View view) {
                                     AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
                                     dilog.setTitle("Order Invoice");
+                                    dilog.setIcon(R.drawable.applogo);
                                     dilog.setMessage("Product Name:   "+name+
                                             "\nproduct Amount:    "+price+
                                             "\nProduct Brocrage:    "+broc+
@@ -167,8 +169,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 a=Integer.parseInt(price);
                 b=Integer.parseInt(broc);
                 System.out.println(a);
-                c=a+b;
-                d=c*100;
+                d=Integer.parseInt(tot)*100;
                 finalamount=String.valueOf(d);
                 AlertDialog.Builder alert=new AlertDialog.Builder(ProcessForPaymentActivity.this);
                 alert.setTitle("D E C L A R A T I O N");

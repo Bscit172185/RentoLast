@@ -262,7 +262,7 @@
                     </ImageView>
 
                     <EditText
-                        android:id="@+id/qut"
+                        android:id="@+id/pqut"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:layout_gravity="center"

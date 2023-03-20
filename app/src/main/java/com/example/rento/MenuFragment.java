@@ -36,6 +36,7 @@ public class MenuFragment extends Fragment {
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
     String status;
+    String reid="0",re1id="0";
     String proid,requserid,a,b;
     String stu;
     ImageView back;
@@ -52,7 +53,15 @@ public class MenuFragment extends Fragment {
         regview1.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
         datalist1=new ArrayList<>();
-        db.collection("Rent_Request").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        if(reid.equals("0")){
+            regview.setBackgroundResource(R.drawable.emptyback);
+        }
+        if(re1id.equals("0")){
+            regview1.setBackgroundResource(R.drawable.emptyback);
+        }
+
+        db.collection("Rent_Request").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
@@ -62,7 +71,9 @@ public class MenuFragment extends Fragment {
                     if(requserid.equals(uid)){
                         if(stu.equals("Pendding")){
                             a=d.getString("ProId");
-                            additem();
+                            String proqut=d.getString("pro_qut");
+                            String qut=d.getString("qut");
+                            additem(a,proqut,qut);
 
                         }
                     }
@@ -106,17 +117,22 @@ public class MenuFragment extends Fragment {
     }
 
 
-    private void additem() {
+    private void additem(String a1 ,String proqut,String qut) {
         myadapter=new requesteditemAdepter(datalist);
         regview.setAdapter(myadapter);
-        db.collection("Product").document(a).get()
+        db.collection("Product").document(a1).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Model obj=documentSnapshot.toObject(Model.class);
+                obj.proqut=proqut;
+                obj.qut=qut;
                 datalist.add(obj);
                 myadapter.notifyDataSetChanged();
-                status=String.valueOf(datalist.size());
+                reid=String.valueOf(datalist.size());
+                if(!reid.equals("0")){
+                    regview.setBackgroundResource(R.color.white);
+                }
 
             }
         });
@@ -134,6 +150,10 @@ public class MenuFragment extends Fragment {
                         obj.stutus="no";
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();
+                         re1id=String.valueOf(myadapter1.datalist.size());
+                         if(!re1id.equals("0")){
+                             regview1.setBackgroundResource(R.color.white);
+                         }
                     }
                 });
 

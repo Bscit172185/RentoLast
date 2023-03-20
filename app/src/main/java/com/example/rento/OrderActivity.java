@@ -30,7 +30,8 @@ public class OrderActivity extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
     String uid= user.getUid();
-    String requserid,b,paystu,reqid;
+    String size="0";
+    String requserid,b,paystu,reqid,proqut,qut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,9 @@ public class OrderActivity extends AppCompatActivity {
         regview=findViewById(R.id.regview);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist1=new ArrayList<>();
+        if(size.equals("0")){
+            regview.setBackgroundResource(R.drawable.emptyback);
+        }
         db.collection("Rent_Request").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -51,7 +55,9 @@ public class OrderActivity extends AppCompatActivity {
                                     reqid=d.getId();
                                     b=d.getString("ProId");
                                     paystu=d.getString("Payment");
-                                    Accepteditem(OrderActivity.this,b,paystu,reqid);
+                                    proqut=d.getString("pro_qut");
+                                    qut=d.getString("qut");
+                                    Accepteditem(OrderActivity.this,b,paystu,reqid,proqut,qut);
                                 }
                             }
                         }
@@ -60,7 +66,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
     }
-    private void Accepteditem(Context context,String ID,String Paystu1,String reqid1) {
+    private void Accepteditem(Context context,String ID,String Paystu1,String reqid1,String proqut1,String qutm) {
         myadapter1=new AcceptedRequestAdapter(datalist1,context);
         regview.setAdapter(myadapter1);
         db.collection("Product").document(b).get()
@@ -71,9 +77,15 @@ public class OrderActivity extends AppCompatActivity {
                         obj.pid=ID;
                         obj.reqid=reqid1;
                         obj.paystu=Paystu1;
+                        obj.proqut=proqut1;
+                        obj.qut=qutm;
                         obj.stutus="yes";
                         datalist1.add(obj);
                         myadapter1.notifyDataSetChanged();
+                        size=String.valueOf(myadapter1.datalist.size());
+                        if(!size.equals("0")){
+                           regview.setBackgroundResource(R.color.transperent);
+                        }
                     }
                 });
 

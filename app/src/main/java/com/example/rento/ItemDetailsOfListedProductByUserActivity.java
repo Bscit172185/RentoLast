@@ -1,14 +1,20 @@
 package com.example.rento;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -21,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity {
@@ -30,8 +37,12 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
    String pid,pname,pprice,urli;
    RecyclerView regview;
    ArrayList<Model> datalist;
+   Button delpro;
+   int pro_stid=0;
    itemRequestRecycleView myadapter;
    Uri uri=null;
+   Switch deactivate;
+   String pro_status;
    FirebaseFirestore db=FirebaseFirestore.getInstance();
    FirebaseAuth auth=FirebaseAuth.getInstance();
    FirebaseUser user=auth.getCurrentUser();
@@ -41,8 +52,10 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details_of_listed_product_by_user);
         regview=findViewById(R.id.recycleview1);
+        delpro=findViewById(R.id.delpro);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         img=findViewById(R.id.img);
+        deactivate=findViewById(R.id.switch1);
         name=findViewById(R.id.text);
         Intent intent=getIntent();
         pid=intent.getStringExtra("id");
@@ -50,12 +63,92 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         myadapter=new itemRequestRecycleView(datalist,this);
         regview.setAdapter(myadapter);
         db.collection("Product").document(pid).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                String a=documentSnapshot.getString("pro_status");
+                                if(a.equals("ON")){
+                                    deactivate.setChecked(true);
+                                    pro_stid=1;
+                                }
+                                else {
+                                    deactivate.setChecked(false);
+                                    pro_stid=2;
+                                }
+                            }
+                        });
+
+        deactivate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(pro_stid==1){
+                    HashMap<String,Object> s=new HashMap<String, Object>();
+                    s.put("pro_status","DEACTIVE");
+                    AlertDialog.Builder alert=new AlertDialog.Builder(ItemDetailsOfListedProductByUserActivity.this);
+                    alert.setTitle("Make Unvailable this product");
+                    alert.setMessage("Click yes if you sure..");
+                    alert.setIcon(R.drawable.applogo);
+                    alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            db.collection("Product").document(pid).update(s)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(ItemDetailsOfListedProductByUserActivity.this, "Deactivate prodect", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            deactivate.setChecked(true);
+                        }
+                    });
+                    alert.show();
+
+                }
+                else if (pro_stid==2){
+                    HashMap<String,Object> s=new HashMap<String, Object>();
+                    s.put("pro_status","ON");
+                    AlertDialog.Builder alert=new AlertDialog.Builder(ItemDetailsOfListedProductByUserActivity.this);
+                    alert.setTitle("Make Available this product");
+                    alert.setMessage("Click yes if you sure..");
+                    alert.setIcon(R.drawable.applogo);
+                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            db.collection("Product").document(pid).update(s)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(ItemDetailsOfListedProductByUserActivity.this, "Activate prodect", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            deactivate.setChecked(false);
+                        }
+                    });
+                    alert.show();
+
+                }
+            }
+        });
+        db.collection("Product").document(pid).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         pname=documentSnapshot.getString("Product_Name");
                         name.setText(pname);
                         urli=documentSnapshot.getString("Product_ImgUrl");
+                        pro_status=documentSnapshot.getString("pro_status");
+                        pro_status=documentSnapshot.getString("pro_status");
                         uri=Uri.parse(urli);
                         Picasso.get().load(uri).into(img);
                     }
@@ -79,6 +172,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                                     obj.qut=d.getString("qut");
                                     obj.requid=d.getString("ReqUserID");
                                     obj.reqproid=proid;
+                                    obj.proqut=d.getString("pro_qut");
                                     datalist.add(obj);
                                 }
 
@@ -89,6 +183,36 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                     }
                 });
 
+        delpro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert=new AlertDialog.Builder(ItemDetailsOfListedProductByUserActivity.this);
+                alert.setIcon(R.drawable.applogo);
+                alert.setTitle("Delete Product !");
+                alert.setMessage("Delete this product from Listing");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        HashMap<String,Object>s=new HashMap<String, Object>();
+                        s.put("pro_status","OFF");
+                        db.collection("Product").document(pid).update(s)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(ItemDetailsOfListedProductByUserActivity.this, "Product remove successfully...!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+                alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alert.show();
+            }
+        });
 
     }
 

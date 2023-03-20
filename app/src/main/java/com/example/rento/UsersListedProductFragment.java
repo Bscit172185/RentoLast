@@ -36,7 +36,7 @@ public class UsersListedProductFragment extends Fragment {
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     FirebaseUser user=firebaseAuth.getCurrentUser();
     String id=user.getUid();
-    String  re;
+    String  re,pro_status;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,16 +59,21 @@ public class UsersListedProductFragment extends Fragment {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list){
+                            pro_status=d.getString("pro_status");
                             re=d.getString("UID");
-                            if(re.equals(id)){
-                                Model obj=d.toObject(Model.class);
-                                obj.id=d.getId();
-                                datalist.add(obj);
+                            if(pro_status.equals("ON")||pro_status.equals("DEACTIVE")){
+                                if(re.equals(id)){
+                                    Model obj=d.toObject(Model.class);
+                                    obj.id=d.getId();
+                                    datalist.add(obj);
+                                }
                             }
-
                         }
                         myadapter.notifyDataSetChanged();
-
+                        String size=String.valueOf(myadapter.datalist.size());
+                        if(size.equals("0")){
+                            regview.setBackgroundResource(R.drawable.emptyback1);
+                        }
                     }
 
 

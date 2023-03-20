@@ -1,6 +1,7 @@
 package com.example.rento;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -57,33 +58,38 @@ public class ListedProductsFragment extends Fragment {
         datalist=new ArrayList<>();
         myadapter=new Myadapter(datalist,getContext());
         regview.setAdapter(myadapter);
+
         db.collection("Product").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list){
-                            System.out.println(d.getString("Categories"));
                             if(!categoryid.equals("")){
                                 if(categoryid.equals(d.getString("Categories"))){
-                                    Model obj=d.toObject(Model.class);
-                                    obj.id=d.getId();
-                                    datalist.add(obj);
+                                    if(d.getString("pro_status").equals("ON")){
+                                        Model obj=d.toObject(Model.class);
+                                        obj.id=d.getId();
+                                        datalist.add(obj);
+                                    }
                                 }
                             }
                             else {
+                                if(d.getString("pro_status").equals("ON")){
                                 Model obj=d.toObject(Model.class);
                                 obj.id=d.getId();
                                 datalist.add(obj);
-
+                                }
                             }
                         }
                         myadapter.notifyDataSetChanged();
+                        String size=String.valueOf(myadapter.datalist.size());
+                        System.out.println("this is a size 0f data: "+size);
+                        if(size.equals("0")){
+                            regview.setBackgroundResource(R.drawable.emptyback1);
+                        }
                     }
-
                 });
-
-
         return view;
     }
 }

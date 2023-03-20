@@ -37,8 +37,8 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_addproduct_cardview_layout,parent,false);
-       return new myviewholder(view);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_addproduct_cardview_layout,parent,false);
+        return new myviewholder(view);
     }
 
     @Override
@@ -55,6 +55,8 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(pname);
         holder.t2.setText(pprice);
+        ListedProductsFragment ls=new ListedProductsFragment();
+
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +88,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
             t1=itemView.findViewById(R.id.name);
             t2=itemView.findViewById(R.id.price);
             img=itemView.findViewById(R.id.img);
+
 
         }
     }

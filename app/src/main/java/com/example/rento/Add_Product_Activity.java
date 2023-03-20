@@ -121,6 +121,7 @@ public class Add_Product_Activity extends AppCompatActivity {
                     pro.put("UID",ID);
                     pro.put("Categories",catagory);
                     pro.put("pro_qut",qut.getText().toString());
+                    pro.put("pro_status","ON");
                     FirebaseFirestore root=FirebaseFirestore.getInstance();
                     root.collection("Product").document().set(pro)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {

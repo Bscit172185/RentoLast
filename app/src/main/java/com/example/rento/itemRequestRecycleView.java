@@ -42,12 +42,13 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        String qut,requid,rqeproid,totalamu,reqid,pid;
+        String qut,requid,rqeproid,totalamu,reqid,pid,proqut;
         qut=datalist.get(position).qut;
         requid=datalist.get(position).requid;
         rqeproid=datalist.get(position).reqproid;
         reqid=datalist.get(position).reqid;
         pid=datalist.get(position).pid;
+        proqut=datalist.get(position).proqut;
         db.collection("user").document(requid).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             String iname;
@@ -61,18 +62,20 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                int a,b,d,res;
+                                int a,b,d,e,res;
                                 String c;
                                 a=Integer.parseInt(documentSnapshot.getString("Product_Price"));
                                 b=Integer.parseInt(documentSnapshot.getString("Product_brocrage"));
                                 d=Integer.parseInt(qut);
-                                res=a*d+b;
+                                e=Integer.parseInt(proqut);
+                                res=a*d*e+b;
                                 c=String.valueOf(res);
                                 holder.totalam.setText("Total: "+c+" /-");
                             }
                         });
 
-        holder.months.setText(qut+" /mon");
+        holder.months.setText("Month: "+qut+" /mon");
+        holder.proqut.setText("Quntity: "+proqut);
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +143,7 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
         return datalist.size();
     }
     static class myviewholder extends RecyclerView.ViewHolder{
-       TextView months,uname,totalam;
+       TextView months,uname,totalam,proqut;
        Button accept;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -148,6 +151,7 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
             uname=itemView.findViewById(R.id.name);
             totalam=itemView.findViewById(R.id.totalamt);
             accept=itemView.findViewById(R.id.accept);
+            proqut=itemView.findViewById(R.id.proqut);
 
         }
     }

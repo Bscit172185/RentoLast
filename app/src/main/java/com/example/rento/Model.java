@@ -1,7 +1,7 @@
 package com.example.rento;
 
 public class Model {
-    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id,Uid,ProId,Itemid,qut,requid,reqproid,reqid,pid,filter="",stutus;
+    String Product_Name, Product_Price, Product_ImgUrl, Categories, Product_Descreiption, Product_brocrage, UID,id,Uid,ProId,Itemid,qut,requid,reqproid,reqid,pid,filter="",proqut;
 
     public Model(String proId) {
         ProId = proId;
