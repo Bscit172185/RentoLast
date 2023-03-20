@@ -85,7 +85,6 @@ public class OrderActivity extends AppCompatActivity {
                         size=String.valueOf(myadapter1.datalist.size());
                         if(!size.equals("0")){
                            regview.setBackgroundResource(R.color.transperent);
-
                         }
                     }
                 });
