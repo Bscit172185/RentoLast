@@ -60,7 +60,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
         imgv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                visibal();
+                visibalc();
             }
         });
         Register=view.findViewById(R.id.register);
@@ -123,6 +123,17 @@ public class SetPasswordForRegistrationFragment extends Fragment {
         }
         else {
             Pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            count=0;
+        }
+
+    }
+    private void visibalc() {
+        if(count==0){
+            ConPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            count=1;
+        }
+        else {
+            ConPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             count=0;
         }
 
