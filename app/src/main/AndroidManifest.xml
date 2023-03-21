@@ -19,6 +19,20 @@
         android:theme="@style/Theme.RENTO"
         tools:targetApi="33">
         <activity
+            android:name=".ProfileUpdateActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WithdrawActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WalletActivity"
             android:exported="false">
             <meta-data
