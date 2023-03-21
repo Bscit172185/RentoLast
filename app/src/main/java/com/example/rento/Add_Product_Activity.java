@@ -106,37 +106,75 @@ public class Add_Product_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Customprogressbar dilog=new Customprogressbar(Add_Product_Activity.this);
                 dilog.show();
-                if(PName.getText()!=null && Pdecrip.getText()!=null&&productUrl!=null&&PPrice.getText()!=null&&PBrok.getText()!=null){
-                    String PName1,Pdecrip1,PPrice1,PBrok1,URL1;
-                    PName1=PName.getText().toString();
-                    Pdecrip1=Pdecrip.getText().toString();
-                    PPrice1=PPrice.getText().toString();
-                    PBrok1=PBrok.getText().toString();
-                    HashMap<String, Object>pro=new HashMap<String,Object>();
-                    pro.put("Product_Name",PName1);
-                    pro.put("Product_Descreiption",Pdecrip1);
-                    pro.put("Product_Price",PPrice1);
-                    pro.put("Product_brocrage",PBrok1);
-                    pro.put("Product_ImgUrl",productUrl);
-                    pro.put("UID",ID);
-                    pro.put("Categories",catagory);
-                    pro.put("pro_qut",qut.getText().toString());
-                    pro.put("pro_status","ON");
-                    FirebaseFirestore root=FirebaseFirestore.getInstance();
-                    root.collection("Product").document().set(pro)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
-                                        finish();
+                if(PName.getText().length()!=0 && Pdecrip.getText().length()!=0&&productUrl!=null&&PPrice.getText().length()!=0&&PBrok.getText().length()!=0){
+                    if(PName.getText().length()<=20){
+                        if(Pdecrip.getText().length()<=100){
+                            if(PPrice.getText().length()<=10){
+                                if (PBrok.getText().length()<=10){
+                                    Integer a,b;
+                                    a=Integer.parseInt(PPrice.getText().toString());
+                                    b=Integer.parseInt(PBrok.getText().toString());
+                                    if(a<=b){
+                                        String PName1,Pdecrip1,PPrice1,PBrok1,URL1;
+                                        PName1=PName.getText().toString();
+                                        Pdecrip1=Pdecrip.getText().toString();
+                                        PPrice1=PPrice.getText().toString();
+                                        PBrok1=PBrok.getText().toString();
+
+                                        HashMap<String, Object>pro=new HashMap<String,Object>();
+                                        pro.put("Product_Name",PName1);
+                                        pro.put("Product_Descreiption",Pdecrip1);
+                                        pro.put("Product_Price",PPrice1);
+                                        pro.put("Product_brocrage",PBrok1);
+                                        pro.put("Product_ImgUrl",productUrl);
+                                        pro.put("UID",ID);
+                                        pro.put("Categories",catagory);
+                                        pro.put("pro_qut",qut.getText().toString());
+                                        pro.put("pro_status","ON");
+                                        FirebaseFirestore root=FirebaseFirestore.getInstance();
+                                        root.collection("Product").document().set(pro)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful()){
+                                                            Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
+                                                            startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
+                                                            finish();
+                                                            dilog.dismiss();
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                    else {
+                                        PBrok.setError("brocrage should be Greter then Price.");
+                                        dilog.dismiss();
                                     }
                                 }
-                            });
+                                else {
+                                    PBrok.setError("Length should be less then 10");
+                                    dilog.dismiss();
+                                }
+                            }
+                            else {
+                                PPrice.setError("Length should be less then 10");
+                                dilog.dismiss();
+                            }
+
+                        }
+                        else {
+                            Pdecrip.setError("Length should be less then 100");
+                            dilog.dismiss();
+                        }
+                    }
+                    else {
+                        PName.setError("Length should be less then 20");
+                        dilog.dismiss();
+                    }
+
                 }
                 else {
                     Toast.makeText(Add_Product_Activity.this, "fill deatails properly", Toast.LENGTH_SHORT).show();
+                    dilog.dismiss();
                 }
 
 

@@ -77,7 +77,6 @@ public class WalletActivity extends AppCompatActivity {
         });
 
     }
-
     private void showbalance(String price,String bro) {
          p=p+Integer.parseInt(price);
          b=b+Integer.parseInt(bro);
