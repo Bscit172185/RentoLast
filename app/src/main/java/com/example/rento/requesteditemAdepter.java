@@ -60,8 +60,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
 
     @Override
     public int getItemCount() {
-        count=datalist.size();
-        return count;
+        return datalist.size();
 
     }
 

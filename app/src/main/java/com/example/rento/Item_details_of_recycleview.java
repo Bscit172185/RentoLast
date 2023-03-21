@@ -260,13 +260,13 @@ public class Item_details_of_recycleview extends AppCompatActivity {
     }
 
     public void addtocart() {
-        qut=montqut.getText().toString();
-        proqut1=proqut.getText().toString();
+        String qut1=montqut.getText().toString();
+        String proqut2=proqut.getText().toString();
         HashMap<String,Object>m=new HashMap<String,Object>();
         m.put("Uid",UserID);
         m.put("ProId",ProId);
-        m.put("qut",qut);
-        m.put("pro_qut",proqut1);
+        m.put("qut",qut1);
+        m.put("pro_qut",proqut2);
         db.collection("cart").document().set(m)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

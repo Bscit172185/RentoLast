@@ -42,7 +42,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     ImageView mapView;
     Activity activity=this;
     String pid="",qut="",reqid;
-    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi;
+    String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi,prouid;
     Uri uri;
     int a,b,c,d,total,intpr,intbro;
     String finalamount,PaymentStu,tot;
@@ -79,6 +79,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                  price=documentSnapshot.getString("Product_Price");
                                  broc=documentSnapshot.getString("Product_brocrage");
                                  dec=documentSnapshot.getString("Product_Descreiption");
+                                 prouid=documentSnapshot.getString("UID");
                                  uri=Uri.parse(img);
                                  Picasso.get().load(uri).into(imgview);
                                  pname.setText(name);
@@ -87,6 +88,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                  pbroc.setText(broc);
                                  intpr=Integer.parseInt(price);
                                  intbro=Integer.parseInt(broc);
+
                                  total=intpr+intbro;
                                  db.collection("user").document(uid).get()
                                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -142,8 +144,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                         }
                     }
                 });
-
-
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,8 +229,12 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         db.collection("Rent_Request").document(reqid).update("Payment","PAID");
         Toast.makeText(this, "success....", Toast.LENGTH_SHORT).show();
         HashMap<String,Object> sa=new HashMap<String, Object>();
+        sa.put("proUID",prouid);
         sa.put("ProId",pid);
         sa.put("orderUserID",userid);
+        int a=Integer.parseInt(finalamount)/100;
+        sa.put("price",String.valueOf(a));
+        sa.put("bro",broc);
         db.collection("order").add(sa)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

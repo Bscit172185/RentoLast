@@ -160,7 +160,6 @@ public class Add_Product_Activity extends AppCompatActivity {
         {
             Customprogressbar dilog=new Customprogressbar(Add_Product_Activity.this);
             URL=data.getData();
-            System.out.println(URL);
             img.setImageURI(data.getData());
             FirebaseStorage storage=FirebaseStorage.getInstance();
             StorageReference upload=storage.getReference("/Product/"+ID+new Random().nextInt(500));
@@ -173,7 +172,6 @@ public class Add_Product_Activity extends AppCompatActivity {
                       @Override
                       public void onSuccess(Uri uri) {
                           productUrl=uri.toString();
-                          System.out.println(productUrl);
                       }
                   });
                 }

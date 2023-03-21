@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,9 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class HomeFragment extends Fragment {
     String A;
@@ -53,6 +57,8 @@ public class HomeFragment extends Fragment {
     CardView menu;
     int tempcout=0;
     int  count=0;
+    ArrayList<String> procode=new ArrayList<>();
+    ArrayList<String> arrayList=new ArrayList<>();
     FirebaseFirestore Root=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -140,13 +146,41 @@ public class HomeFragment extends Fragment {
                     order.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             startActivity(new Intent(getActivity(),OrderActivity.class));
                         }
                     });
                     mywallet.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(),WalletActivity.class));
+                            ArrayList<String> wallid=new ArrayList<>();
+                            Customprogressbar dilog=new Customprogressbar(getActivity());
+                            dilog.show();
+                            Root.collection("Wallet").get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                                            for(DocumentSnapshot d:list){
+                                                if(d.getString("UID").equals(UID)) {
+                                                    procode.add(d.getId());
+                                                    break;
+                                                }
+                                                if (!d.getString("UID").equals(UID)){
+                                                    procode.add(d.getId());
+                                                    break;
+                                                }
+                                            }
+                                            if(!procode.isEmpty()){
+                                                startActivity(new Intent(getActivity(),WalletActivity.class));
+                                                dilog.dismiss();
+                                            }
+                                            else {
+                                                startActivity(new Intent(getActivity(),CreateWalletActivity.class));
+                                            }
+                                        }
+                                    });
+
 
                         }
                     });

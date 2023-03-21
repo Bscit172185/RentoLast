@@ -109,12 +109,14 @@ public class CartFragment extends Fragment {
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
                                 for(DocumentSnapshot d:list){
-                                    String Uid,qut,Status,itemidofcart,id;
+                                    String Uid,qut,Status,itemidofcart,id,pro_qut;
                                     itemidofcart=d.getId();
                                     id=d.getString("Uid");
                                     ProId=d.getString("ProId");
                                     Uid=d.getString("Uid");
                                     qut=d.getString("qut");
+                                    pro_qut=d.getString("pro_qut");
+
                                     Status="Pendding";
                                     db.collection("order").get()
                                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -130,7 +132,7 @@ public class CartFragment extends Fragment {
                                                     }
                                                     if(uid.equals(id)){
                                                         if(arlist.size()==0){
-                                                            checkout(ProId,Uid,qut,Status,itemidofcart);
+                                                            checkout(ProId,Uid,qut,Status,itemidofcart,pro_qut);
                                                             startActivity(new Intent(getActivity(),MainActivity.class));
                                                         }
                                                         else {
@@ -163,7 +165,7 @@ public class CartFragment extends Fragment {
 
         return view;
     }
-public void checkout(String ProId,String Uid,String  qut,String Status,String itemidofcart){
+public void checkout(String ProId,String Uid,String  qut,String Status,String itemidofcart,String pro_qut){
 
     db.collection("Rent_Request").get()
             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -186,6 +188,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                         sa.put("ReqUserID",uid);
                         sa.put("Status",Status);
                         sa.put("qut",qut);
+                        sa.put("pro_qut",pro_qut);
                         sa.put("Payment","pending");
                         db.collection("Rent_Request").add(sa)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

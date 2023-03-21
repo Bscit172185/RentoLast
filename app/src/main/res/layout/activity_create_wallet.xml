@@ -109,6 +109,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
+            android:inputType="number"
             android:background="@drawable/shadow_textbox_shape"
             android:hint="Enter Account No"
             android:paddingStart="15dp"
