@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import android.app.Dialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -30,6 +31,8 @@ import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -63,9 +66,9 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     ImageView mapView;
     Activity activity=this;
     String pid="",qut="",reqid;
+    int pro_qut;
     String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi,prouid;
     Uri uri;
-    Uri uri1=null;
     int code=100;
     PdfDocument document;
     int a,b,c,d,total,intpr,intbro,bro;
@@ -142,16 +145,46 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        int pro_qut=Integer.parseInt(documentSnapshot.getString("pro_qut"));
-                        int qut=Integer.parseInt(documentSnapshot.getString("qut"));
-                        int finl=(total*qut+bro)*pro_qut;
+                        pro_qut=Integer.parseInt(documentSnapshot.getString("pro_qut"));
+                        int qut2=Integer.parseInt(documentSnapshot.getString("qut"));
+                        int finl=(total*qut2+bro)*pro_qut;
                         if(PaymentStu.equals("PAID")){
                             nevi.setVisibility(View.INVISIBLE);
                             payment.setText("Download Invoice");
                             payment.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
+                                    Dialog da=new Dialog(ProcessForPaymentActivity.this);
+                                    da.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                    da.setContentView(R.layout.invoice);
+                                    da.setCancelable(true);
+                                    WindowManager.LayoutParams lp= new WindowManager.LayoutParams();
+                                    lp.copyFrom(da.getWindow().getAttributes());
+                                    lp.width=WindowManager.LayoutParams.MATCH_PARENT;
+                                    lp.height=WindowManager.LayoutParams.WRAP_CONTENT;
+                                    da.getWindow().setAttributes(lp);
+                                    Button downloadf=da.findViewById(R.id.download);
+                                    TextView pname,pmou,pbroc,nom,qut1,tamount,paystu;
+                                    pname=da.findViewById(R.id.pname);
+                                    pmou=da.findViewById(R.id.pmou);
+                                    pbroc=da.findViewById(R.id.pbroc);
+                                    nom=da.findViewById(R.id.nom);
+                                    qut1=da.findViewById(R.id.qut);
+                                    tamount=da.findViewById(R.id.tamount);
+                                    paystu=da.findViewById(R.id.paystu);
+                                    pname.setText(name);
+                                    pmou.setText(price);
+                                    pbroc.setText(broc);
+                                    nom.setText(String.valueOf(qut2));
+                                    qut1.setText(String.valueOf(pro_qut));
+                                    tamount.setText(String.valueOf(finl));
+                                    paystu.setText(PaymentStu);
+                                    da.show();
+
+                                    downloadf.setOnClickListener(view1 -> {
+                                        makepdffromview(da.findViewById(R.id.invoiceid));
+                                    });
+                                    /*AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
                                     dilog.setTitle("Order Invoice");
                                     dilog.setIcon(R.drawable.applogo);
                                     dilog.setCancelable(true);
@@ -159,6 +192,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                             "\nproduct Amount:    "+price+
                                             "\nProduct Brocrage:    "+broc+
                                             "\nNO of Months: "+qut+
+                                            "\nNo of Qut: "+pro_qut+
                                             "\n------------------------------------"+
                                             "\nTotal Amount:    "+finl+
                                             "\n------------------------------------"+
@@ -168,7 +202,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             if(checkPermission()){
-                                                makepdffromview(finl);
+                                                makepdffromview(view);
                                             }
                                             else {
                                                 requestforper();
@@ -176,7 +210,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
 
                                         }
                                     });
-                                    dilog.show();
+                                    dilog.show();*/
 
                                 }
                             });
@@ -231,8 +265,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
 
             }
         });
-
-
     }
 
     private void requestforper() {
@@ -250,31 +282,30 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         return permition1== PackageManager.PERMISSION_GRANTED && permition2==PackageManager.PERMISSION_GRANTED;
     }
 
-    private void makepdffromview(int tot) {
+    private void makepdffromview(View view) {
+        Bitmap bitmap= getBitmap(view);
         document=new PdfDocument();
-        PdfDocument.PageInfo pageInfo=new PdfDocument.PageInfo.Builder(720,1080 ,1).create();
+        PdfDocument.PageInfo pageInfo=new PdfDocument.PageInfo.Builder(view.getWidth(),view.getHeight() ,1).create();
         PdfDocument.Page page=document.startPage(pageInfo);
-
         Canvas canvas=page.getCanvas();
-        Paint Text=new Paint();
-        Text.setTypeface(Typeface.create(Typeface.DEFAULT_BOLD,Typeface.NORMAL));
-        Text.setTextSize(25);
-        Text.setColor(ContextCompat.getColor(this,R.color.black));
-        Text.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText("PDF By RENTO Application",396,50,Text);
-
-
-
-        Text.setTypeface(Typeface.create(Typeface.DEFAULT_BOLD,Typeface.NORMAL));
-        Text.setTextSize(17);
-        Text.setColor(ContextCompat.getColor(this,R.color.black));
-        Text.setTextAlign(Paint.Align.LEFT);
-        canvas.drawText(String.valueOf(tot),500,1000,Text);
+        canvas.drawBitmap(bitmap,0,0,null);
         document.finishPage(page);
         createpdf();
 
+    }
 
-
+    private Bitmap getBitmap(View view) {
+        Bitmap map=Bitmap.createBitmap(view.getWidth(),view.getHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(map);
+        Drawable bgdraw=view.getBackground();
+        if(bgdraw !=null){
+            bgdraw.draw(canvas);
+        }
+        else {
+            canvas.drawColor(Color.WHITE);
+        }
+        view.draw(canvas);
+        return map;
     }
 
     private void createpdf() {
@@ -289,13 +320,13 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==code){
-            uri1=null;
+            Uri uri1=null;
             if(data !=null){
                 uri1=data.getData();
                 if(document !=null){
                     ParcelFileDescriptor pdf=null;
                     try{
-                        pdf=getContentResolver().openFileDescriptor(uri1,"w");
+                        pdf= getContentResolver().openFileDescriptor(uri1,"w");
                         FileOutputStream fileOutputStream=new FileOutputStream(pdf.getFileDescriptor());
                         document.writeTo(fileOutputStream);
                         document.close();
@@ -310,17 +341,11 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                         Toast.makeText(this, "error"+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                else {
-                    Toast.makeText(this, "somthing wrong2", Toast.LENGTH_SHORT).show();
-                }
+
             }
-            else {
-                Toast.makeText(this, "somthing wrong1", Toast.LENGTH_SHORT).show();
-            }
+
         }
-        else {
-            Toast.makeText(this, "faid...", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     private void startpayment(String amu, String name, String email, String mob) {

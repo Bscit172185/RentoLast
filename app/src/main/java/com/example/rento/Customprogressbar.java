@@ -12,9 +12,7 @@ import androidx.annotation.NonNull;
 public class Customprogressbar extends Dialog {
      public Customprogressbar(@NonNull Context context) {
         super(context);
-
          WindowManager.LayoutParams params=getWindow().getAttributes();
-
          params.gravity= Gravity.CENTER_HORIZONTAL;
          getWindow().setAttributes(params);
          setTitle(null);

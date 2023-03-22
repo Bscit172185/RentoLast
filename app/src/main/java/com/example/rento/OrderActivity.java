@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +28,7 @@ public class OrderActivity extends AppCompatActivity {
 
     ArrayList<Model1> datalist1;
     RecyclerView regview;
+    ImageView imageView16;
     AcceptedRequestAdapter myadapter1;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -37,6 +41,14 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         regview=findViewById(R.id.regview);
+        imageView16=findViewById(R.id.imageView16);
+        imageView16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OrderActivity.this,MainActivity.class));
+                finish();
+            }
+        });
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         datalist1=new ArrayList<>();
         if(size.equals("0")){

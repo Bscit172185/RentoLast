@@ -11,6 +11,8 @@
         android:id="@+id/scrollview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:touchscreenBlocksFocus="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +65,7 @@
                 android:textSize="20dp">
 
             </TextView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -131,25 +134,26 @@
                 </TextView>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-            <Button
-                android:id="@+id/delpro"
-                android:layout_width="150dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button_layout_standard"
-                android:drawableEnd="@drawable/ic_baseline_delete1_24"
-                android:gravity="center"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="DELETE"
-                android:textColor="@color/white"
-                android:textSize="15dp"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/delpro"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_layout_standard"
+                    android:drawableEnd="@drawable/ic_baseline_delete1_24"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="DELETE"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
 
                 <Switch
                     android:id="@+id/switch1"
@@ -167,38 +171,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="20dp"
-                android:text="PENDING REQUESTS"
+                android:layout_marginTop="15dp"
+                android:text="REQUESTS"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleview1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="400dp" />
 
             <TextView
+                android:id="@+id/rento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current User"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"/>
+                android:text="Current User"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview1"
-                android:layout_width="330dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="8dp"
-                app:cardCornerRadius="40dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/cardview_background">
+                android:elevation="8dp"
+                app:cardCornerRadius="40dp">
 
 
                 <LinearLayout
@@ -209,21 +212,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
                         android:text="Name: "
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginStart="20dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/name"
+                        android:id="@+id/name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="15dp"
                         android:hint="Nihar Sawant"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginStart="5dp"/>
+                        android:textSize="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -235,49 +238,48 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:text="Address: "
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginStart="20dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
                         android:hint="vileparle"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginStart="5dp"/>
+                        android:textSize="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="85dp"
+                    android:layout_marginTop="180dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No of Months: "
+                        android:layout_marginStart="20dp"
+                        android:text="Mobile Number: "
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginStart="20dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/months"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
                         android:hint="6 months"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_marginStart="5dp"/>
+                        android:textSize="20dp" />
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
-
 
 
         </LinearLayout>

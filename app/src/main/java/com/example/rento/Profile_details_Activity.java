@@ -105,7 +105,7 @@ public class Profile_details_Activity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Profile_details_Activity.this,Registration.class));
+                startActivity(new Intent(Profile_details_Activity.this,ProfileUpdateActivity.class));
                 finish();
             }
         });

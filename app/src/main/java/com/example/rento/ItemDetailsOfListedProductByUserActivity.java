@@ -2,6 +2,7 @@ package com.example.rento;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -32,7 +33,7 @@ import java.util.List;
 
 public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity {
    ShapeableImageView img;
-   TextView name;
+   TextView name,rento,name1,address,months;
    String proid,uname,price,requserid;
    String pid,pname,pprice,urli;
    RecyclerView regview;
@@ -41,7 +42,9 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
    int pro_stid=0;
    itemRequestRecycleView myadapter;
    Uri uri=null;
+   CardView cardview1;
    Switch deactivate;
+   String orderproid;
    String pro_status;
    FirebaseFirestore db=FirebaseFirestore.getInstance();
    FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -51,6 +54,13 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details_of_listed_product_by_user);
+        rento=findViewById(R.id.rento);
+        rento.setVisibility(View.INVISIBLE);
+        cardview1=findViewById(R.id.cardview1);
+        cardview1.setVisibility(View.INVISIBLE);
+        name1=findViewById(R.id.name1);
+        address=findViewById(R.id.address);
+        months=findViewById(R.id.months);
         regview=findViewById(R.id.recycleview1);
         delpro=findViewById(R.id.delpro);
         regview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
@@ -62,6 +72,29 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         datalist=new ArrayList<>();
         myadapter=new itemRequestRecycleView(datalist,this);
         regview.setAdapter(myadapter);
+        db.collection("order").get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                               List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                               for (DocumentSnapshot d:list){
+                                   if(pid.equals(d.getString("ProId"))){
+                                       orderproid=d.getString("orderUserID");
+                                       db.collection("user").document(orderproid).get()
+                                               .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                   @Override
+                                                   public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                       cardview1.setVisibility(View.VISIBLE);
+                                                       rento.setVisibility(View.VISIBLE);
+                                                       name1.setText(documentSnapshot.getString("Name"));
+                                                       address.setText(documentSnapshot.getString("Address"));
+                                                       months.setText(documentSnapshot.getString("Number"));
+                                                   }
+                                               });
+                                   }
+                               }
+                            }
+                        });
         db.collection("Product").document(pid).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
