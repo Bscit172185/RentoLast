@@ -119,12 +119,28 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                     alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            db.collection("Rent_Request").get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                                                    for (DocumentSnapshot d:list){
+                                                        String id=d.getString("ProId");
+                                                        if(id.equals(pid)){
+                                                            String rid=d.getId();
+                                                            HashMap<String,Object>s=new HashMap<String,Object>();
+                                                            s.put("Status","OFF");
+                                                            db.collection("Rent_Request").document(rid).update(s);
+                                                        }
+                                                    }
+                                                }
+                                            });
                             db.collection("Product").document(pid).update(s)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(ItemDetailsOfListedProductByUserActivity.this, "Activate prodect", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(ItemDetailsOfListedProductByUserActivity.this,ListedProductsFragment.class));
                                         }
                                     });
                         }

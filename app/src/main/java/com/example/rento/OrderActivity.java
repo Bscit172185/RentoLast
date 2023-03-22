@@ -51,7 +51,7 @@ public class OrderActivity extends AppCompatActivity {
                             requserid=d.getString("ReqUserID");
                             if(requserid.equals(uid)){
                                 String stu=d.getString("Status");
-                                if(stu.equals("Accepted")){
+                                if(stu.equals("Accepted")||stu.equals("OFF")){
                                     reqid=d.getId();
                                     b=d.getString("ProId");
                                     paystu=d.getString("Payment");
