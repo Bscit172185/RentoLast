@@ -240,8 +240,12 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(activity, "Order Confremd.....!", Toast.LENGTH_SHORT).show();
+                HashMap<String,Object> s=new HashMap<String, Object>();
+                s.put("pro_status","DEACTIVE");
+                db.collection("Product").document(pid).update(s);
             }
         });
+
 
     }
 

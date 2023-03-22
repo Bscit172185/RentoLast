@@ -86,6 +86,9 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(context, "Accepted", Toast.LENGTH_SHORT).show();
+                                HashMap<String,Object> s=new HashMap<String, Object>();
+                                s.put("pro_status","DEACTIVE");
+                                db.collection("Product").document(pid).update(s);
                                 db.collection("Rent_Request").get()
                                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                             @Override
@@ -103,7 +106,6 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                         @Override
                                                                         public void onSuccess(Void unused) {
-                                                                            System.out.println("done");
 
                                                                         }
                                                                     });
@@ -113,6 +115,7 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                                                 }
                                             }
                                         });
+
                                 context.startActivity(new Intent(context,MainActivity.class));
                             }
                         });
