@@ -217,7 +217,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
-                                            Toast.makeText(getActivity(),"successful!!",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(),"Successful!!",Toast.LENGTH_SHORT).show();
                                             Intent intent=new Intent(getActivity(),Login.class);
                                             startActivity(intent);
                                         }
@@ -226,7 +226,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                                 });
                             }
                             else {
-                                Toast.makeText(getActivity(),"Failde"+task.getException(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(),"Failed!!"+task.getException(),Toast.LENGTH_LONG).show();
                             }
                         }
 

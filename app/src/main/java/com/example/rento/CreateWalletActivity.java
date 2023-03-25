@@ -74,7 +74,7 @@ public class CreateWalletActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 dilog.dismiss();
-                                                Toast.makeText(CreateWalletActivity.this, "Wallet created sucessfully.....", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(CreateWalletActivity.this, "Wallet created successfully.....", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(CreateWalletActivity.this,WalletActivity.class));
                                             }
                                         });

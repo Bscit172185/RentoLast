@@ -78,7 +78,7 @@ public class Add_Product_Activity extends AppCompatActivity {
                     qutnum=res;
                 }
                 else {
-                    Toast.makeText(Add_Product_Activity.this, "quntity should be atlist one", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_Product_Activity.this, "Quantity should be at least one", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -146,7 +146,7 @@ public class Add_Product_Activity extends AppCompatActivity {
                                                 });
                                     }
                                     else {
-                                        PBrok.setError("brocrage should be Greter then Price.");
+                                        PBrok.setError("Brokerage should be greater then Price.");
                                         dilog.dismiss();
                                     }
                                 }
@@ -173,7 +173,7 @@ public class Add_Product_Activity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(Add_Product_Activity.this, "fill deatails properly", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_Product_Activity.this, "Fill details properly", Toast.LENGTH_SHORT).show();
                     dilog.dismiss();
                 }
 
@@ -205,7 +205,7 @@ public class Add_Product_Activity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     dilog.dismiss();
-                    Toast.makeText(Add_Product_Activity.this, "Image Uploded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_Product_Activity.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
                   upload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                       @Override
                       public void onSuccess(Uri uri) {

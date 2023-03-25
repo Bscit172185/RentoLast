@@ -193,7 +193,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                     });
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "alredy in request", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Already in request", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -210,7 +210,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "min Month should be 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Minimum Month should be 1", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -223,7 +223,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                     montqut.setText(String.valueOf(anum));
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "Month should be in limite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Month should be in limit", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -238,7 +238,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "min Month should be 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Minimum Month should be 1", Toast.LENGTH_SHORT).show();
                 }
             }
         });

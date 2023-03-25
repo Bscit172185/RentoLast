@@ -255,7 +255,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                         startpayment(finalamount,Uname,Uemail,Uphone);
                     }
                 });
-                alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -379,7 +379,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     @Override
     public void onPaymentSuccess(String s) {
         db.collection("Rent_Request").document(reqid).update("Payment","PAID");
-        Toast.makeText(this, "success....", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Success....", Toast.LENGTH_SHORT).show();
         HashMap<String,Object> sa=new HashMap<String, Object>();
         sa.put("proUID",prouid);
         sa.put("ProId",pid);
@@ -391,7 +391,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(activity, "Order Confremd.....!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Order Confirmed.....!", Toast.LENGTH_SHORT).show();
                 HashMap<String,Object> s=new HashMap<String, Object>();
                 s.put("pro_status","DEACTIVE");
                 db.collection("Product").document(pid).update(s);
@@ -404,7 +404,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "faild...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "failed...", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(ProcessForPaymentActivity.this,OrderActivity.class));
     }
 

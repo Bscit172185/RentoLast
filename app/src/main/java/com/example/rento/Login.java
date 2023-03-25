@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(Login.this,"Logged in Sucessfil!!!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this,"Logged in Successfully!!!",Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Login.this,MainActivity.class));
                                         finish();
 
@@ -104,7 +104,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
                 else {
-                    Email.setError("Enter proper Email");
+                    Email.setError("Enter Valid Email");
                 }
             }
         });

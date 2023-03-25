@@ -55,7 +55,7 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat="home appliances";
-                Toast.makeText(Select_Add_Product_Activity.this, "home appliances", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Select_Add_Product_Activity.this, "Home appliances", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
@@ -63,7 +63,7 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat="Cloths";
-                Toast.makeText(Select_Add_Product_Activity.this, "Cloths", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Select_Add_Product_Activity.this, "Clothes", Toast.LENGTH_SHORT).show();
                 send();
             }
         });
@@ -96,7 +96,7 @@ public class Select_Add_Product_Activity extends AppCompatActivity {
 
     private void send() {
         Intent intent=new Intent(Select_Add_Product_Activity.this,Add_Product_Activity.class);
-        intent.putExtra("catagory",cat);
+        intent.putExtra("category",cat);
         startActivity(intent);
     }
 

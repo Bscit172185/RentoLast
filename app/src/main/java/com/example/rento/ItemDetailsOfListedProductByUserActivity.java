@@ -118,8 +118,8 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                     HashMap<String,Object> s=new HashMap<String, Object>();
                     s.put("pro_status","DEACTIVE");
                     AlertDialog.Builder alert=new AlertDialog.Builder(ItemDetailsOfListedProductByUserActivity.this);
-                    alert.setTitle("Make Unvailable this product");
-                    alert.setMessage("Click yes if you sure..");
+                    alert.setTitle("Make this product Unavailable");
+                    alert.setMessage("Click yes if you are sure..");
                     alert.setIcon(R.drawable.applogo);
                     alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                         @Override
@@ -146,8 +146,8 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                     HashMap<String,Object> s=new HashMap<String, Object>();
                     s.put("pro_status","ON");
                     AlertDialog.Builder alert=new AlertDialog.Builder(ItemDetailsOfListedProductByUserActivity.this);
-                    alert.setTitle("Make Available this product");
-                    alert.setMessage("Click yes if you sure..");
+                    alert.setTitle("Make this product Available ");
+                    alert.setMessage("Click yes if you are sure..");
                     alert.setIcon(R.drawable.applogo);
                     alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
@@ -253,7 +253,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                                 });
                     }
                 });
-                alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
