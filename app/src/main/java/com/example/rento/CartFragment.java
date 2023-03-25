@@ -41,10 +41,10 @@ public class CartFragment extends Fragment {
     int qud=0;
     String adapter="0";
     String ProId;
+    String length="empty";
     String itemid,productid;
     ArrayList<String> arlist=new ArrayList<>();
     ArrayList<String> arrayList=new ArrayList<>();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,55 +103,62 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
                 Customprogressbar dilog=new Customprogressbar(getActivity());
                 dilog.show();
-                db.collection("cart").get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
-                                for(DocumentSnapshot d:list){
-                                    String Uid,qut,Status,itemidofcart,id,pro_qut;
-                                    itemidofcart=d.getId();
-                                    id=d.getString("Uid");
-                                    ProId=d.getString("ProId");
-                                    Uid=d.getString("Uid");
-                                    qut=d.getString("qut");
-                                    pro_qut=d.getString("pro_qut");
+                if(length.equals("zero")){
+                    db.collection("cart").get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
+                                    for(DocumentSnapshot d:list){
+                                        String Uid,qut,Status,itemidofcart,id,pro_qut;
+                                        itemidofcart=d.getId();
+                                        id=d.getString("Uid");
+                                        ProId=d.getString("ProId");
+                                        Uid=d.getString("Uid");
+                                        qut=d.getString("qut");
+                                        pro_qut=d.getString("pro_qut");
 
-                                    Status="Pendding";
-                                    db.collection("order").get()
-                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                    List<DocumentSnapshot>l1=queryDocumentSnapshots.getDocuments();
-                                                    for(DocumentSnapshot D:l1){
-                                                        productid=D.getString("ProId");
-                                                        if(productid.equals(ProId)){
-                                                            qud=qud+1;
-                                                            arlist.add(productid);
+                                        Status="Pendding";
+                                        db.collection("order").get()
+                                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                        List<DocumentSnapshot>l1=queryDocumentSnapshots.getDocuments();
+                                                        for(DocumentSnapshot D:l1){
+                                                            productid=D.getString("ProId");
+                                                            if(productid.equals(ProId)){
+                                                                qud=qud+1;
+                                                                arlist.add(productid);
+                                                            }
                                                         }
+                                                        if(uid.equals(id)){
+                                                            if(arlist.size()==0){
+                                                                checkout(ProId,Uid,qut,Status,itemidofcart,pro_qut);
+                                                                startActivity(new Intent(getActivity(),MainActivity.class));
+                                                            }
+                                                            else {
+                                                                Toast.makeText(getActivity(), "SORRY...! Product is on rent...", Toast.LENGTH_SHORT).show();
+                                                                dilog.dismiss();
+                                                                db.collection("cart").document(itemidofcart).delete();
+                                                                startActivity(new Intent(getActivity(),MainActivity.class));
+                                                            }
+
+                                                        }
+
                                                     }
-                                                    if(uid.equals(id)){
-                                                        if(arlist.size()==0){
-                                                            checkout(ProId,Uid,qut,Status,itemidofcart,pro_qut);
-                                                            startActivity(new Intent(getActivity(),MainActivity.class));
-                                                        }
-                                                        else {
-                                                            Toast.makeText(getActivity(), "SORRY...! Product is on rent...", Toast.LENGTH_SHORT).show();
-                                                            dilog.dismiss();
-                                                            db.collection("cart").document(itemidofcart).delete();
-                                                            startActivity(new Intent(getActivity(),MainActivity.class));
-                                                        }
+                                                });
 
-                                                    }
 
-                                                }
-                                            });
-
+                                    }
 
                                 }
+                            });
+                }
+                else if (length.equals("empty")){
+                    Toast.makeText(getActivity(), "Cart is Empty", Toast.LENGTH_SHORT).show();
+                    dilog.dismiss();
+                }
 
-                            }
-                        });
             }
 
         });
@@ -234,8 +241,9 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                        adapter=String.valueOf(myadapter.datalist.size());
                        if(!adapter.equals("0")){
                            regview.setBackgroundResource(R.color.white);
+                           length="zero";
                        }
-                       System.out.println(myadapter.datalist.size());
+
                     }
                 });
 
