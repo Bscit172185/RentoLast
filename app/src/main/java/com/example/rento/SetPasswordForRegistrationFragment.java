@@ -96,18 +96,18 @@ public class SetPasswordForRegistrationFragment extends Fragment {
             public void onClick(View view) {
                 pass=Pass.getText().toString();
                 cpass=ConPass.getText().toString();
-                if(!pass.isEmpty() && pass.length()>8 &&pass.length()<15 && !cpass.isEmpty() && cpass.length()>8 && cpass.length()<15){
+                if(!pass.isEmpty() && pass.length()>=8 &&pass.length()<15 && !cpass.isEmpty() && cpass.length()>=8 && cpass.length()<15){
                     if(pass.equals(cpass)){
                         sendtoFirebase();
 
                     }
                     else {
-                        ConPass.setError("Password is not matched");
+                        ConPass.setError("Password does not matches");
                     }
                 }
                 else {
-                    Pass.setError("Password should be 8-15");
-                    ConPass.setError("Password should be 8-15");
+                    Pass.setError("Password should be 8-15 characters");
+                    ConPass.setError("Password should be 8-15 characters");
                 }
             }
         });
@@ -182,7 +182,7 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                                                 });
                                             }
                                             else {
-                                                Toast.makeText(getActivity(),"Failde"+task.getException(),Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(),"Failed"+task.getException(),Toast.LENGTH_LONG).show();
                                             }
                                         }
 
