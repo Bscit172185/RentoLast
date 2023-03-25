@@ -51,6 +51,7 @@
                 android:layout_marginTop="30dp"
                 />
             <TextView
+                android:layout_marginStart="90dp"
                 android:id="@+id/pname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                 />
             <TextView
                 android:id="@+id/pmou"
+                android:layout_marginStart="76dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -92,6 +94,7 @@
                 />
             <TextView
                 android:id="@+id/pbroc"
+                android:layout_marginStart="70dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -112,6 +115,7 @@
                 />
             <TextView
                 android:id="@+id/nom"
+                android:layout_marginStart="135dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -132,6 +136,7 @@
                 />
             <TextView
                 android:id="@+id/qut"
+                android:layout_marginStart="160dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -156,16 +161,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Amount:   "
+                android:text="  Total Amount:   "
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:layout_marginTop="10dp"
                 />
             <TextView
                 android:id="@+id/tamount"
+                android:layout_marginStart="99dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name"
+                android:text="name  "
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:layout_marginTop="10dp"
@@ -198,7 +204,7 @@
                 />
         </LinearLayout>
         <View
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#070707"/>
@@ -207,7 +213,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Thank you for choosing our service.\n\nIf you have any questions or concerns about this transaction, please don't hesitate to contact us at."
+            android:text="Thank you for choosing our service.\n\nIf you have any questions or concerns about this transaction, please don't hesitate to contact us."
             android:layout_marginBottom="10dp"
             />
     </LinearLayout>

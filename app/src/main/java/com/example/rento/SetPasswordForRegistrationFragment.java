@@ -96,10 +96,9 @@ public class SetPasswordForRegistrationFragment extends Fragment {
             public void onClick(View view) {
                 pass=Pass.getText().toString();
                 cpass=ConPass.getText().toString();
-                if(!pass.isEmpty() && !cpass.isEmpty()){
+                if(!pass.isEmpty() && pass.length()>8 &&pass.length()<15 && !cpass.isEmpty() && cpass.length()>8 && cpass.length()<15){
                     if(pass.equals(cpass)){
                         sendtoFirebase();
-
 
                     }
                     else {
@@ -107,8 +106,8 @@ public class SetPasswordForRegistrationFragment extends Fragment {
                     }
                 }
                 else {
-                    Pass.setError("Empty field not allowed");
-                    ConPass.setError("Empty field not allowed");
+                    Pass.setError("Password should be 8-15");
+                    ConPass.setError("Password should be 8-15");
                 }
             }
         });
