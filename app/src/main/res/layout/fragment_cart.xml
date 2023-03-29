@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CartFragment"
-    android:background="@color/white"
-    android:padding="10dp"
-    >
+    android:background="@color/white">
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +17,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:background="@drawable/homepage_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,11 +27,9 @@
                 android:id="@+id/back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="110dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/ic_baseline_arrow_back_24"
-                app:layout_constraintEnd_toStartOf="@+id/textView11"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,27 +37,23 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
+                android:layout_marginStart="90dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="154dp"
                 android:text="C A R T"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/deleteall"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="113dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="11dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_baseline_delete_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView11"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -67,26 +61,30 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Regview1"
-            android:layout_width="385dp"
-            android:layout_height="476dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="386dp"
+            android:layout_height="520dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginBottom="70dp"
+            android:background="#18F8C4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Regview1">
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:text="PROCEED TO"
                 android:textColor="@color/black"
@@ -98,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginTop="40dp"
                 android:text="REQUEST"
                 android:textSize="20dp"
@@ -107,13 +105,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
             <Button
                 android:id="@+id/checkout"
-                android:layout_width="180dp"
+                android:layout_width="160dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="0dp"
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/button_layout_standard2"
                 android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"

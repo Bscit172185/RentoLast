@@ -48,13 +48,14 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
-        holder.t3.setText(brok+" /mon");
+        holder.t3.setText("Brokerage: "+brok);
         int a1,b,c;
         a1=Integer.parseInt(qut);
         b=Integer.parseInt(proqut);
         c=Integer.parseInt(price)*a1*b+Integer.parseInt(brok);
-        holder.t4.setText("Total: "+c+" /mon");
-        holder.t5.setText("Qut: "+qut);
+        holder.t4.setText("Total: "+c);
+        holder.t5.setText("Qut: "+proqut);
+        holder.t6.setText("Mon: "+qut);
         holder.pay.setVisibility(View.INVISIBLE);
     }
 
@@ -66,7 +67,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
 
     class myviewholder extends RecyclerView.ViewHolder {
         CardView crd;
-        TextView t1,t2,t3,t4,t5,pay;
+        TextView t1,t2,t3,t4,t5,t6,pay;
         ShapeableImageView img;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +78,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
             t3=itemView.findViewById(R.id.brokerage);
             t4=itemView.findViewById(R.id.totalamt);
             t5=itemView.findViewById(R.id.qty);
+            t6=itemView.findViewById(R.id.mon);
             pay=itemView.findViewById(R.id.paymentstu);
 
         }

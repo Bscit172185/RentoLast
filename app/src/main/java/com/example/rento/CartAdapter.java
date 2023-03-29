@@ -38,15 +38,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.myviewholder holder, @SuppressLint("RecyclerView") int position) {
-        String a ,name,price,b;
+        String a ,name,price,brokerage,months,quantity,c;
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
+        brokerage=datalist.get(position).getProduct_brocrage();
+        months=datalist.get(position).qut;
+        quantity=datalist.get(position).proqut;
+
         uri1=Uri.parse(a);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
+        holder.t3.setText(brokerage);
+        holder.t4.setText("Mon: "+months);
+        holder.t5.setText("Qty: "+quantity);
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +68,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
     public int getItemCount() {
         return datalist.size();
     }
+
     class myviewholder extends RecyclerView.ViewHolder {
-        TextView t1,t2;
+        TextView t1,t2,t3,t4,t5;
         ShapeableImageView img;
         ImageView del;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.name);
             t2=itemView.findViewById(R.id.price);
+            t3=itemView.findViewById(R.id.brokerage);
+            t4=itemView.findViewById(R.id.mon);
+            t5=itemView.findViewById(R.id.qty);
             img=itemView.findViewById(R.id.img);
         }
     }

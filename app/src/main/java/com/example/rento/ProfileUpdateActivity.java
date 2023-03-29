@@ -104,7 +104,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void unused) {
-                                                            Toast.makeText(ProfileUpdateActivity.this, "Profile Update Successfully.....!", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(ProfileUpdateActivity.this, "Profile Updated Successfully.....!", Toast.LENGTH_SHORT).show();
                                                             startActivity(new Intent(ProfileUpdateActivity.this,MainActivity.class));
                                                             bar.dismiss();
                                                         }
@@ -123,7 +123,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(ProfileUpdateActivity.this, "Profile Update Successfully.....!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProfileUpdateActivity.this, "Profile Updated Successfully.....!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(ProfileUpdateActivity.this,MainActivity.class));
                                             bar.dismiss();
                                         }

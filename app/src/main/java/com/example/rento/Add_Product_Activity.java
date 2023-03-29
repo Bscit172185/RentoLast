@@ -54,7 +54,7 @@ public class Add_Product_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        catagory=getIntent().getStringExtra("catagory");
+        catagory=getIntent().getStringExtra("category");
         qut=findViewById(R.id.editQuantity);
         sub=findViewById(R.id.subqut);
         add=findViewById(R.id.addqut);
@@ -109,8 +109,8 @@ public class Add_Product_Activity extends AppCompatActivity {
                 if(PName.getText().length()!=0 && Pdecrip.getText().length()!=0&&productUrl!=null&&PPrice.getText().length()!=0&&PBrok.getText().length()!=0){
                     if(PName.getText().length()<=20){
                         if(Pdecrip.getText().length()<=100){
-                            if(PPrice.getText().length()<=10){
-                                if (PBrok.getText().length()<=10){
+                            if(PPrice.getText().length()<=6){
+                                if (PBrok.getText().length()<=6){
                                     Integer a,b;
                                     a=Integer.parseInt(PPrice.getText().toString());
                                     b=Integer.parseInt(PBrok.getText().toString());
@@ -137,7 +137,7 @@ public class Add_Product_Activity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if(task.isSuccessful()){
-                                                            Toast.makeText(Add_Product_Activity.this,"successful!!",Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(Add_Product_Activity.this,"Product added successfully",Toast.LENGTH_SHORT).show();
                                                             startActivity(new Intent(Add_Product_Activity.this,MainActivity.class));
                                                             finish();
                                                             dilog.dismiss();
@@ -151,12 +151,12 @@ public class Add_Product_Activity extends AppCompatActivity {
                                     }
                                 }
                                 else {
-                                    PBrok.setError("Length should be less then 10");
+                                    PBrok.setError("Brokerage should be less then 10 Lakhs");
                                     dilog.dismiss();
                                 }
                             }
                             else {
-                                PPrice.setError("Length should be less then 10");
+                                PPrice.setError("Price should be less than 10 Lakhs");
                                 dilog.dismiss();
                             }
 

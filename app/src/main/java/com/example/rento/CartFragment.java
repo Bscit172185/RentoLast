@@ -66,7 +66,9 @@ public class CartFragment extends Fragment {
                             String b=d.getString("Uid");
                             if(b.equals(uid)){
                                 a=d.getString("ProId");
-                                getcarddata();
+                                String proqut=d.getString("pro_qut");
+                                String qut=d.getString("qut");
+                                getcarddata(qut,proqut);
                             }
 
                         }
@@ -118,7 +120,7 @@ public class CartFragment extends Fragment {
                                         qut=d.getString("qut");
                                         pro_qut=d.getString("pro_qut");
 
-                                        Status="Pendding";
+                                        Status="Pending";
                                         db.collection("order").get()
                                                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                                     @Override
@@ -201,7 +203,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
-                                        Toast.makeText(getActivity(), "Prodects requested...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Products requested...", Toast.LENGTH_SHORT).show();
                                         db.collection("cart").document(itemidofcart).delete();
 
                                     }
@@ -227,7 +229,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                 });
     }
 
-    public void getcarddata() {
+    public void getcarddata(String qut,String proqut) {
         myadapter=new CartAdapter(datalist,getContext());
         regview.setAdapter(myadapter);
         db.collection("Product").document(a).get()
@@ -236,6 +238,8 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                        Model obj=documentSnapshot.toObject(Model.class);
                        obj.Itemid=b;
+                       obj.qut=qut;
+                       obj.proqut=proqut;
                        datalist.add(obj);
                        myadapter.notifyDataSetChanged();
                        adapter=String.valueOf(myadapter.datalist.size());

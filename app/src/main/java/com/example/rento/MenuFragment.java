@@ -69,7 +69,7 @@ public class MenuFragment extends Fragment {
                     requserid=d.getString("ReqUserID");
                     String stu=d.getString("Status");
                     if(requserid.equals(uid)){
-                        if(stu.equals("Pendding")){
+                        if(stu.equals("Pending")){
                             a=d.getString("ProId");
                             String proqut=d.getString("pro_qut");
                             String qut=d.getString("qut");

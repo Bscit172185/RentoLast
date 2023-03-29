@@ -25,6 +25,7 @@
         tools:ignore="BottomAppBar"
         android:gravity="center"
         app:fabCradleRoundedCornerRadius="20dp"
+        android:background="@drawable/nevbar_shape"
         android:backgroundTintMode="multiply"
         app:backgroundTint="@color/transperent"
         android:outlineSpotShadowColor="@color/transperent"

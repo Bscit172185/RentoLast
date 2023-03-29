@@ -39,7 +39,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
     ImageView whatapp,submon,addmon,subqut,addqut;
     EditText montqut,proqut;
     String qut,proqut1;
-    String i,Status="Pendding";
+    String i,Status="Pending";
     String requid,reqpro;
     Uri uri=null;
     Button cart,rent;
@@ -252,7 +252,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "qut extended", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Quantity exceeded", Toast.LENGTH_SHORT).show();
                 }
             }
         });

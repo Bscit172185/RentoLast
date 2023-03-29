@@ -70,11 +70,11 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                                 e=Integer.parseInt(proqut);
                                 res=a*d*e+b;
                                 c=String.valueOf(res);
-                                holder.totalam.setText("Total: "+c+" /-");
+                                holder.totalam.setText("Total: "+c);
                             }
                         });
 
-        holder.months.setText("Month: "+qut+" /mon");
+        holder.months.setText("Month: "+qut);
         holder.proqut.setText("Quntity: "+proqut);
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                                                     if(proid.equals(pid)){
                                                         String rqid=d.getId();
                                                         String status=d.getString("Status");
-                                                        if(status.equals("Pendding")){
+                                                        if(status.equals("Pending")){
                                                             HashMap<String,Object> s=new HashMap<String, Object>();
                                                             s.put("Status","Rejected");
                                                             db.collection("Rent_Request").document(rqid).update(s)
