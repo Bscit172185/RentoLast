@@ -173,7 +173,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(ItemDetailsOfListedProductByUserActivity.this, "Activate prodect", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(ItemDetailsOfListedProductByUserActivity.this,ListedProductsFragment.class));
+                                            startActivity(new Intent(ItemDetailsOfListedProductByUserActivity.this,MainActivity.class));
                                         }
                                     });
                         }

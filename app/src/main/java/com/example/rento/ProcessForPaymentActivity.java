@@ -67,6 +67,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     Activity activity=this;
     String pid="",qut="",reqid;
     int pro_qut;
+    int finl;
     String img,name,dec,uid,price,broc,Addr,Uname,Uemail,Uphone,latitude,longitute,ulati,ulongi,prouid;
     Uri uri;
     int code=100;
@@ -95,7 +96,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         PaymentStu=intent.getStringExtra("paystus");
         reqid=intent.getStringExtra("reqid");
         pid=intent.getStringExtra("pid");
-        tot=intent.getStringExtra("totalamount");
          db.collection("Product").document(pid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                              @Override
@@ -147,7 +147,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         pro_qut=Integer.parseInt(documentSnapshot.getString("pro_qut"));
                         int qut2=Integer.parseInt(documentSnapshot.getString("qut"));
-                        int finl=(total*qut2+bro)*pro_qut;
+                        finl=(total*qut2+bro)*pro_qut;
                         if(PaymentStu.equals("PAID")){
                             nevi.setVisibility(View.INVISIBLE);
                             payment.setText("Download Invoice");
@@ -184,34 +184,6 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                                     downloadf.setOnClickListener(view1 -> {
                                         makepdffromview(da.findViewById(R.id.invoiceid));
                                     });
-                                    /*AlertDialog.Builder dilog=new AlertDialog.Builder(ProcessForPaymentActivity.this);
-                                    dilog.setTitle("Order Invoice");
-                                    dilog.setIcon(R.drawable.applogo);
-                                    dilog.setCancelable(true);
-                                    dilog.setMessage("Product Name:   "+name+
-                                            "\nproduct Amount:    "+price+
-                                            "\nProduct Brocrage:    "+broc+
-                                            "\nNO of Months: "+qut+
-                                            "\nNo of Qut: "+pro_qut+
-                                            "\n------------------------------------"+
-                                            "\nTotal Amount:    "+finl+
-                                            "\n------------------------------------"+
-                                            "\nPayment Status: "+PaymentStu);
-                                    dilog.setIcon(null);
-                                    dilog.setPositiveButton("Download PDF", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            if(checkPermission()){
-                                                makepdffromview(view);
-                                            }
-                                            else {
-                                                requestforper();
-                                            }
-
-                                        }
-                                    });
-                                    dilog.show();*/
-
                                 }
                             });
                         }
@@ -241,7 +213,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
             public void onClick(View view) {
                 a=Integer.parseInt(price);
                 b=Integer.parseInt(broc);
-                d=Integer.parseInt(tot)*100;
+                d=finl*100;
                 finalamount=String.valueOf(d);
                 AlertDialog.Builder alert=new AlertDialog.Builder(ProcessForPaymentActivity.this);
                 alert.setTitle("D E C L A R A T I O N");
@@ -351,7 +323,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     private void startpayment(String amu, String name, String email, String mob) {
 
         Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_test_aErLjoKUqCb7rU");
+        checkout.setKeyID("rzp_test_RYhbssfekFowZO");
         checkout.setImage(R.drawable.logoicon);
         try {
             JSONObject options = new JSONObject();
