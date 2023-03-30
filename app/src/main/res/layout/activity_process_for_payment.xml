@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ItemDetailsOfAddToCartActivity">
 
+
+
     <ScrollView
         android:id="@+id/scrollview1"
         android:layout_width="match_parent"
@@ -25,7 +27,7 @@
                 android:layout_width="400dp"
                 android:layout_height="450dp"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="81dp"
                 android:foregroundGravity="center"
                 />
@@ -38,9 +40,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="20dp">
-
-            </TextView>
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/text1"
@@ -49,9 +49,16 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Description"
-                android:textSize="20dp">
+                android:textSize="20dp"/>
 
-            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/text2"
@@ -60,8 +67,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Address"
-                android:textSize="20dp">
-            </TextView>
+                android:textSize="20dp"/>
+
            <ImageButton
                android:id="@+id/MapView"
                android:layout_width="370dp"

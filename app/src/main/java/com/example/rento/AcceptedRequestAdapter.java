@@ -70,9 +70,10 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         holder.t1.setText(name);
         holder.t2.setText(price);
         holder.qut.setText("Qut  "+proqut);
-        holder.t3.setText(bro+" borcrage");
+        holder.t3.setText("Brokerage: "+bro);
         tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
-        holder.t4.setText(" TotalAmount: "+String.valueOf(tot)+"/ ");
+        holder.t4.setText(" Total: "+String.valueOf(tot));
+        holder.mon.setText("Mon: "+qut);
         holder.t5.setText("Payment: "+paystu);
         if(paystu.equals("PAID")){
             holder.t5.setBackgroundResource(R.color.teal_200);
@@ -111,7 +112,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
-        TextView t1,t2,t3,t4,t5,qut;
+        TextView t1,t2,t3,t4,t5,qut,mon;
         ShapeableImageView img;
         CardView card;
 
@@ -123,6 +124,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
             t4=itemView.findViewById(R.id.totalamt);
             t5=itemView.findViewById(R.id.paymentstu);
             qut=itemView.findViewById(R.id.qty);
+            mon=itemView.findViewById(R.id.mon);
             img=itemView.findViewById(R.id.img);
             card=itemView.findViewById(R.id.crd);
         }

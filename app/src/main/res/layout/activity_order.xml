@@ -5,40 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView13"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="11dp"
-        android:gravity="center"
-        android:text="O R D E R S"
-        android:textSize="25dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        android:background="@drawable/homepage_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="O R D E R S"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="408dp"
         android:layout_height="674dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,11 +63,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/regview"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="650dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                />
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 

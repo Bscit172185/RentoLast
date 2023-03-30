@@ -80,19 +80,19 @@ public class CreateWalletActivity extends AppCompatActivity {
                                         });
                             }
                             else {
-                                ifsccode.setError("IFSC CODE REQURIED");
+                                ifsccode.setError("IFSC CODE REQUIRED");
                             }
                         }
                         else {
-                            accno.setError("ACCOUNT NUMBER REQURIED");
+                            accno.setError("ACCOUNT NUMBER REQUIRED");
                         }
                     }
                     else {
-                        name.setError("ACCOUNT HOLDER NAME REQURIED");
+                        name.setError("ACCOUNT HOLDER NAME REQUIRED");
                     }
                 }
                 else {
-                    bankname.setError("BANK NAME REQURIED");
+                    bankname.setError("BANK NAME REQUIRED");
                 }
             }
         });
