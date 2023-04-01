@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,6 +33,7 @@ public class ListedProductsFragment extends Fragment {
     ArrayList<Model> datalist;
     Myadapter myadapter;
     String id;
+    SearchView searchview;
     public String categoryid;
     String  count;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -56,9 +58,22 @@ public class ListedProductsFragment extends Fragment {
         regview=view.findViewById(R.id.Regview);
         regview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         datalist=new ArrayList<>();
+        searchview=view.findViewById(R.id.searchView2);
         myadapter=new Myadapter(datalist,getContext());
         regview.setAdapter(myadapter);
+        searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                myadapter.getFilter().filter(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myadapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         db.collection("Product").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

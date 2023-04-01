@@ -9,6 +9,8 @@ import android.provider.Telephony;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,13 +23,19 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
-public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
+public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder> implements Filterable {
     Context context;
     ArrayList<Model> datalist;
+    ArrayList<Model> listall;
+    ArrayList<Model> finalist1;
 
     public Myadapter(ArrayList<Model> datalist,Context context) {
         this.datalist = datalist;
+        this.listall=datalist;
         this.context=context;
     }
 
@@ -43,14 +51,15 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+
         Uri uri1;
         String pname,pprice,imgurl,brorate,ProId,UserId;
-        pname=datalist.get(position).getProduct_Name();
-        pprice=datalist.get(position).getProduct_Price();
-        imgurl=datalist.get(position).getProduct_ImgUrl();
-        UserId=datalist.get(position).getUID();
-        brorate=datalist.get(position).getProduct_brocrage();
-        ProId=datalist.get(position).id;
+        pname=listall.get(position).getProduct_Name();
+        pprice=listall.get(position).getProduct_Price();
+        imgurl=listall.get(position).getProduct_ImgUrl();
+        UserId=listall.get(position).getUID();
+        brorate=listall.get(position).getProduct_brocrage();
+        ProId=listall.get(position).id;
         uri1=Uri.parse(imgurl);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(pname);
@@ -77,8 +86,43 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.myviewholder>{
 
     @Override
     public int getItemCount() {
-        return datalist.size();
+        return listall.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+    Filter filter= new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            String a;
+            a=charSequence.toString();
+            if(a.isEmpty()){
+                listall=datalist;
+           }else
+           {
+                List<Model> filterlist=new ArrayList<>();
+                String filterpattern=charSequence.toString().toLowerCase().trim();
+                 for(Model news: listall){
+                    if(news.getProduct_Name().toLowerCase().contains(filterpattern.toLowerCase())){
+                       filterlist.add(news);
+                     }
+                   }
+                listall=new ArrayList<>(filterlist);
+
+           }
+            FilterResults filterResults=new FilterResults();
+            filterResults.values= listall;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listall=(ArrayList<Model>)filterResults.values;
+            notifyDataSetChanged();
+        }
+    };
 
     static class myviewholder extends RecyclerView.ViewHolder{
         TextView t1,t2;

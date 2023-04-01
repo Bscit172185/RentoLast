@@ -68,7 +68,7 @@ public class CartFragment extends Fragment {
                                 a=d.getString("ProId");
                                 String proqut=d.getString("pro_qut");
                                 String qut=d.getString("qut");
-                                getcarddata(qut,proqut);
+                                getcarddata(qut,proqut,a);
                             }
 
                         }
@@ -229,7 +229,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                 });
     }
 
-    public void getcarddata(String qut,String proqut) {
+    public void getcarddata(String qut,String proqut,String c) {
         myadapter=new CartAdapter(datalist,getContext());
         regview.setAdapter(myadapter);
         db.collection("Product").document(a).get()
@@ -237,7 +237,7 @@ public void checkout(String ProId,String Uid,String  qut,String Status,String it
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                        Model obj=documentSnapshot.toObject(Model.class);
-                       obj.Itemid=b;
+                       obj.Itemid=c;
                        obj.qut=qut;
                        obj.proqut=proqut;
                        datalist.add(obj);

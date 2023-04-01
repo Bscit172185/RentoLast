@@ -92,10 +92,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="140dp"
             android:text="Bank Details"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,9 +121,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="21dp"
             android:text="SVC Bank"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintStart_toEndOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -144,9 +148,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="21dp"
             android:text="Pritam Tirlotkar"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView19"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -169,9 +175,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:text="12345678"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ifsccode"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -194,9 +202,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="56dp"
             android:text="ABC12345"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 

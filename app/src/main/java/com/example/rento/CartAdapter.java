@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
         String a ,name,price,brokerage,months,quantity,c;
         Uri uri1;
         a=datalist.get(position).getProduct_ImgUrl();
+        c=datalist.get(position).Itemid;
         name=datalist.get(position).getProduct_Name();
         price=datalist.get(position).getProduct_Price();
         brokerage=datalist.get(position).getProduct_brocrage();
@@ -58,6 +60,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,ItemDetailsOfAddToCartActivity.class);
+                intent.putExtra("Itemid",c);
                 context.startActivity(intent);
             }
         });

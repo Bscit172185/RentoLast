@@ -64,7 +64,6 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         bro=datalist.get(position).getProduct_brocrage();
         status=datalist.get(position).stutus;
         pid=datalist.get(position).pid;
-        System.out.println(name);
         uri1=Uri.parse(a);
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);

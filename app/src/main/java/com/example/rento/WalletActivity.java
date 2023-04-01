@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class WalletActivity extends AppCompatActivity {
-    TextView balance;
+    TextView balance,bankname,name,accno,ifsccode;
     ImageView imageView;
 
     FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -33,6 +33,10 @@ public class WalletActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wallet);
         imageView=findViewById(R.id.imageView16);
         balance=findViewById(R.id.balance);
+        bankname=findViewById(R.id.bankname);
+        name=findViewById(R.id.name);
+        accno=findViewById(R.id.accno);
+        ifsccode=findViewById(R.id.ifsccode);
         db.collection("Wallet").document(UID).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
@@ -42,6 +46,10 @@ public class WalletActivity extends AppCompatActivity {
                                 b=Integer.parseInt(documentSnapshot.getString("brocrage"));
                                 re=a+b;
                                 balance.setText(String.valueOf(re));
+                                bankname.setText(documentSnapshot.getString("BANK Name"));
+                                name.setText(documentSnapshot.getString("holderName"));
+                                ifsccode.setText(documentSnapshot.getString("IFSC"));
+                                accno.setText(documentSnapshot.getString("acnum"));
                             }
                         });
         db.collection("order").get()
