@@ -42,13 +42,14 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        String qut,requid,rqeproid,totalamu,reqid,pid,proqut;
+        String qut,requid,rqeproid,reqid,pid,proqut;
         qut=datalist.get(position).qut;
         requid=datalist.get(position).requid;
         rqeproid=datalist.get(position).reqproid;
         reqid=datalist.get(position).reqid;
         pid=datalist.get(position).pid;
         proqut=datalist.get(position).proqut;
+        System.out.println("this is your listing: "+proqut);
         db.collection("user").document(requid).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             String iname;

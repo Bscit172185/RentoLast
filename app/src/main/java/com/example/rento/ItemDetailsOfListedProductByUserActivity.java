@@ -69,6 +69,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         name=findViewById(R.id.text);
         Intent intent=getIntent();
         pid=intent.getStringExtra("id");
+        System.out.println(pid);
         datalist=new ArrayList<>();
         myadapter=new itemRequestRecycleView(datalist,this);
         regview.setAdapter(myadapter);
@@ -211,10 +212,10 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                             proid=d.getString("ProId");
                             String status=d.getString("Status");
                             if(proid.equals(pid)){
-                                if(status.equals("Pendding")||status.equals("Accepted")){
+                                if(status.equals("Pending")||status.equals("Accepted")){
                                     String a=d.getId();
                                     System.out.println(a);
-                                    requserid=d.getString("requserid");
+                                    requserid=d.getString("ReqUserID");
                                     Model obj=d.toObject(Model.class);
                                     obj.pid=pid;
                                     obj.reqid=a;
@@ -223,12 +224,14 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                                     obj.reqproid=proid;
                                     obj.proqut=d.getString("pro_qut");
                                     datalist.add(obj);
+
+
                                 }
 
                             }
 
-                        }
-                        myadapter.notifyDataSetChanged();
+                        }myadapter.notifyDataSetChanged();
+
                     }
                 });
 
