@@ -86,7 +86,6 @@ public class HomeFragment extends Fragment {
         bk=view.findViewById(R.id.cardview5);
         im=view.findViewById(R.id.cardview6);
         vc=view.findViewById(R.id.cardview7);
-        Help=view.findViewById(R.id.help);
         mywallet=view.findViewById(R.id.mywallet);
         cls=view.findViewById(R.id.filtercls);
         menu=view.findViewById(R.id.menu1);
@@ -98,12 +97,7 @@ public class HomeFragment extends Fragment {
         ListedProductsFragment lpfr =new ListedProductsFragment();
         ft.add(R.id.layout,lpfr);
         ft.commit();
-        Help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(),HelpActivity.class));
-            }
-        });
+
         poster=view.findViewById(R.id.imageView14);
         FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
         StorageReference ref=firebaseStorage.getReference("banner.jpg");
