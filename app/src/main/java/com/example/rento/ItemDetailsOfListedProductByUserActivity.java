@@ -33,7 +33,7 @@ import java.util.List;
 
 public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity {
    ShapeableImageView img;
-   TextView name,rento,name1,address,months;
+   TextView name,rento,name1,address,months,text1;
    String proid,uname,price,requserid;
    String pid,pname,pprice,urli;
    RecyclerView regview;
@@ -60,6 +60,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         cardview1.setVisibility(View.INVISIBLE);
         name1=findViewById(R.id.name1);
         address=findViewById(R.id.address);
+        text1=findViewById(R.id.text1);
         months=findViewById(R.id.months);
         regview=findViewById(R.id.recycleview1);
         delpro=findViewById(R.id.delpro);
@@ -199,6 +200,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                         urli=documentSnapshot.getString("Product_ImgUrl");
                         pro_status=documentSnapshot.getString("pro_status");
                         pro_status=documentSnapshot.getString("pro_status");
+                        text1.setText(documentSnapshot.getString("Product_Descreiption"));
                         uri=Uri.parse(urli);
                         Picasso.get().load(uri).into(img);
                     }
