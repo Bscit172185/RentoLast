@@ -32,7 +32,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
     ShapeableImageView viewimg;
     Button editprofile;
     ImageView imageView1;
-    Uri IMGURI;
+    Uri IMGURI=null;
     String Email;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseUser user=auth.getCurrentUser();
@@ -83,9 +83,10 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                 name=editname.getText().toString();
                 mobile=editphone.getText().toString();
                 prourl=String.valueOf(IMGURI);
+
                 if(!name.isEmpty()){
                     if(!mobile.isEmpty()&&mobile.length()==10){
-                        if(!prourl.equals(null)){
+                        if(!prourl.equals("null")){
                             StorageReference upload=storage.getReference("Profile/"+Email);
                             Uri a=Uri.parse(prourl);
                             upload.putFile(a).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -132,10 +133,12 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                     }
                     else {
                         editphone.setError("Empty fields not allowed...");
+                        bar.dismiss();
                     }
                 }
                 else {
                     editname.setError("Empty fields not allowed...");
+                    bar.dismiss();
                 }
             }
         });
@@ -151,7 +154,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         }
         else {
             Toast.makeText(ProfileUpdateActivity.this, "error...", Toast.LENGTH_SHORT).show();
-            IMGURI=null;
+
         }
 
     }
