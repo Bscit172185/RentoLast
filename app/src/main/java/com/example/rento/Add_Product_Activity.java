@@ -159,7 +159,6 @@ public class Add_Product_Activity extends AppCompatActivity {
                                 PPrice.setError("Price should be less than 10 Lakhs");
                                 dilog.dismiss();
                             }
-
                         }
                         else {
                             Pdecrip.setError("Length should be less then 100");
@@ -170,15 +169,11 @@ public class Add_Product_Activity extends AppCompatActivity {
                         PName.setError("Length should be less then 20");
                         dilog.dismiss();
                     }
-
                 }
                 else {
                     Toast.makeText(Add_Product_Activity.this, "Fill details properly", Toast.LENGTH_SHORT).show();
                     dilog.dismiss();
                 }
-
-
-
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

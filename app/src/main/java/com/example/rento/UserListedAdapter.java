@@ -25,12 +25,7 @@ public class UserListedAdapter extends RecyclerView.Adapter<UserListedAdapter.my
     public UserListedAdapter(ArrayList<Model> datalist, Context context) {
         this.datalist= datalist;
         this.context=context;
-
     }
-
-
-
-
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,8 +55,6 @@ public class UserListedAdapter extends RecyclerView.Adapter<UserListedAdapter.my
         });
 
     }
-
-
 
     @Override
     public int getItemCount() {return datalist.size();}

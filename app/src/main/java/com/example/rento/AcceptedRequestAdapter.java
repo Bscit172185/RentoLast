@@ -68,7 +68,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         Picasso.get().load(uri1).into(holder.img);
         holder.t1.setText(name);
         holder.t2.setText(price);
-        holder.qut.setText("Qut  "+proqut);
+        holder.qut.setText("Qty:  "+proqut);
         holder.t3.setText("Brokerage: "+bro);
         tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
         holder.t4.setText(" Total: "+String.valueOf(tot));

@@ -75,10 +75,7 @@ public class UsersListedProductFragment extends Fragment {
                             regview.setBackgroundResource(R.drawable.emptyback1);
                         }
                     }
-
-
                 });
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

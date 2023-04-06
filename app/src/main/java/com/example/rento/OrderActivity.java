@@ -75,8 +75,6 @@ public class OrderActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
     private void Accepteditem(Context context,String ID,String Paystu1,String reqid1,String proqut1,String qutm) {
         myadapter1=new AcceptedRequestAdapter(datalist1,context);

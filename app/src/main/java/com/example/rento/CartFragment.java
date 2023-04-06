@@ -119,7 +119,6 @@ public class CartFragment extends Fragment {
                                         Uid=d.getString("Uid");
                                         qut=d.getString("qut");
                                         pro_qut=d.getString("pro_qut");
-
                                         Status="Pending";
                                         db.collection("order").get()
                                                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

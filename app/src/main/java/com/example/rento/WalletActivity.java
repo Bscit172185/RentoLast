@@ -64,8 +64,6 @@ public class WalletActivity extends AppCompatActivity {
                                         price=d.getString("price");
                                         bro=d.getString("bro");
                                         showbalance(price,bro);
-
-
                                     }
                                     else if(UID.equals(d.getString("orderUserID"))){
                                         String price,bro;
@@ -76,14 +74,12 @@ public class WalletActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(WalletActivity.this,MainActivity.class));
             }
         });
-
     }
     private void showbalance(String price,String bro) {
          p=p+Integer.parseInt(price);
@@ -99,6 +95,5 @@ public class WalletActivity extends AppCompatActivity {
              s.put("Balance",String.valueOf(res));
              db.collection("Wallet").document(UID).update(s);
          }
-
     }
 }

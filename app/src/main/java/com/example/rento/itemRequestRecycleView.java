@@ -76,7 +76,7 @@ public class itemRequestRecycleView extends RecyclerView.Adapter<itemRequestRecy
                         });
 
         holder.months.setText("Month: "+qut);
-        holder.proqut.setText("Quntity: "+proqut);
+        holder.proqut.setText("Quantity: "+proqut);
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

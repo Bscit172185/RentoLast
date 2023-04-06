@@ -105,7 +105,7 @@
                 android:layout_marginBottom="7dp"
                 android:text=" R E N T O "
                 android:textColor="#0B0B0A"
-                android:textSize="40dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/filtercls"

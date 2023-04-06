@@ -54,7 +54,7 @@ public class requesteditemAdepter extends RecyclerView.Adapter<requesteditemAdep
         b=Integer.parseInt(proqut);
         c=Integer.parseInt(price)*a1*b+Integer.parseInt(brok);
         holder.t4.setText("Total: "+c);
-        holder.t5.setText("Qut: "+proqut);
+        holder.t5.setText("Qty: "+proqut);
         holder.t6.setText("Mon: "+qut);
         holder.pay.setVisibility(View.INVISIBLE);
     }

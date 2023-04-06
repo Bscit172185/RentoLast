@@ -187,7 +187,6 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                         }
                     });
                     alert.show();
-
                 }
             }
         });
@@ -226,14 +225,9 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                                     obj.reqproid=proid;
                                     obj.proqut=d.getString("pro_qut");
                                     datalist.add(obj);
-
-
                                 }
-
                             }
-
                         }myadapter.notifyDataSetChanged();
-
                     }
                 });
 
@@ -267,7 +261,5 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                 alert.show();
             }
         });
-
     }
-
 }

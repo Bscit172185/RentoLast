@@ -18,13 +18,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MobileVerifyFragment extends Fragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         EditText MobN;
         Button Next;
-
         View view= inflater.inflate(R.layout.fragment_mobile_verify, container, false);
         MobN=view.findViewById(R.id.editTextPhone);
         Next=view.findViewById(R.id.button4);
@@ -51,7 +49,6 @@ public class MobileVerifyFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 }

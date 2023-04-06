@@ -210,7 +210,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "Minimum Month should be 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Minimum No of Month should be 1", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -223,7 +223,7 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                     montqut.setText(String.valueOf(anum));
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "Month should be in limit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Maximum No of months should be 12", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -235,10 +235,9 @@ public class Item_details_of_recycleview extends AppCompatActivity {
                     int b=bnum-1;
                     bnum=b;
                     proqut.setText(String.valueOf(bnum));
-
                 }
                 else {
-                    Toast.makeText(Item_details_of_recycleview.this, "Minimum Month should be 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Item_details_of_recycleview.this, "Minimum Quantity should be 1", Toast.LENGTH_SHORT).show();
                 }
             }
         });

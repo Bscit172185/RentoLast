@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="360dp"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
@@ -48,6 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="20dp" />
@@ -114,7 +116,7 @@
                 android:text="Payment: "
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:background="@color/ltred"
                 />
@@ -135,7 +137,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:text="Months"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/qty"
@@ -145,7 +147,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="15dp"
                 android:text="QTY"
-                android:textSize="20dp"/>
+                android:textSize="16dp"/>
 
 
         </LinearLayout>
