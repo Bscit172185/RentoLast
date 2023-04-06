@@ -93,7 +93,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="Brokerage"
-                android:drawableEnd="@drawable/ic_baseline_currency_rupee_24"
+                android:drawableStart="@drawable/ic_baseline_currency_rupee_24"
                 android:textSize="15dp"/>
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="Total Amount"
-                android:drawableEnd="@drawable/ic_baseline_currency_rupee_24"
+                android:drawableStart="@drawable/ic_baseline_currency_rupee_24"
                 android:textSize="17dp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"

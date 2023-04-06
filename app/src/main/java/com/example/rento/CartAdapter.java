@@ -56,6 +56,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
         holder.t3.setText(brokerage);
         holder.t4.setText("Mon: "+months);
         holder.t5.setText("Qty: "+quantity);
+        holder.t6.setVisibility(View.INVISIBLE);
+        holder.t7.setVisibility(View.INVISIBLE);
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +75,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
     }
 
     class myviewholder extends RecyclerView.ViewHolder {
-        TextView t1,t2,t3,t4,t5;
+        TextView t1,t2,t3,t4,t5,t6,t7;
         ShapeableImageView img;
         ImageView del;
         public myviewholder(@NonNull View itemView) {
@@ -84,6 +86,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.myviewholder> 
             t4=itemView.findViewById(R.id.mon);
             t5=itemView.findViewById(R.id.qty);
             img=itemView.findViewById(R.id.img);
+            t6=itemView.findViewById(R.id.totalamt);
+            t7=itemView.findViewById(R.id.paymentstu);
         }
     }
 }
