@@ -33,7 +33,7 @@ import java.util.List;
 
 public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity {
    ShapeableImageView img;
-   TextView name,rento,name1,address,months,text1;
+   TextView name,rento,name1,address,months,text1,pricepro,bropro1;
    String proid,uname,price,requserid;
    String pid,pname,pprice,urli;
    RecyclerView regview;
@@ -45,6 +45,7 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
    CardView cardview1;
    Switch deactivate;
    String orderproid;
+   String priceP,brocP;
    String pro_status;
    FirebaseFirestore db=FirebaseFirestore.getInstance();
    FirebaseAuth auth=FirebaseAuth.getInstance();
@@ -55,6 +56,8 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details_of_listed_product_by_user);
         rento=findViewById(R.id.rento);
+        pricepro=findViewById(R.id.text3);
+        bropro1=findViewById(R.id.text5);
         rento.setVisibility(View.INVISIBLE);
         cardview1=findViewById(R.id.cardview1);
         cardview1.setVisibility(View.INVISIBLE);
@@ -199,6 +202,10 @@ public class ItemDetailsOfListedProductByUserActivity extends AppCompatActivity 
                         urli=documentSnapshot.getString("Product_ImgUrl");
                         pro_status=documentSnapshot.getString("pro_status");
                         pro_status=documentSnapshot.getString("pro_status");
+                        priceP=documentSnapshot.getString("Product_Price");
+                        pricepro.setText(priceP);
+                        brocP=documentSnapshot.getString("Product_brocrage");
+                        bropro1.setText(brocP);
                         text1.setText(documentSnapshot.getString("Product_Descreiption"));
                         uri=Uri.parse(urli);
                         Picasso.get().load(uri).into(img);

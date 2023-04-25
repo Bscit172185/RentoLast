@@ -64,6 +64,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
     TextView pname,pprice,pbroc,pdes,paddr;
     Button payment,nevi;
     ImageView mapView;
+    String accno="12345678912457";
     Activity activity=this;
     String pid="",qut="",reqid;
     int pro_qut;
@@ -147,7 +148,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         pro_qut=Integer.parseInt(documentSnapshot.getString("pro_qut"));
                         int qut2=Integer.parseInt(documentSnapshot.getString("qut"));
-                        finl=(total*qut2+bro)*pro_qut;
+                        finl=(total*qut2*pro_qut)+bro;
                         if(PaymentStu.equals("PAID")){
                             nevi.setVisibility(View.INVISIBLE);
                             payment.setText("Download Invoice");
@@ -328,7 +329,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         try {
             JSONObject options = new JSONObject();
             options.put("name",name);
-            options.put("description", "Reference No. #123456");
+            options.put("description", "bank acc: "+accno+"   UID: "+userid);
             options.put("image", "https://firebasestorage.googleapis.com/v0/b/" +
                     "rento-f1b52.appspot.com/o/banner.jpg?alt=media&token=ade5458d-75fa-4e71-9d44-3f434608c20b");
             options.put("theme.color", "#3399CC");

@@ -112,10 +112,11 @@ public class CartFragment extends Fragment {
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     List<DocumentSnapshot>list=queryDocumentSnapshots.getDocuments();
                                     for(DocumentSnapshot d:list){
-                                        String Uid,qut,Status,itemidofcart,id,pro_qut;
+                                        String Uid,qut,Status,itemidofcart,id,pro_qut,Proid;
                                         itemidofcart=d.getId();
                                         id=d.getString("Uid");
-                                        ProId=d.getString("ProId");
+                                        Proid=d.getString("ProId");
+                                        ProId=Proid;
                                         Uid=d.getString("Uid");
                                         qut=d.getString("qut");
                                         pro_qut=d.getString("pro_qut");
@@ -134,7 +135,7 @@ public class CartFragment extends Fragment {
                                                         }
                                                         if(uid.equals(id)){
                                                             if(arlist.size()==0){
-                                                                checkout(ProId,Uid,qut,Status,itemidofcart,pro_qut);
+                                                                checkout(Proid,Uid,qut,Status,itemidofcart,pro_qut);
                                                                 startActivity(new Intent(getActivity(),MainActivity.class));
                                                             }
                                                             else {
