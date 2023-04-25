@@ -167,16 +167,14 @@ public class HomeFragment extends Fragment {
                                                     procode.add(d.getId());
                                                     break;
                                                 }
-                                                if (!d.getString("UID").equals(UID)){
-                                                    procode.add(d.getId());
-                                                    break;
-                                                }
                                             }
                                             if(!procode.isEmpty()){
-                                                startActivity(new Intent(getActivity(),WalletActivity.class));
                                                 dilog.dismiss();
+                                                startActivity(new Intent(getActivity(),WalletActivity.class));
+
                                             }
                                             else {
+                                                dilog.dismiss();
                                                 startActivity(new Intent(getActivity(),CreateWalletActivity.class));
                                             }
                                         }
