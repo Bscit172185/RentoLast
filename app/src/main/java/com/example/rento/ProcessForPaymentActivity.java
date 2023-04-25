@@ -329,7 +329,7 @@ public class ProcessForPaymentActivity extends AppCompatActivity implements Paym
         try {
             JSONObject options = new JSONObject();
             options.put("name",name);
-            options.put("description", "bank acc: "+accno+"   UID: "+userid);
+            options.put("description", "bank acc:  "+accno+"   UID: "+userid);
             options.put("image", "https://firebasestorage.googleapis.com/v0/b/" +
                     "rento-f1b52.appspot.com/o/banner.jpg?alt=media&token=ade5458d-75fa-4e71-9d44-3f434608c20b");
             options.put("theme.color", "#3399CC");
