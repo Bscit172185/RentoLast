@@ -71,7 +71,8 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         holder.qut.setText("Qty:  "+proqut);
         holder.t3.setText("Brokerage: "+bro);
         tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
-        holder.t4.setText(" Total: "+String.valueOf(tot));
+        String a3=String.valueOf(tot);
+        holder.t4.setText(" Total: "+a3);
         holder.mon.setText("Mon: "+qut);
         holder.t5.setText("Payment: "+paystu);
         if(paystu.equals("PAID")){
