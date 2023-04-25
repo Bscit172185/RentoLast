@@ -31,7 +31,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
     Context context;
     String status;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
-    int tot;
+
     public AcceptedRequestAdapter(ArrayList<Model1> datalist, Context context) {
         this.datalist= datalist;
         this.context=context;
@@ -46,6 +46,7 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
 
     @Override
     public void onBindViewHolder(@NonNull AcceptedRequestAdapter.myviewholder holder, int position) {
+        Integer tot;
         String a,paystu,reqid;
         String name;
         String price;
@@ -66,20 +67,20 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
         pid=datalist.get(position).pid;
         uri1=Uri.parse(a);
         Picasso.get().load(uri1).into(holder.img);
+        System.out.println("ahdvsdhk: "+status);
         holder.t1.setText(name);
         holder.t2.setText(price);
         holder.qut.setText("Qty:  "+proqut);
         holder.t3.setText("Brokerage: "+bro);
-        tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
-        String a3=String.valueOf(tot);
-        holder.t4.setText(" Total: "+a3);
         holder.mon.setText("Mon: "+qut);
-        holder.t5.setText("Payment: "+paystu);
         if(paystu.equals("PAID")){
             holder.t5.setBackgroundResource(R.color.teal_200);
         }
 
         if(status=="yes"){
+            tot=Integer.parseInt(price)*Integer.parseInt(proqut)*Integer.parseInt(qut)+Integer.parseInt(bro);
+            holder.t5.setText("Payment: "+paystu);
+            holder.t4.setText(" Total: "+String.valueOf(tot));
             holder.img.setOnClickListener(new View.OnClickListener() {
                 String a;
                 @Override
@@ -101,6 +102,10 @@ public class AcceptedRequestAdapter extends RecyclerView.Adapter<AcceptedRequest
 
                 }
             });
+        }
+        else {
+            holder.t4.setVisibility(View.INVISIBLE);
+            holder.t5.setVisibility(View.INVISIBLE);
         }
 
 
